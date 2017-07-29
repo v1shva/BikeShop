@@ -1,0 +1,79 @@
+.navButton{
+    -fx-background-color: #6c5dff;
+    -fx-border-color: #7b90d7;
+    -fx-border-width: 5px;
+}
+
+.navButton:hover{
+    -fx-background-color: #7b90d7;
+}
+
+.header{
+    -fx-background-color: #6c5dff;
+    -fx-text-fill: white;
+}
+
+.nav{
+    -fx-background-image: url("../images/blue-abstract-background.jpg");
+}
+
+.windowControl#closeBtn {
+    -fx-background-image: url("../images/windowControl/close.png");
+    -fx-background-radius: 0;
+    -fx-border-style: null;
+    -fx-background-color: null;
+    -fx-background-repeat:no-repeat;
+}
+
+.windowControl#closeBtn:hover{
+    -fx-background-color: null;
+    -fx-background-repeat:no-repeat;
+    -fx-background-image: url("../images/windowControl/close-hover.png");
+
+}
+
+.windowControl#minBtn {
+    -fx-background-image: url("../images/windowControl/minimize.png");
+    -fx-background-radius: 0;
+    -fx-border-style: null;
+    -fx-background-color: null;
+    -fx-background-repeat:no-repeat;
+}
+
+.windowControl#minBtn:hover{
+    -fx-background-color: null;
+    -fx-background-repeat:no-repeat;
+    -fx-background-image: url("../images/windowControl/minimize-hover.png");
+
+}
+
+.windowControlMax {
+    -fx-background-image: url("../images/windowControl/maximize.png");
+    -fx-background-radius: 0;
+    -fx-border-style: null;
+    -fx-background-color: null;
+    -fx-background-repeat:no-repeat;
+}
+
+.windowControlMax:hover{
+    -fx-background-color: null;
+    -fx-background-repeat:no-repeat;
+    -fx-background-image: url("../images/windowControl/maximize-hover.png");
+
+}
+
+
+.windowControlRs{
+    -fx-background-image: url("../images/windowControl/restore.png");
+    -fx-background-radius: 0;
+    -fx-border-style: null;
+    -fx-background-color: null;
+    -fx-background-repeat:no-repeat;
+}
+
+.windowControlRs:hover{
+    -fx-background-color: null;
+    -fx-background-repeat:no-repeat;
+    -fx-background-image: url("../images/windowControl/restore-hover.png");
+
+}

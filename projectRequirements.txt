@@ -1,0 +1,77 @@
+//project  
+All the modules should be in Sinhala.
+
+Stock Module ....
+Stock Reports 
+S
+
+Purchase Module
+* Bike purchases ......
+(Primary Key) Bike No: // Bike could be reselled by same customer.
+Bike Model:
+Bike Details:
+Bike Owners Name : 
+ ""		""	Address:
+ "" 	""	ID :
+
+Bike Owners Phone No. : (2 Minimum)
+Leased or Not: 
+If leased Leasers Name:
+Leased Amount: 
+
+ID Copy : 
+Deletion Letter: //
+VIC
+CR
+Transfer Paper :
+License : 
+Insurance :
+Other Details : 
+Keys : 
+
+Total Payments: 
+Other Expenses: 
+IF half payments:
+
+
+Billing Module./////////////////////////////////////////////////////////////////////////////////////////////////////
+* Bike purchases ......
+(Primary Key) Bike No: // Bike could be reselled by same customer.
+Bike Modal:
+Bike Color:
+Bike Owners Name : 
+ ""		""	Address:
+ "" 	""	ID :
+
+Bike Owners Phone No. :
+Leased or Not: 
+If Financed:
+	Finance Type:
+	File No.:
+	Finance Value:
+
+
+ID Copy : 
+Deletion Letter: //
+VIC:
+CR:
+Transfer Paper :
+License : 
+Insurance :
+Other Details : 
+Keys: 
+
+Leased Amount: 
+Total Payments: 
+Other Expenses: 
+IF half payments:
+
+Sub Module :
+	Original License Issued Date:
+	Enter Bike No.
+	After Entering if License is available it should be issued and billing data should be updated.
+
+
+Financing Module:
+	Same as billing module, Commis Amount should be displayed.
+

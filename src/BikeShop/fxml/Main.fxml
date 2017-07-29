@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BikeShop.control.MainControl">
+   <children>
+      <BorderPane id="mainBorderPane" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+
+         </bottom>
+         <top>
+            <VBox prefHeight="95.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" onMouseDragged="#mouseWindowDrag" onMousePressed="#mousePrsWindow" prefHeight="35.0" prefWidth="1000.0" styleClass="header">
+                     <children>
+                        <Label prefHeight="36.0" prefWidth="229.0" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="minBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#minWindow" prefHeight="90.0" prefWidth="34.0" styleClass="windowControl">
+                           <effect>
+                              <Glow level="0.4" />
+                           </effect>
+                        </Button>
+                        <Button fx:id="rsBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#rsWindow" prefHeight="73.0" prefWidth="34.0" styleClass="windowControlMax">
+                           <effect>
+                              <Glow level="0.4" />
+                           </effect>
+                        </Button>
+                        <Button fx:id="closeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#closeWindow" prefHeight="85.0" prefWidth="34.0" styleClass="windowControl">
+                           <effect>
+                              <Glow level="0.4" />
+                           </effect>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="879.0">
+                     <menus>
+                        <Menu mnemonicParsing="false" text="%file">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="%close" />
+                           </items>
+                        </Menu>
+                         <Menu mnemonicParsing="false" text="%view">
+                             <items>
+                                 <MenuItem mnemonicParsing="false" onAction="#onShowSale" text="%showSales" />
+                                 <MenuItem mnemonicParsing="false" onAction="#onShowPurchase" text="%showPurchases" />
+                             </items>
+                         </Menu>
+                        <Menu mnemonicParsing="false" text="%users">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#onAddUser" text="%addNewUser" />
+                              <MenuItem mnemonicParsing="false" onAction="#onManageUsers" text="%manageUser" />
+                           </items>
+                        </Menu>
+                     </menus>
+                  </MenuBar>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0">
+                    <items>
+                      <Button fx:id="purchaseButton" mnemonicParsing="false" onAction="#onPurchaseClick" text="%purchase" />
+                        <Button fx:id="sellButton" mnemonicParsing="false" onAction="#onSellClick" text="%Sell" />
+                        <Button mnemonicParsing="false" text="%lease" />
+                    </items>
+                  </ToolBar>
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <TabPane fx:id="MainTabWindow" prefHeight="600.0" prefWidth="848.0" BorderPane.alignment="CENTER">
+               <tabs>
+                  <Tab text="%welcome">
+                     <content>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="848.0" minWidth="10.0" prefWidth="848.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="419.0" minWidth="0.0" prefWidth="0.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="216.0" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="529.0" minHeight="10.0" prefHeight="529.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="86.0" prefWidth="933.0" text="%welcomeMsg" />
+                              <GridPane prefHeight="460.0" prefWidth="835.0" GridPane.rowIndex="1">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                              </GridPane>
+                           </children>
+                        </GridPane>
+                     </content></Tab>
+               </tabs>
+            </TabPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

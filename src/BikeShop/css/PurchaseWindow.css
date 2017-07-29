@@ -1,0 +1,11 @@
+.bikeDetails {
+    -fx-background-color: darkgrey;
+
+}
+
+
+.windowHeader {
+    -fx-background-color: #4183D7;
+    -fx-text-fill: white;
+}
+
