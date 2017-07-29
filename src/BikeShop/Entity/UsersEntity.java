@@ -1,9 +1,6 @@
 package BikeShop.Entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Vishva on 7/29/2017.
@@ -16,7 +13,7 @@ public class UsersEntity {
     private String name;
     private String nic;
 
-    @Basic
+    @Id
     @Column(name = "username", nullable = false, length = 30)
     public String getUsername() {
         return username;

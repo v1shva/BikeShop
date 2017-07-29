@@ -111,6 +111,7 @@ public class SplashControl  implements Initializable {
         String userName = userNameInput.getText();
         String pass = passInput.getText();
 
+        PasswordStorage.verifyPassword(pass,dbPass);
 
         //After authentication
         if(!languageChoice.getValue().equals("English")){

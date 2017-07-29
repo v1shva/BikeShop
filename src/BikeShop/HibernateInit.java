@@ -1,7 +1,7 @@
 package BikeShop;
 
         import org.hibernate.SessionFactory;
-        import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.Configuration;
 
 /**
  * Created by Vishva on 3/20/2017.
