@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b51982a9-9475-4543-a903-759e8d0eeb58" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/_idea.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bikeShop/bikeShop.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BikeShop.iml" afterPath="$PROJECT_DIR$/BikeShop.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/Entity/UsersEntity.java" afterPath="$PROJECT_DIR$/src/BikeShop/Entity/UsersEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/HibernateInit.java" afterPath="$PROJECT_DIR$/src/BikeShop/HibernateInit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/control/AddUserControl.java" afterPath="$PROJECT_DIR$/src/BikeShop/control/AddUserControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/control/SplashControl.java" afterPath="$PROJECT_DIR$/src/BikeShop/control/SplashControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/fxml/AddUserGUI.fxml" afterPath="$PROJECT_DIR$/src/BikeShop/fxml/AddUserGUI.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bikeDB.xml" afterPath="$PROJECT_DIR$/src/bikeDB.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,8 +55,8 @@
       <file leaf-file-name="SplashControl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/BikeShop/control/SplashControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="113" column="47" lean-forward="true" selection-start-line="113" selection-start-column="47" selection-end-line="113" selection-end-column="47" />
+            <state relative-caret-position="196">
+              <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -338,12 +326,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1501325801214</updated>
-      <workItem from="1501325806088" duration="981000" />
+      <workItem from="1501325806088" duration="1160000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="981000" />
+    <option name="totallyTimeSpent" value="1160000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -444,8 +432,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BikeShop/control/SplashControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="113" column="47" lean-forward="true" selection-start-line="113" selection-start-column="47" selection-end-line="113" selection-end-column="47" />
+        <state relative-caret-position="196">
+          <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
           <folding />
         </state>
       </provider>
