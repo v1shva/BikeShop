@@ -12,8 +12,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -24,17 +26,30 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
 public class PurchaseViewControl {
+    private String language = "en";
+    ObservableList<PurchasesEntity> masterData;
     @FXML
     TextField searchInput;
     @FXML
-    private TableView<BikeShop.Entity.PurchasesEntity> saleDataTable;
+    private TableView<BikeShop.Entity.PurchasesEntity> purchaseDataTable;
+    @FXML
+    private TableColumn purchaseColumn;
 
     @FXML
     public void initialize() {
-        ObservableList<PurchasesEntity> masterData = LoadTable();
-        System.out.println(masterData);
+       setpurchaseDataTable();
+    }
+    private void setpurchaseDataTable(){
+        purchaseDataTable.setItems(null);
+        purchaseDataTable.setPlaceholder(new Label("Content is loading"));
+        masterData = LoadTable();
         FilteredList<PurchasesEntity> filteredData = new FilteredList<>(masterData, p -> true);
         searchInput.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(salesItem -> {
@@ -59,18 +74,21 @@ public class PurchaseViewControl {
                 else if(salesItem.getOwnerNic()!=null && salesItem.getOwnerNic().toLowerCase().contains(lowerCaseFilter)){
                     return true;
                 }
+                else if(salesItem.getPurchaseDate()!=null && salesItem.getPurchaseDate().toString().toLowerCase().contains(lowerCaseFilter)){
+                    return true;
+                }
                 return false; // Does not match.
             });
         });
         SortedList<PurchasesEntity> sortedData = new SortedList<>(filteredData);
 
         // 4. Bind the SortedList comparator to the TableView comparator.
-        sortedData.comparatorProperty().bind(saleDataTable.comparatorProperty());
+        sortedData.comparatorProperty().bind(purchaseDataTable.comparatorProperty());
 
         // 5. Add sorted (and filtered) data to the table.
-        saleDataTable.setItems(sortedData);
-
-
+        purchaseDataTable.setItems(sortedData);
+        purchaseColumn.setComparator(purchaseColumn.getComparator().reversed());
+        purchaseDataTable.getSortOrder().add(purchaseColumn);
     }
 
     private ObservableList<PurchasesEntity> LoadTable() {
@@ -93,7 +111,6 @@ public class PurchaseViewControl {
             TypedQuery<PurchasesEntity> query = session.createQuery(cq);
             List<PurchasesEntity> list = query.getResultList();
             data = FXCollections.observableList(list);
-            saleDataTable.setItems(data);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -103,17 +120,93 @@ public class PurchaseViewControl {
         }
         return data;
     }
-    @FXML private void EditItems(){
-        List<PurchasesEntity> sales = saleDataTable.getItems();
-        for(PurchasesEntity sl:sales){
-            if(sl.getChecked()==true){
-                System.out.println(sl.getInvoiceNo());
+
+    @FXML private void EditItems() throws IOException {
+        List<PurchasesEntity> purchase = purchaseDataTable.getItems();
+        int i = 0,checkedi =0,count=0;
+        for(PurchasesEntity sl:purchase){
+            if(sl.getChecked()!=null &&sl.getChecked()==true){
+                count++;checkedi = i;
             }
+            i++;
         }
+        if(count==1){
+            Locale locale = new Locale("sin");
+            ResourceBundle rb;
+            if(language.equals("sin")){
+                rb = ResourceBundle.getBundle("BikeShop/Localization/language", locale);
+            }
+            else{
+                rb = ResourceBundle.getBundle("BikeShop/Localization/language");
+            }
+
+            Scene scene = searchInput.getScene();
+            TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/PurchaseGUI.fxml"), rb);
+            Parent root = (Parent)fxmlLoader.load();
+            PurchaseControl controller = fxmlLoader.<PurchaseControl>getController();
+            PurchasesEntity current = purchase.get(checkedi);
+            //controller.attachCancelAction();
+            controller.setValues(current.getInvoiceNo(),current.getBikeNo(),current.getBikeModal(),current.getBikeColor(),current.getOwnerName(),current.getOwnerAddress(),
+                    current.getOwnerNic(),current.getOwnerTpNo(),current.getLeaseAmount(),current.getTotalValue(),current.getOtherExpenses(),current.getArrearsValue(),
+                    current.getLeaseDNo(),current.getLeasersName(),current.getOtherInfo(),current.getDocList(),current.getPurchaseDate(), true);
+            Tab tab = new Tab();
+            tab.setText("Purchase Bike");
+            tab.setClosable(true);
+            tab.setContent(root);
+            tabPane.getTabs().add(tab);
+            tabPane.getSelectionModel().select(tab);
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING,"Select only single item to Edit");
+            alert.setTitle("More than one item selected");
+            alert.setHeaderText("More than one item selected");
+            alert.show();
+        }
+
+
+    }
+
+    @FXML private void DeleteItems(){
+        ButtonType okay = new ButtonType("Okay",  ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        // get a handle to the stage
+        Alert alert = new Alert(Alert.AlertType.WARNING,"Selected items will be deleted. Proceed?",okay,cancel);
+        alert.setTitle("Delete Selected Items");
+        alert.setHeaderText("Deleting Items");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.get().getButtonData()== ButtonBar.ButtonData.OK_DONE){
+            List<PurchasesEntity> sales = purchaseDataTable.getItems();
+            SessionFactory factory;
+            try {
+                factory = new Configuration().configure("bikeDB.xml").buildSessionFactory();
+            } catch (Throwable ex) {
+                System.err.println("Failed to create sessionFactory object." + ex);
+                throw new ExceptionInInitializerError(ex);
+            }
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            int i = 0;
+            for(PurchasesEntity sl:sales){
+                i++;
+                if(sl.getChecked()!=null &&sl.getChecked()==true){
+                    session.delete(sl);
+                }
+                if ( i % 20 == 0 ) { //20, same as the JDBC batch size
+                    //flush a batch of inserts and release memory:
+                    session.flush();
+                    session.clear();
+                }
+            }
+            tx.commit();
+            session.close();
+            setpurchaseDataTable();
+        }
+
     }
 
     @FXML private void LoadItems(){
-        LoadTable();
+        setpurchaseDataTable();
     }
 
 

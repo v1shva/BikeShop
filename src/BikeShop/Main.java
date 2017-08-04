@@ -38,28 +38,9 @@ public class Main extends Application {
         showSplash.play();
 
     }
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/BikeDatabase";
-    static final String DB_USER = "user1";
-    static final String DB_PASS = "secret";
 
 
     public static void main(String[] args) {
-
-        /*
-        try {
-            JdbcRowSet rowSet = null;
-            Class.forName(JDBC_DRIVER);
-            rowSet = new JdbcRowSetImpl();
-            rowSet.setUrl(DB_URL);
-            rowSet.setUsername(DB_USER);
-            rowSet.setPassword(DB_PASS);
-            rowSet.setCommand("SELECT * FROM Person");
-            rowSet.execute();
-        } catch (SQLException | ClassNotFoundException ex) {
-                ex.printStackTrace();
-            }
-            */
         launch(args);
 
     }

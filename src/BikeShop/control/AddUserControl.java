@@ -4,9 +4,11 @@ package BikeShop.control;
 import BikeShop.Entity.UsersEntity;
 import BikeShop.HibernateInit;
 import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import org.hibernate.HibernateException;
@@ -39,11 +41,22 @@ public class AddUserControl {
     private TextField passwordIn;
     @FXML
     private TextField confirmPasswordIn;
+    @FXML
+    private ChoiceBox userLevelChoice;
+
+    public  void initialize () {
+        userLevelChoice.setItems(FXCollections.observableArrayList(
+                "Administrator",
+                new Separator(), "User" )
+        );
+        userLevelChoice.getSelectionModel().selectFirst();
+    }
     @FXML private void addUser() throws IOException {
         String username = userNameIn.getText();
         String password = passwordIn.getText();
         String name = NameIn.getText();
         String nic = NICIn.getText();
+        String userlevel = (String) userLevelChoice.getValue();
         Session session = HibernateInit.getSessionFactory().openSession();
         String hashedPass = "";
 
@@ -60,6 +73,7 @@ public class AddUserControl {
             user.setUsername(username);
             user.setPassword(hashedPass);
             user.setNic(nic);
+            user.setUserLevel(userlevel);
             session.save(user);
             tx.commit();
         }catch (HibernateException e) {

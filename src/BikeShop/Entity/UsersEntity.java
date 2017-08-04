@@ -12,8 +12,9 @@ public class UsersEntity {
     private String password;
     private String name;
     private String nic;
+    private String userLevel;
 
-    @Id
+    @Basic
     @Column(name = "username", nullable = false, length = 30)
     public String getUsername() {
         return username;
@@ -43,7 +44,7 @@ public class UsersEntity {
         this.name = name;
     }
 
-    @Basic
+    @Id
     @Column(name = "nic", nullable = false, length = 15)
     public String getNic() {
         return nic;
@@ -51,6 +52,16 @@ public class UsersEntity {
 
     public void setNic(String nic) {
         this.nic = nic;
+    }
+
+    @Basic
+    @Column(name = "userLevel", nullable = false, length = 100)
+    public String getUserLevel() {
+        return userLevel;
+    }
+
+    public void setUserLevel(String userLevel) {
+        this.userLevel = userLevel;
     }
 
     @Override
@@ -64,6 +75,7 @@ public class UsersEntity {
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (nic != null ? !nic.equals(that.nic) : that.nic != null) return false;
+        if (userLevel != null ? !userLevel.equals(that.userLevel) : that.userLevel != null) return false;
 
         return true;
     }
@@ -74,6 +86,7 @@ public class UsersEntity {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (nic != null ? nic.hashCode() : 0);
+        result = 31 * result + (userLevel != null ? userLevel.hashCode() : 0);
         return result;
     }
 }

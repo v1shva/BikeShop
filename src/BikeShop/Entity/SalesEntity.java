@@ -3,9 +3,6 @@ package BikeShop.Entity;
 import javax.persistence.*;
 import java.sql.Date;
 
-/**
- * Created by Vishva on 3/29/2017.
- */
 @Entity
 @Table(name = "sales", schema = "bikedb", catalog = "")
 public class SalesEntity {
@@ -14,7 +11,6 @@ public class SalesEntity {
     private String bikeColor;
     private String bikeModal;
     private String bikeNo;
-    private Date saleDate;
     private String docList;
     private String financeFNo;
     private String financeType;
@@ -26,9 +22,14 @@ public class SalesEntity {
     private String ownerNic;
     private String ownerTpNo;
     private Double totalValue;
-    private Double leasingValue;
     private Boolean checked;
     private boolean editLock;
+    private Double leasingValue;
+    private Date saleDate;
+    private Byte chequeResolved;
+    private String chequeBank;
+    private String chequeNumber;
+    private Date chequeDate;
 
     @Id
     @Column(name = "invoiceNo", nullable = false)
@@ -78,16 +79,6 @@ public class SalesEntity {
 
     public void setBikeNo(String bikeNo) {
         this.bikeNo = bikeNo;
-    }
-
-    @Basic
-    @Column(name = "saleDate", columnDefinition="DATETIME")
-    public Date getSaleDate() {
-        return saleDate;
-    }
-
-    public void setSaleDate(Date saleDate) {
-        this.saleDate = saleDate;
     }
 
     @Basic
@@ -201,16 +192,6 @@ public class SalesEntity {
     }
 
     @Basic
-    @Column(name = "leasingValue", nullable = true, precision = 0)
-    public Double getLeasingValue() {
-        return leasingValue;
-    }
-
-    public void setLeasingValue(Double leasingValue) {
-        this.leasingValue = leasingValue;
-    }
-
-    @Basic
     @Column(name = "checked", nullable = true)
     public Boolean getChecked() {
         return checked;
@@ -228,6 +209,66 @@ public class SalesEntity {
 
     public void setEditLock(boolean editLock) {
         this.editLock = editLock;
+    }
+
+    @Basic
+    @Column(name = "leasingValue", nullable = true, precision = 0)
+    public Double getLeasingValue() {
+        return leasingValue;
+    }
+
+    public void setLeasingValue(Double leasingValue) {
+        this.leasingValue = leasingValue;
+    }
+
+    @Basic
+    @Column(name = "saleDate", nullable = true)
+    public Date getSaleDate() {
+        return saleDate;
+    }
+
+    public void setSaleDate(Date saleDate) {
+        this.saleDate = saleDate;
+    }
+
+    @Basic
+    @Column(name = "chequeResolved", nullable = true)
+    public Byte getChequeResolved() {
+        return chequeResolved;
+    }
+
+    public void setChequeResolved(Byte chequeResolved) {
+        this.chequeResolved = chequeResolved;
+    }
+
+    @Basic
+    @Column(name = "chequeBank", nullable = true, length = 15)
+    public String getChequeBank() {
+        return chequeBank;
+    }
+
+    public void setChequeBank(String chequeBank) {
+        this.chequeBank = chequeBank;
+    }
+
+    @Basic
+    @Column(name = "chequeNumber", nullable = true, length = 30)
+    public String getChequeNumber() {
+        return chequeNumber;
+    }
+
+    public void setChequeNumber(String chequeNumber) {
+        this.chequeNumber = chequeNumber;
+    }
+
+    @Basic
+    @Column(name = "chequeDate", nullable = true)
+    public Date getChequeDate() {
+        return chequeDate;
+    }
+
+    public void setChequeDate(Date chequeDate) {
+        this.chequeDate = chequeDate;
     }
 
     @Override
@@ -256,6 +297,13 @@ public class SalesEntity {
         if (ownerTpNo != null ? !ownerTpNo.equals(that.ownerTpNo) : that.ownerTpNo != null) return false;
         if (totalValue != null ? !totalValue.equals(that.totalValue) : that.totalValue != null) return false;
         if (checked != null ? !checked.equals(that.checked) : that.checked != null) return false;
+        if (leasingValue != null ? !leasingValue.equals(that.leasingValue) : that.leasingValue != null) return false;
+        if (saleDate != null ? !saleDate.equals(that.saleDate) : that.saleDate != null) return false;
+        if (chequeResolved != null ? !chequeResolved.equals(that.chequeResolved) : that.chequeResolved != null)
+            return false;
+        if (chequeBank != null ? !chequeBank.equals(that.chequeBank) : that.chequeBank != null) return false;
+        if (chequeNumber != null ? !chequeNumber.equals(that.chequeNumber) : that.chequeNumber != null) return false;
+        if (chequeDate != null ? !chequeDate.equals(that.chequeDate) : that.chequeDate != null) return false;
 
         return true;
     }
@@ -280,6 +328,12 @@ public class SalesEntity {
         result = 31 * result + (totalValue != null ? totalValue.hashCode() : 0);
         result = 31 * result + (checked != null ? checked.hashCode() : 0);
         result = 31 * result + (editLock ? 1 : 0);
+        result = 31 * result + (leasingValue != null ? leasingValue.hashCode() : 0);
+        result = 31 * result + (saleDate != null ? saleDate.hashCode() : 0);
+        result = 31 * result + (chequeResolved != null ? chequeResolved.hashCode() : 0);
+        result = 31 * result + (chequeBank != null ? chequeBank.hashCode() : 0);
+        result = 31 * result + (chequeNumber != null ? chequeNumber.hashCode() : 0);
+        result = 31 * result + (chequeDate != null ? chequeDate.hashCode() : 0);
         return result;
     }
 }

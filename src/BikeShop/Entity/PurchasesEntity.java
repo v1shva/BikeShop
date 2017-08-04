@@ -7,7 +7,7 @@ import java.sql.Date;
  * Created by Vishva on 3/29/2017.
  */
 @Entity
-@Table(name = "purchases", schema = "bikedb", catalog = "")
+@Table(name = "purchases", schema = "bikedb")
 public class PurchasesEntity {
     private int invoiceNo;
     private Double arrearsValue;
@@ -27,7 +27,7 @@ public class PurchasesEntity {
     private String leasersName;
     private Double leaseAmount;
     private Date purchaseDate;
-
+    private String sold;
 
     @Id
     @Column(name = "invoiceNo", nullable = false)
@@ -119,6 +119,8 @@ public class PurchasesEntity {
         this.ownerAddress = ownerAddress;
     }
 
+
+
     @Basic
     @Column(name = "ownerName", nullable = true, length = 255)
     public String getOwnerName() {
@@ -209,6 +211,16 @@ public class PurchasesEntity {
         this.purchaseDate = purchaseDate;
     }
 
+    @Basic
+    @Column(name = "sold", nullable = true, length = 255)
+    public String getSold() {
+        return sold;
+    }
+
+    public void setSold(String soldOrNot) {
+        this.sold = soldOrNot;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -233,7 +245,7 @@ public class PurchasesEntity {
         if (checked != null ? !checked.equals(that.checked) : that.checked != null) return false;
         if (leasersName != null ? !leasersName.equals(that.leasersName) : that.leasersName != null) return false;
         if (leaseAmount != null ? !leaseAmount.equals(that.leaseAmount) : that.leaseAmount != null) return false;
-
+        if (sold != null ? !sold.equals(that.sold) : that.sold != null) return false;
         return true;
     }
 
@@ -255,6 +267,7 @@ public class PurchasesEntity {
         result = 31 * result + (checked != null ? checked.hashCode() : 0);
         result = 31 * result + (leasersName != null ? leasersName.hashCode() : 0);
         result = 31 * result + (leaseAmount != null ? leaseAmount.hashCode() : 0);
+        result = 31 * result + (sold != null ? sold.hashCode() : 0);
         return result;
     }
 }

@@ -29,11 +29,12 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" onMouseDragged="#mouseWindowDrag" onMousePressed="#mousePrsWindow" prefHeight="35.0" prefWidth="1000.0" styleClass="header">
                      <children>
-                        <Label prefHeight="36.0" prefWidth="229.0" textFill="WHITE">
+                        <Label fx:id="userLabel" prefHeight="36.0" prefWidth="229.0" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
+                        <Button mnemonicParsing="false" onAction="#logOut" text="Log Out" />
                         <Button fx:id="minBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#minWindow" prefHeight="90.0" prefWidth="34.0" styleClass="windowControl">
                            <effect>
                               <Glow level="0.4" />
@@ -62,9 +63,10 @@
                              <items>
                                  <MenuItem mnemonicParsing="false" onAction="#onShowSale" text="%showSales" />
                                  <MenuItem mnemonicParsing="false" onAction="#onShowPurchase" text="%showPurchases" />
+                              <MenuItem mnemonicParsing="false" onAction="#onShowStocks" text="Show Stocks" />
                              </items>
                          </Menu>
-                        <Menu mnemonicParsing="false" text="%users">
+                        <Menu fx:id="adminMenu" mnemonicParsing="false" text="%users">
                            <items>
                               <MenuItem mnemonicParsing="false" onAction="#onAddUser" text="%addNewUser" />
                               <MenuItem mnemonicParsing="false" onAction="#onManageUsers" text="%manageUser" />

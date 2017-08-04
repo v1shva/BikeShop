@@ -1,6 +1,6 @@
 package BikeShop.table;
 
-import BikeShop.Entity.SalesEntity;
+import BikeShop.Entity.PurchasesEntity;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
@@ -11,10 +11,10 @@ import javafx.util.Callback;
  * Created by Vishva on 3/29/2017.
  */
 
-public class TableCheckBoxValueFactory implements Callback<TableColumn.CellDataFeatures<SalesEntity, CheckBox>, ObservableValue<CheckBox>> {
+public class TableCheckBoxValuePurchaseFactory implements Callback<TableColumn.CellDataFeatures<PurchasesEntity, CheckBox>, ObservableValue<CheckBox>> {
     @Override
-    public ObservableValue<CheckBox> call(TableColumn.CellDataFeatures<SalesEntity, CheckBox> param) {
-        SalesEntity sl = param.getValue();
+    public ObservableValue<CheckBox> call(TableColumn.CellDataFeatures<PurchasesEntity, CheckBox> param) {
+        PurchasesEntity sl = param.getValue();
         CheckBox checkBox = new CheckBox();
         checkBox.selectedProperty().setValue(sl.getChecked());
         checkBox.selectedProperty().addListener((ov, old_val, new_val) -> {

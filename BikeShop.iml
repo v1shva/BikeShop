@@ -4,7 +4,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="bikeDB.xml" />
+          <unit-entry name="bikeDB.xml" value="c5a72c7a-fe2f-45a1-922c-2a109f9e41c3" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/bikeDB.xml" />
