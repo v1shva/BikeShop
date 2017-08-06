@@ -2,7 +2,6 @@ package BikeShop.control;
 
 import BikeShop.Entity.PurchasesEntity;
 import BikeShop.Entity.SalesEntity;
-import BikeShop.HibernateInit;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -28,6 +27,8 @@ public class SaleControl {
     private int invoice;
     private boolean editable = false;
     private ChangeListener listener;
+    private ChangeListener listenerFinanceType;
+    private Session session;
     Locale locale ;
     ResourceBundle rb ;
     SalesEntity sl;
@@ -37,7 +38,7 @@ public class SaleControl {
     @FXML
     TextField BikeNoIn1,BikeNoIn2,BikeModalIn,BikeColorIn,OwnerNameIn, OwnerAdrIn,OwnerIDIn,OwnerTPIn1,OwnerTPIn2;
     @FXML
-    TextField LeasedAmntIn, TotalAmntIn,OtherExpIn, ArrearsIn, FinFNo, FinValueIn;
+    TextField LeasedAmntIn, TotalAmntIn,OtherExpIn, ArrearsIn, FinFNo, FinValueIn, FinTypeText;
     @FXML
     ChoiceBox FinTypeIn, BikeNoDash,BikeNoProvince;
     @FXML
@@ -84,7 +85,7 @@ public class SaleControl {
         String ownerTPNos [] = ownerTP.split(",");
         if(ownerTPNos.length==2){
             OwnerTPIn1.setText(ownerTPNos[0]);
-            OwnerTPIn1.setText(ownerTPNos[1]);
+            OwnerTPIn2.setText(ownerTPNos[1]);
         }
         else {
             OwnerTPIn1.setText(ownerTP);
@@ -100,7 +101,17 @@ public class SaleControl {
             FinTypeIn.setDisable(false);
             FinFNo.setText(FinFNoVal);
             FinValueIn.setText(FinValue+"");
-            FinTypeIn.setValue(FinType);
+            if(FinType.equals("DJ Finance")){
+                FinTypeIn.setValue(FinType);
+            }
+            else{
+                FinTypeIn.setDisable(true);
+                FinTypeIn.setVisible(false);
+                FinTypeText.setDisable(false);
+                FinTypeText.setVisible(true);
+                FinTypeText.setText(FinType);
+            }
+
         }
 
         OtherInfoIn.setText(otherInfo);
@@ -116,6 +127,10 @@ public class SaleControl {
         if(docListItems.contains("Insurance")) IDCpIn.setSelected(true);
         if(docListItems.contains("Keys")) KeysIn.setSelected(true);
 
+    }
+
+    public void setSession(Session current){
+        session = current;
     }
 
     public void postInitialize(){
@@ -177,17 +192,49 @@ public class SaleControl {
             }
         };
         BikeNoProvince.getSelectionModel().selectedItemProperty().addListener(listener);
+        listenerFinanceType = new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                if(newValue.toString().equals("Other")){
+                    FinTypeIn.setDisable(true);
+                    FinTypeIn.setVisible(false);
+                    FinTypeText.setDisable(false);
+                    FinTypeText.setVisible(true);
+                }
+            }
+        };
+        FinTypeIn.getSelectionModel().selectedItemProperty().addListener(listenerFinanceType);
+        FinTypeText.focusedProperty().addListener(new ChangeListener<Boolean>()
+        {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (!newPropertyValue)
+                {
+                    if(FinTypeText.getText().equals("")) {
+                        FinTypeIn.setDisable(false);
+                        FinTypeIn.setVisible(true);
+                        FinTypeText.setDisable(true);
+                        FinTypeText.setVisible(false);
+                    }
+                }
+
+            }
+        });
 
 
     }
 
     @FXML
     private void addSale(){
-        Session session = HibernateInit.getSessionFactory().openSession();
         Transaction tx = null;
+
         try{
             tx = session.beginTransaction();
             SalesEntity sales = new SalesEntity();
+            if(!FinFNo.isDisabled()){
+                sales.setChequeResolved(Byte.valueOf("0"));
+            }
             String bikeNo = "";
             if(BikeNoProvince.getValue().toString().equals("")){
                 bikeNo = BikeNoIn1.getText()+BikeNoDash.getValue().toString()+BikeNoIn2.getText();
@@ -202,13 +249,10 @@ public class SaleControl {
                     PurchasesEntity purchase = purchaseL.get(0);
                     Date currentDate = Date.valueOf(saleDateIn.getValue());
                     purchase.setSold(currentDate.toString());
-                    if(!FinFNo.isDisabled()){
-                        sales.setChequeResolved(Byte.valueOf("0"));
-                    }
                     session.update(purchase);
                     assignValues(sales,bikeNo);
                     session.update(sales);
-                    tx.commit();
+                    tx.commit();;
                     Scene scene = InvoiceNoLbl.getScene();
                     TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
                     tabPane.getTabs().remove( tabPane.getSelectionModel().getSelectedIndex() );
@@ -222,7 +266,7 @@ public class SaleControl {
             }else{
                 assignValues(sales,bikeNo);
                 session.update(sales);
-                tx.commit();
+                tx.commit();;
                 Scene scene = InvoiceNoLbl.getScene();
                 TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
                 tabPane.getTabs().remove( tabPane.getSelectionModel().getSelectedIndex() );
@@ -233,7 +277,7 @@ public class SaleControl {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
         }finally {
-            session.close();
+            session.clear();
         }
     }
 
@@ -248,7 +292,12 @@ public class SaleControl {
         sales.setOwnerNic(OwnerIDIn.getText());
         sales.setOwnerTpNo(OwnerTPIn1.getText()+","+OwnerTPIn2.getText());
         sales.setFinanceFNo(FinFNo.getText());
-        sales.setFinanceType(FinTypeIn.getValue().toString());
+        if(!FinTypeIn.isDisabled()){
+            sales.setFinanceType(FinTypeIn.getValue().toString());
+        }
+        else{
+            sales.setFinanceType(FinTypeText.getText());
+        }
         System.out.println(FinValueIn.getText());
         Double amountDbl = FinValueIn.getText().length()>0 ? Double.parseDouble(FinValueIn.getText()) : 0;
         sales.setFinanceValue(amountDbl);
@@ -326,21 +375,19 @@ public class SaleControl {
     }
 
     private void DeleteEntity(){
-        Session session = HibernateInit.getSessionFactory().openSession();
         Transaction tx = null;
         try{
             session.delete(sl);
             tx = session.beginTransaction();
-            tx.commit();
+            tx.commit();;
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
         }finally {
-            session.close();
+            session.clear();
         }
     }
     private int InvoiceNo(){
-        Session session = HibernateInit.getSessionFactory().openSession();
         Transaction tx = null;
         invoice = 0;
         try{
@@ -365,7 +412,7 @@ public class SaleControl {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
         }finally {
-            session.close();
+            session.clear();
         }
         return invoice;
     }

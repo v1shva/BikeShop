@@ -1,7 +1,6 @@
 package BikeShop.control;
 
 import BikeShop.Entity.PurchasesEntity;
-import BikeShop.HibernateInit;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -23,6 +22,7 @@ public class PurchaseControl {
     private int invoice;
     private boolean editable = false;
     private ChangeListener listener;
+    private Session session;
     Locale locale ;
     ResourceBundle rb ;
     PurchasesEntity pe;
@@ -81,7 +81,7 @@ public class PurchaseControl {
         String ownerTPNos [] = ownerTP.split(",");
         if(ownerTPNos.length==2){
             OwnerTPIn1.setText(ownerTPNos[0]);
-            OwnerTPIn1.setText(ownerTPNos[1]);
+            OwnerTPIn2.setText(ownerTPNos[1]);
         }
         else {
             OwnerTPIn1.setText(ownerTP);
@@ -105,6 +105,10 @@ public class PurchaseControl {
         if(docListItems.contains("Insurance")) IDCpIn.setSelected(true);
         if(docListItems.contains("Keys")) KeysIn.setSelected(true);
 
+    }
+
+    public void setSession(Session current){
+        session = current;
     }
 
     public void postInitialize(){
@@ -153,7 +157,6 @@ public class PurchaseControl {
 
     @FXML
     private void addPurchase(){
-        Session session = HibernateInit.getSessionFactory().openSession();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
@@ -196,7 +199,7 @@ public class PurchaseControl {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
         }finally {
-            session.close();
+            session.clear();
         }
     }
 
@@ -285,7 +288,6 @@ public class PurchaseControl {
 
     }
     private void DeleteEntity(){
-        Session session = HibernateInit.getSessionFactory().openSession();
         Transaction tx = null;
         System.out.println("here");
         try{
@@ -296,11 +298,11 @@ public class PurchaseControl {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
         }finally {
-            session.close();
+            session.clear();
+
         }
     }
     private int InvoiceNo(){
-        Session session = HibernateInit.getSessionFactory().openSession();
         Transaction tx = null;
         invoice = 0;
         try{
@@ -325,7 +327,7 @@ public class PurchaseControl {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
         }finally {
-            session.close();
+            session.clear();
         }
         return invoice;
     }

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<HBox prefHeight="589.0" prefWidth="983.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BikeShop.control.manageUserControl">
+<HBox prefHeight="589.0" prefWidth="983.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BikeShop.control.ManageUserControl">
     <children>
         <ScrollPane vbarPolicy="NEVER">
             <content>

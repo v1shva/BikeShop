@@ -3,11 +3,12 @@ package BikeShop.Entity;
 import javax.persistence.*;
 import java.sql.Date;
 
+
 /**
  * Created by Vishva on 3/29/2017.
  */
 @Entity
-@Table(name = "purchases", schema = "bikedb")
+@Table(name = "purchases", schema = "bikedb", catalog = "")
 public class PurchasesEntity {
     private int invoiceNo;
     private Double arrearsValue;
@@ -28,6 +29,9 @@ public class PurchasesEntity {
     private Double leaseAmount;
     private Date purchaseDate;
     private String sold;
+    private String leaseDNo;
+    private String tax;
+
 
     @Id
     @Column(name = "invoiceNo", nullable = false)
@@ -119,8 +123,6 @@ public class PurchasesEntity {
         this.ownerAddress = ownerAddress;
     }
 
-
-
     @Basic
     @Column(name = "ownerName", nullable = true, length = 255)
     public String getOwnerName() {
@@ -202,7 +204,7 @@ public class PurchasesEntity {
     }
 
     @Basic
-    @Column(name = "purchaseDate", columnDefinition="DATETIME")
+    @Column(name = "purchaseDate", columnDefinition="DATETIME", nullable = true)
     public Date getPurchaseDate() {
         return purchaseDate;
     }
@@ -269,5 +271,15 @@ public class PurchasesEntity {
         result = 31 * result + (leaseAmount != null ? leaseAmount.hashCode() : 0);
         result = 31 * result + (sold != null ? sold.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "tax", nullable = true, length = 10)
+    public String getTax() {
+        return tax;
+    }
+
+    public void setTax(String tax) {
+        this.tax = tax;
     }
 }

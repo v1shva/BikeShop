@@ -16,9 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -36,6 +34,7 @@ public class SaleViewControl {
     public void setValus(String lan){
         language = lan;
     }
+    public Session session;
     @FXML
     TextField searchInput;
     @FXML
@@ -45,9 +44,14 @@ public class SaleViewControl {
 
 
     ObservableList<SalesEntity> masterData;
+    public void setSession(Session current){
+        session = current;
+        setSaleDataTable();
+    }
+
     @FXML
     public void initialize() {
-      setSaleDataTable();
+      ;
     }
     @FXML
     public void cashCheque() throws IOException {
@@ -76,6 +80,7 @@ public class SaleViewControl {
             SalesEntity current = sales.get(checkedi);
             //controller.attachCancelAction();
             controller.setValues(current.getInvoiceNo(),current.getBikeNo(),current.getBikeModal(),current.getBikeColor(),current.getFinanceValue());
+            controller.setSession(session);
             Tab tab = new Tab();
             tab.setText("Cash Cheque");
             tab.setClosable(true);
@@ -135,14 +140,6 @@ public class SaleViewControl {
         saleDataTable.getSortOrder().add(saleDateColumn);
     }
     private ObservableList<SalesEntity> LoadTable() {
-        SessionFactory factory;
-        try {
-            factory = new Configuration().configure("bikeDB.xml").buildSessionFactory();
-        } catch (Throwable ex) {
-            System.err.println("Failed to create sessionFactory object." + ex);
-            throw new ExceptionInInitializerError(ex);
-        }
-        Session session = factory.openSession();
         Transaction tx = null;
         ObservableList<SalesEntity> data = null;
         try {
@@ -173,7 +170,7 @@ public class SaleViewControl {
             if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
-            session.close();
+            session.clear();
         }
         return data;
     }
@@ -212,6 +209,7 @@ public class SaleViewControl {
             controller.setValues(current.getInvoiceNo(),current.getBikeNo(),current.getBikeModal(),current.getBikeColor(),current.getOwnerName(),current.getOwnerAddress(),
                     current.getOwnerNic(),current.getOwnerTpNo(),current.getLeasingValue(),current.getTotalValue(),current.getOtherExpenses(),current.getArrearsValue(),
                     current.getFinanceFNo(),current.getFinanceValue(),current.getFinanceType(),current.getOtherInfo(),current.getDocList(),current.getSaleDate(), true);
+            controller.setSession(session);
             Tab tab = new Tab();
             tab.setText("Sell Bike");
             tab.setClosable(true);
@@ -239,14 +237,6 @@ public class SaleViewControl {
         Optional<ButtonType> result = alert.showAndWait();
         if(result.get().getButtonData()== ButtonBar.ButtonData.OK_DONE){
             List<SalesEntity> sales = saleDataTable.getItems();
-            SessionFactory factory;
-            try {
-                factory = new Configuration().configure("bikeDB.xml").buildSessionFactory();
-            } catch (Throwable ex) {
-                System.err.println("Failed to create sessionFactory object." + ex);
-                throw new ExceptionInInitializerError(ex);
-            }
-            Session session = factory.openSession();
             Transaction tx = session.beginTransaction();
             int i = 0;
             for(SalesEntity sl:sales){
@@ -261,7 +251,7 @@ public class SaleViewControl {
                 }
             }
             tx.commit();
-            session.close();
+            session.clear();
             setSaleDataTable();
         }
 

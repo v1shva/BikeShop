@@ -18,9 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -34,6 +32,7 @@ import java.util.ResourceBundle;
 
 public class PurchaseViewControl {
     private String language = "en";
+    Session session;
     ObservableList<PurchasesEntity> masterData;
     @FXML
     TextField searchInput;
@@ -41,10 +40,9 @@ public class PurchaseViewControl {
     private TableView<BikeShop.Entity.PurchasesEntity> purchaseDataTable;
     @FXML
     private TableColumn purchaseColumn;
-
-    @FXML
-    public void initialize() {
-       setpurchaseDataTable();
+    public void setSession(Session current){
+        session = current;
+        setpurchaseDataTable();
     }
     private void setpurchaseDataTable(){
         purchaseDataTable.setItems(null);
@@ -92,14 +90,7 @@ public class PurchaseViewControl {
     }
 
     private ObservableList<PurchasesEntity> LoadTable() {
-        SessionFactory factory;
-        try {
-            factory = new Configuration().configure("bikeDB.xml").buildSessionFactory();
-        } catch (Throwable ex) {
-            System.err.println("Failed to create sessionFactory object." + ex);
-            throw new ExceptionInInitializerError(ex);
-        }
-        Session session = factory.openSession();
+
         Transaction tx = null;
         ObservableList<PurchasesEntity> data = null;
         try {
@@ -116,7 +107,7 @@ public class PurchaseViewControl {
             if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
-            session.close();
+            session.clear();
         }
         return data;
     }
@@ -150,6 +141,7 @@ public class PurchaseViewControl {
             controller.setValues(current.getInvoiceNo(),current.getBikeNo(),current.getBikeModal(),current.getBikeColor(),current.getOwnerName(),current.getOwnerAddress(),
                     current.getOwnerNic(),current.getOwnerTpNo(),current.getLeaseAmount(),current.getTotalValue(),current.getOtherExpenses(),current.getArrearsValue(),
                     current.getLeaseDNo(),current.getLeasersName(),current.getOtherInfo(),current.getDocList(),current.getPurchaseDate(), true);
+            controller.setSession(session);
             Tab tab = new Tab();
             tab.setText("Purchase Bike");
             tab.setClosable(true);
@@ -177,14 +169,6 @@ public class PurchaseViewControl {
         Optional<ButtonType> result = alert.showAndWait();
         if(result.get().getButtonData()== ButtonBar.ButtonData.OK_DONE){
             List<PurchasesEntity> sales = purchaseDataTable.getItems();
-            SessionFactory factory;
-            try {
-                factory = new Configuration().configure("bikeDB.xml").buildSessionFactory();
-            } catch (Throwable ex) {
-                System.err.println("Failed to create sessionFactory object." + ex);
-                throw new ExceptionInInitializerError(ex);
-            }
-            Session session = factory.openSession();
             Transaction tx = session.beginTransaction();
             int i = 0;
             for(PurchasesEntity sl:sales){
@@ -199,7 +183,7 @@ public class PurchaseViewControl {
                 }
             }
             tx.commit();
-            session.close();
+            session.clear();
             setpurchaseDataTable();
         }
 

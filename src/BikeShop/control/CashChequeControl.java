@@ -1,7 +1,6 @@
 package BikeShop.control;
 
 import BikeShop.Entity.SalesEntity;
-import BikeShop.HibernateInit;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -28,6 +27,7 @@ public class CashChequeControl {
     ResourceBundle rb ;
     SalesEntity sl;
     Tab currentTab;
+    Session session;
 
     @FXML
     TextField BikeNoIn1,BikeNoIn2,BikeModalIn,BikeColorIn;
@@ -37,6 +37,10 @@ public class CashChequeControl {
     ChoiceBox BikeNoDash,BikeNoProvince;
     @FXML
     DatePicker chequeDate;
+
+    public void setSession(Session current){
+        session = current;
+    }
 
     public void setValues(int invoiceNo, String bikeNo, String bikeMoadal, String bikeColor, Double amount){
         invoice = invoiceNo;
@@ -80,7 +84,6 @@ public class CashChequeControl {
 
     @FXML
     private void addCashCheque(){
-        Session session = HibernateInit.getSessionFactory().openSession();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
@@ -96,7 +99,7 @@ public class CashChequeControl {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
         }finally {
-            session.close();
+            session.clear();
         }
     }
 

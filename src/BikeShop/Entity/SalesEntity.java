@@ -3,6 +3,7 @@ package BikeShop.Entity;
 import javax.persistence.*;
 import java.sql.Date;
 
+
 @Entity
 @Table(name = "sales", schema = "bikedb", catalog = "")
 public class SalesEntity {
@@ -30,6 +31,11 @@ public class SalesEntity {
     private String chequeBank;
     private String chequeNumber;
     private Date chequeDate;
+    private Byte checkResolved;
+    private Double chequeAmount;
+    private String tax;
+
+
 
     @Id
     @Column(name = "invoiceNo", nullable = false)
@@ -335,5 +341,35 @@ public class SalesEntity {
         result = 31 * result + (chequeNumber != null ? chequeNumber.hashCode() : 0);
         result = 31 * result + (chequeDate != null ? chequeDate.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "checkResolved", nullable = true)
+    public Byte getCheckResolved() {
+        return checkResolved;
+    }
+
+    public void setCheckResolved(Byte checkResolved) {
+        this.checkResolved = checkResolved;
+    }
+
+    @Basic
+    @Column(name = "chequeAmount", nullable = true, precision = 0)
+    public Double getChequeAmount() {
+        return chequeAmount;
+    }
+
+    public void setChequeAmount(Double chequeAmount) {
+        this.chequeAmount = chequeAmount;
+    }
+
+    @Basic
+    @Column(name = "tax", nullable = true, length = 10)
+    public String getTax() {
+        return tax;
+    }
+
+    public void setTax(String tax) {
+        this.tax = tax;
     }
 }

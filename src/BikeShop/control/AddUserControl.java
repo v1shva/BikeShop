@@ -2,7 +2,6 @@ package BikeShop.control;
 
 
 import BikeShop.Entity.UsersEntity;
-import BikeShop.HibernateInit;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -27,7 +26,7 @@ public class AddUserControl {
     private Locale locale;
     private ResourceBundle rb;
     private static String languageChoiceVal;
-
+    private Session session;
 
 
 
@@ -51,13 +50,17 @@ public class AddUserControl {
         );
         userLevelChoice.getSelectionModel().selectFirst();
     }
+
+    public void setSession(Session current){
+        session = current;
+    }
+
     @FXML private void addUser() throws IOException {
         String username = userNameIn.getText();
         String password = passwordIn.getText();
         String name = NameIn.getText();
         String nic = NICIn.getText();
         String userlevel = (String) userLevelChoice.getValue();
-        Session session = HibernateInit.getSessionFactory().openSession();
         String hashedPass = "";
 
         try {
@@ -80,7 +83,7 @@ public class AddUserControl {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
         }finally {
-            session.close();
+            session.clear();
             Scene scene = userNameIn.getScene();
             TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
             tabPane.getTabs().remove( tabPane.getSelectionModel().getSelectedIndex() );

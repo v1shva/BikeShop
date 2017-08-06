@@ -17,25 +17,22 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
 import java.util.List;
 
 public class StockViewControl {
+    Session session;
+    public void setSession(Session current){
+        session = current;
+       setTableData();
+    }
     @FXML
     TextField searchInput;
     @FXML
     private TableView<PurchasesEntity> saleDataTable;
     @FXML
     private TableColumn purchaseColumn;
-
-    @FXML
-    public void initialize() {
-        setTableData();
-
-    }
 
     private void setTableData(){
         ObservableList<PurchasesEntity> masterData = LoadTable();
@@ -81,14 +78,6 @@ public class StockViewControl {
     }
 
     private ObservableList<PurchasesEntity> LoadTable() {
-        SessionFactory factory;
-        try {
-            factory = new Configuration().configure("bikeDB.xml").buildSessionFactory();
-        } catch (Throwable ex) {
-            System.err.println("Failed to create sessionFactory object." + ex);
-            throw new ExceptionInInitializerError(ex);
-        }
-        Session session = factory.openSession();
         Transaction tx = null;
         ObservableList<PurchasesEntity> data = null;
         try {
@@ -101,7 +90,7 @@ public class StockViewControl {
             if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
-            session.close();
+            session.clear();
         }
         return data;
     }
