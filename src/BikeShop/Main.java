@@ -26,7 +26,7 @@ public class Main extends Application {
     Session session;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage){
 
         JFrame alertL = new Loader();
         Task task = new Task<Void>() {

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--<?import BikeShop.table.TableCheckBoxValueFactory?>-->
-
+<?import BikeShop.table.TableCheckBoxValueFactory?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ScrollPane?>
@@ -13,9 +12,8 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import BikeShop.table.TableCheckBoxValueFactory?>
 
-<HBox prefHeight="658.0" prefWidth="1630.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BikeShop.control.SaleViewControl">
+<HBox xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BikeShop.control.SaleViewControl">
    <children>
       <VBox>
          <children>
@@ -23,7 +21,7 @@
               <items>
                 <Button mnemonicParsing="false" onAction="#EditItems" text="Edit" />
                   <Button mnemonicParsing="false" onAction="#DeleteItems" text="Delete" />
-                  <Button layoutX="51.0" layoutY="10.0" mnemonicParsing="false" text="Cash Cheque" onAction="#cashCheque"/>
+                  <Button layoutX="51.0" layoutY="10.0" mnemonicParsing="false" onAction="#cashCheque" text="Cash Cheque" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="13.0" />
                   <HBox prefHeight="0.0" prefWidth="200.0">
                      <children>
@@ -32,12 +30,16 @@
                   </HBox>
                   <CheckBox mnemonicParsing="false" onAction="#togglePending" text="Pending Finances" />
                   <Separator layoutX="196.0" layoutY="10.0" orientation="VERTICAL" prefHeight="0.0" prefWidth="13.0" />
+                  <Button layoutX="106.0" layoutY="10.0" mnemonicParsing="false" onAction="#AddToTax" text="Add to Tax" />
+                  <Button layoutX="552.0" layoutY="10.0" mnemonicParsing="false" onAction="#RemoveTax" text="Remove Tax" />
+                  <CheckBox layoutX="495.0" layoutY="14.0" mnemonicParsing="false" onAction="#toggleTax" text="Show Tax Added" />
+                  <Separator layoutX="613.0" layoutY="10.0" orientation="VERTICAL" prefHeight="0.0" prefWidth="13.0" />
                   <Button mnemonicParsing="false" onAction="#LoadItems" text="Refresh" />
               </items>
             </ToolBar>
-            <ScrollPane>
+            <ScrollPane fx:id="scrollPane" fitToHeight="true" VBox.vgrow="ALWAYS">
                <content>
-                  <TableView fx:id="saleDataTable" editable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1626.0">
+                  <TableView fx:id="saleDataTable" editable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS">
                   <columns>
                        <TableColumn editable="true" prefWidth="46.0" style="-fx-alignment: center" text="Select">
                             <cellValueFactory>
@@ -92,7 +94,7 @@
                               <PropertyValueFactory property="docList" />
                               </cellValueFactory>
                           </TableColumn>
-                        <TableColumn prefWidth="61.0" text="Sale Date" fx:id="saleDateColumn">
+                        <TableColumn fx:id="saleDateColumn" prefWidth="61.0" text="Sale Date">
                             <cellValueFactory>
                               <PropertyValueFactory property="saleDate" />
                             </cellValueFactory>
@@ -140,6 +142,11 @@
                               </TableColumn>
                            </columns>
                         </TableColumn>
+                      <TableColumn prefWidth="350.0" text="Other Info">
+                          <cellValueFactory>
+                              <PropertyValueFactory property="otherInfo" />
+                          </cellValueFactory>
+                      </TableColumn>
                       <TableColumn prefWidth="401.0" text="Cheque Details">
                           <columns>
                               <TableColumn prefWidth="77.0" text="Bank">

@@ -120,7 +120,6 @@ public class SplashControl  implements Initializable {
     @FXML
     private TextField passInput;
     @FXML private void authUser() throws IOException {
-        Platform.setImplicitExit(false);
         JFrame alertL = new Loader();
         Task task = new Task<Void>() {
             @Override public Void call() {
@@ -143,6 +142,7 @@ public class SplashControl  implements Initializable {
                                 Platform.runLater(() -> {
                                     String lan = "en";
                                     if(!languageChoice.getValue().equals("English")){
+                                        System.out.println(languageChoice.getValue());
                                         locale = new Locale("sin");
                                         lan = "sin";
                                         rb = ResourceBundle.getBundle("BikeShop/Localization/Main", locale);

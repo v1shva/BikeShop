@@ -1,6 +1,5 @@
 package BikeShop.control;
 
-import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -40,7 +39,7 @@ public class Loader extends JFrame {
         // position
         // setLocation(100, 100);
         setLocationRelativeTo(null); // centers on screen
-
+        setAlwaysOnTop(true);
         // frame operations
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -48,26 +47,12 @@ public class Loader extends JFrame {
         JFXPanel fxPanel = new JFXPanel();
 
         Loader.this.getContentPane().add(fxPanel);
-
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-
-                // set scene in JFXPanel
-                try {
-                    fxPanel.setScene( createFxScene());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        Loader.this.setVisible(true);
-                    }
-                });
-            }
-        });
+        try {
+            fxPanel.setScene( createFxScene());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Loader.this.setVisible(true);
 
     }
 

@@ -5,10 +5,12 @@ package BikeShop.control;
  */
 
 import BikeShop.Entity.SalesEntity;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,6 +24,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.swing.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
@@ -49,9 +52,10 @@ public class SaleViewControl {
         setSaleDataTable();
     }
 
+    @FXML ScrollPane scrollPane;
     @FXML
     public void initialize() {
-      ;
+        saleDataTable.prefHeightProperty().bind(scrollPane.heightProperty());
     }
     @FXML
     public void cashCheque() throws IOException {
@@ -177,88 +181,146 @@ public class SaleViewControl {
 
 
     @FXML private void togglePending(){
+        if(!togglePendingFinace){
+            togglePendingFinace = true;
 
+        }
     }
 
-    @FXML private void EditItems() throws IOException {
-        List<SalesEntity> sales = saleDataTable.getItems();
-        int i = 0,checkedi =0,count=0;
-        for(SalesEntity sl:sales){
-            if(sl.getChecked()!=null &&sl.getChecked()==true){
-                count++;checkedi = i;
-            }
-            i++;
-        }
-        if(count==1){
-            Locale locale = new Locale("sin");
-            ResourceBundle rb;
-            if(language.equals("sin")){
-                rb = ResourceBundle.getBundle("BikeShop/Localization/language", locale);
-            }
-            else{
-                rb = ResourceBundle.getBundle("BikeShop/Localization/language");
-            }
 
-            Scene scene = searchInput.getScene();
-            TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/SaleGUI.fxml"), rb);
-            Parent root = (Parent)fxmlLoader.load();
-            SaleControl controller = fxmlLoader.<SaleControl>getController();
-            SalesEntity current = sales.get(checkedi);
-            //controller.attachCancelAction();
-            controller.setValues(current.getInvoiceNo(),current.getBikeNo(),current.getBikeModal(),current.getBikeColor(),current.getOwnerName(),current.getOwnerAddress(),
-                    current.getOwnerNic(),current.getOwnerTpNo(),current.getLeasingValue(),current.getTotalValue(),current.getOtherExpenses(),current.getArrearsValue(),
-                    current.getFinanceFNo(),current.getFinanceValue(),current.getFinanceType(),current.getOtherInfo(),current.getDocList(),current.getSaleDate(), true);
-            controller.setSession(session);
-            Tab tab = new Tab();
-            tab.setText("Sell Bike");
-            tab.setClosable(true);
-            tab.setContent(root);
-            tabPane.getTabs().add(tab);
-            tabPane.getSelectionModel().select(tab);
-        }
-        else{
-            Alert alert = new Alert(Alert.AlertType.WARNING,"Select only single item to Edit");
-            alert.setTitle("More than one item selected");
-            alert.setHeaderText("More than one item selected");
-            alert.show();
-        }
+
+    @FXML private void EditItems() throws IOException {
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    List<SalesEntity> sales = saleDataTable.getItems();
+                    int i = 0,checkedi =0,count=0;
+                    for(SalesEntity sl:sales){
+                        if(sl.getChecked()!=null &&sl.getChecked()==true){
+                            count++;checkedi = i;
+                        }
+                        i++;
+                    }
+                    if(count==1){
+                        Locale locale = new Locale("sin");
+                        ResourceBundle rb;
+                        if(language.equals("sin")){
+                            rb = ResourceBundle.getBundle("BikeShop/Localization/language", locale);
+                        }
+                        else{
+                            rb = ResourceBundle.getBundle("BikeShop/Localization/language");
+                        }
+
+                        Scene scene = searchInput.getScene();
+                        TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/SaleGUI.fxml"), rb);
+                        Parent root = null;
+                        try {
+                            root = (Parent)fxmlLoader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        SaleControl controller = fxmlLoader.<SaleControl>getController();
+                        SalesEntity current = sales.get(checkedi);
+                        //controller.attachCancelAction();
+                        controller.setValues(current.getInvoiceNo(),current.getBikeNo(),current.getBikeModal(),current.getBikeColor(),current.getOwnerName(),current.getOwnerAddress(),
+                                current.getOwnerNic(),current.getOwnerTpNo(),current.getLeasingValue(),current.getTotalValue(),current.getOtherExpenses(),current.getArrearsValue(),
+                                current.getFinanceFNo(),current.getFinanceValue(),current.getFinanceType(),current.getOtherInfo(),current.getDocList(),current.getSaleDate(), true, current);
+                        controller.setSession(session);
+                        Tab tab = new Tab();
+                        tab.setText("Sell Bike");
+                        tab.setClosable(true);
+                        tab.setContent(root);
+                        tabPane.getTabs().add(tab);
+                        tabPane.getSelectionModel().select(tab);
+                    }
+                    else{
+                        Alert alert = new Alert(Alert.AlertType.WARNING,"Select only single item to Edit");
+                        alert.setTitle("More than one item selected");
+                        alert.setHeaderText("More than one item selected");
+                        alert.show();
+                    }
+                    alertL.dispose();
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
+
 
 
     }
 
     @FXML private void DeleteItems(){
-        ButtonType okay = new ButtonType("Okay",  ButtonBar.ButtonData.OK_DONE);
-        ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-        // get a handle to the stage
-        Alert alert = new Alert(Alert.AlertType.WARNING,"Selected items will be deleted. Proceed?",okay,cancel);
-        alert.setTitle("Delete Selected Items");
-        alert.setHeaderText("Deleting Items");
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.get().getButtonData()== ButtonBar.ButtonData.OK_DONE){
-            List<SalesEntity> sales = saleDataTable.getItems();
-            Transaction tx = session.beginTransaction();
-            int i = 0;
-            for(SalesEntity sl:sales){
-                i++;
-                if(sl.getChecked()!=null &&sl.getChecked()==true){
-                    session.delete(sl);
-                }
-                if ( i % 20 == 0 ) { //20, same as the JDBC batch size
-                    //flush a batch of inserts and release memory:
-                    session.flush();
-                    session.clear();
-                }
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    ButtonType okay = new ButtonType("Okay",  ButtonBar.ButtonData.OK_DONE);
+                    ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+                    // get a handle to the stage
+                    Alert alert = new Alert(Alert.AlertType.WARNING,"Selected items will be deleted. Proceed?",okay,cancel);
+                    alert.setTitle("Delete Selected Items");
+                    alert.setHeaderText("Deleting Items");
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if(result.get().getButtonData()== ButtonBar.ButtonData.OK_DONE){
+                        List<SalesEntity> sales = saleDataTable.getItems();
+                        Transaction tx = session.beginTransaction();
+                        int i = 0;
+                        for(SalesEntity sl:sales){
+                            i++;
+                            if(sl.getChecked()!=null &&sl.getChecked()==true){
+                                session.delete(sl);
+                            }
+                            if ( i % 20 == 0 ) { //20, same as the JDBC batch size
+                                //flush a batch of inserts and release memory:
+                                session.flush();
+                                session.clear();
+                            }
+                        }
+                        tx.commit();
+                        session.clear();
+                        setSaleDataTable();
+                    }
+
+                    alertL.dispose();
+                });
+                return null;
             }
-            tx.commit();
-            session.clear();
-            setSaleDataTable();
-        }
+        };
+        new Thread(task).start();
+
 
     }
 
     @FXML private void LoadItems(){
-        setSaleDataTable();
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                setSaleDataTable();
+                Platform.runLater(() -> {
+                    alertL.dispose();
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
+    }
+
+    @FXML private void toggleTax(){
+
+    }
+
+    @FXML private void AddToTax() {
+
+    }
+
+    @FXML private void RemoveTax() {
+
     }
 
 

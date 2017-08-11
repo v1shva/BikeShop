@@ -74,7 +74,6 @@
                                  <String fx:value="NP" />
                                  <String fx:value="SB" />
                                  <String fx:value="CP" />
-                                 <String fx:value="SP" />
                                  <String fx:value="NW" />
                                  <String fx:value="NC" />
                                  <String fx:value="UP" />
@@ -152,6 +151,7 @@
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -167,16 +167,22 @@
                               <CheckBox fx:id="InsuranceIn" mnemonicParsing="false" text="%insurance" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <CheckBox fx:id="IDCpIn" mnemonicParsing="false" text="%IDCopy" GridPane.columnIndex="2" />
                               <CheckBox fx:id="KeysIn" mnemonicParsing="false" text="%keys" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="serviceCardIn" mnemonicParsing="false" text="Service Card" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <CheckBox fx:id="manualBookIn" mnemonicParsing="false" text="Manual book" GridPane.columnIndex="3" />
                            </children>
                         </GridPane>
                      </children>
                   </Pane>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="697.0" spacing="40.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <Pane prefHeight="87.0" prefWidth="821.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#CancelTab" prefHeight="25.0" prefWidth="231.0" text="%cancel" textAlignment="CENTER" />
-                        <Button fx:id="addSaleBtn" mnemonicParsing="false" onAction="#addSale" prefHeight="25.0" prefWidth="295.0" text="%saveSaleDetails" textAlignment="CENTER" />
+                        <HBox alignment="CENTER_RIGHT" prefHeight="90.0" prefWidth="788.0" spacing="40.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#CancelTab" prefHeight="25.0" prefWidth="231.0" text="%cancel" textAlignment="CENTER" />
+                              <Button fx:id="addSaleBtn" mnemonicParsing="false" onAction="#addSale" prefHeight="25.0" prefWidth="295.0" text="%saveSaleDetails" textAlignment="CENTER" />
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
+                  </Pane>
                   <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1">
                      <children>
                         <Label prefHeight="40.0" prefWidth="477.0" text="%sellBike">

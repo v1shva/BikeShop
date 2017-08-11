@@ -31,7 +31,6 @@ public class SalesEntity {
     private String chequeBank;
     private String chequeNumber;
     private Date chequeDate;
-    private Byte checkResolved;
     private Double chequeAmount;
     private String tax;
 
@@ -343,15 +342,6 @@ public class SalesEntity {
         return result;
     }
 
-    @Basic
-    @Column(name = "checkResolved", nullable = true)
-    public Byte getCheckResolved() {
-        return checkResolved;
-    }
-
-    public void setCheckResolved(Byte checkResolved) {
-        this.checkResolved = checkResolved;
-    }
 
     @Basic
     @Column(name = "chequeAmount", nullable = true, precision = 0)

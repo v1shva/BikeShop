@@ -7,10 +7,12 @@ package BikeShop.control;
  */
 
 import BikeShop.Entity.PurchasesEntity;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -19,6 +21,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.swing.*;
 import java.util.List;
 
 public class StockViewControl {
@@ -99,7 +102,18 @@ public class StockViewControl {
     }
 
     @FXML private void LoadItems(){
-        setTableData();
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                setTableData();
+                Platform.runLater(() -> {
+                    alertL.dispose();
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
     }
 
 

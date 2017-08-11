@@ -1,7 +1,9 @@
 package BikeShop.control;
 
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.hibernate.Session;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -57,60 +60,97 @@ public class MainControl {
         showSplash.setToValue(1);
         showSplash.play();
     }
+
+
     @FXML private void onPurchaseClick() throws IOException {
         // get a handle to the stage
-        Locale locale = new Locale("sin");
-        ResourceBundle rb;
-        if(language.equals("sin")){
-            rb = ResourceBundle.getBundle("BikeShop/Localization/language", locale);
-        }
-        else{
-            rb = ResourceBundle.getBundle("BikeShop/Localization/language");
-        }
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/PurchaseGUI.fxml"), rb);
-        Parent purchaseGUI = (Parent)fxmlLoader.load();
-        PurchaseControl controller = fxmlLoader.<PurchaseControl>getController();
-        controller.setSession(session);
-        Scene scene = purchaseButton.getScene();
-        TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
-        controller.postInitialize();
-        Tab tab = new Tab();
-        tab.setText("Purchase new Bike");
-        tab.setClosable(true);
-        tab.setContent(purchaseGUI);
-        tabPane.getTabs().add(tab);
-        tabPane.getSelectionModel().select(tab);
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    Locale locale = new Locale("sin");
+                    ResourceBundle rb;
+                    if(language.equals("sin")){
+                        rb = ResourceBundle.getBundle("BikeShop/Localization/language", locale);
+                    }
+                    else{
+                        rb = ResourceBundle.getBundle("BikeShop/Localization/language");
+                    }
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/PurchaseGUI.fxml"), rb);
+                    Parent purchaseGUI = null;
+                    try {
+                        purchaseGUI = (Parent)fxmlLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    PurchaseControl controller = fxmlLoader.<PurchaseControl>getController();
+                    controller.setSession(session);
+                    Scene scene = purchaseButton.getScene();
+                    TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
+                    controller.postInitialize();
+                    Tab tab = new Tab();
+                    tab.setText("Purchase new Bike");
+                    tab.setClosable(true);
+                    tab.setContent(purchaseGUI);
+                    tabPane.getTabs().add(tab);
+                    tabPane.getSelectionModel().select(tab);
+                    alertL.dispose();
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
+
     }
 
     @FXML
     private Button sellButton;
     @FXML private void onSellClick() throws IOException {
         // get a handle to the stage
-        Locale locale = new Locale("sin");
-        ResourceBundle rb;
-        if(language.equals("sin")){
-            rb = ResourceBundle.getBundle("BikeShop/Localization/language", locale);
-        }
-        else{
-            rb = ResourceBundle.getBundle("BikeShop/Localization/language");
-        }
+
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    Locale locale = new Locale("sin");
+                    ResourceBundle rb;
+                    if(language.equals("sin")){
+                        rb = ResourceBundle.getBundle("BikeShop/Localization/language", locale);
+                    }
+                    else{
+                        rb = ResourceBundle.getBundle("BikeShop/Localization/language");
+                    }
 
 
-        Scene scene = sellButton.getScene();
-        TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
+                    Scene scene = sellButton.getScene();
+                    TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/SaleGUI.fxml"), rb);
-        Parent SaleGUI = (Parent)fxmlLoader.load();
-        SaleControl controller = fxmlLoader.<SaleControl>getController();
-        controller.setSession(session);
-        controller.postInitialize();
-        //controller.attachCancelAction();
-        Tab tab = new Tab();
-        tab.setText("Sell Bike");
-        tab.setClosable(true);
-        tab.setContent(SaleGUI);
-        tabPane.getTabs().add(tab);
-        tabPane.getSelectionModel().select(tab);
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/SaleGUI.fxml"), rb);
+                    Parent SaleGUI = null;
+                    try {
+                        SaleGUI = (Parent)fxmlLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    SaleControl controller = fxmlLoader.<SaleControl>getController();
+                    controller.setSession(session);
+                    controller.postInitialize();
+                    //controller.attachCancelAction();
+                    Tab tab = new Tab();
+                    tab.setText("Sell Bike");
+                    tab.setClosable(true);
+                    tab.setContent(SaleGUI);
+                    tabPane.getTabs().add(tab);
+                    tabPane.getSelectionModel().select(tab);
+                    alertL.dispose();
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
+
     }
 
 
@@ -118,87 +158,173 @@ public class MainControl {
     private MenuBar menuBar;
     @FXML private void onShowPurchase() throws IOException {
         // get a handle to the stage
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/showPurchasesG.fxml"));
-        Parent showPurchaseGUI = (Parent)fxmlLoader.load();
-        PurchaseViewControl controller = fxmlLoader.<PurchaseViewControl>getController();
-        controller.setSession(session);
-        Scene scene = menuBar.getScene();
-        TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
-        Tab tab = new Tab();
-        tab.setText("Purchases");
-        tab.setId("purchaseTab");
-        tab.setClosable(true);
-        tab.setContent(showPurchaseGUI);
-        tabPane.getTabs().add(tab);
-        tabPane.getSelectionModel().select(tab);
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/showPurchasesG.fxml"));
+                    Parent showPurchaseGUI = null;
+                    try {
+                        showPurchaseGUI = (Parent)fxmlLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    PurchaseViewControl controller = fxmlLoader.<PurchaseViewControl>getController();
+                    controller.setSession(session);
+                    Scene scene = menuBar.getScene();
+                    TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
+                    Tab tab = new Tab();
+                    tab.setText("Purchases");
+                    tab.setId("purchaseTab");
+                    tab.setClosable(true);
+                    tab.setContent(showPurchaseGUI);
+                    tabPane.getTabs().add(tab);
+                    tabPane.getSelectionModel().select(tab);
+                    alertL.dispose();
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
+
     }
 
     @FXML private void onShowStocks() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/showStocksGUI.fxml"));
-        Parent showStockGUI = (Parent)fxmlLoader.load();
-        StockViewControl controller = fxmlLoader.<StockViewControl>getController();
-        controller.setSession(session);
-        Scene scene = menuBar.getScene();
-        TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
-        Tab tab = new Tab();
-        tab.setText("Show Stocks");
-        tab.setId("stockTab");
-        tab.setClosable(true);
-        tab.setContent(showStockGUI);
-        tabPane.getTabs().add(tab);
-        tabPane.getSelectionModel().select(tab);
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/showStocksGUI.fxml"));
+                    Parent showStockGUI = null;
+                    try {
+                        showStockGUI = (Parent)fxmlLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    StockViewControl controller = fxmlLoader.<StockViewControl>getController();
+                    controller.setSession(session);
+                    Scene scene = menuBar.getScene();
+                    TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
+                    Tab tab = new Tab();
+                    tab.setText("Show Stocks");
+                    tab.setId("stockTab");
+                    tab.setClosable(true);
+                    tab.setContent(showStockGUI);
+                    tabPane.getTabs().add(tab);
+                    tabPane.getSelectionModel().select(tab);
+                    alertL.dispose();
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
+
+
     }
 
     @FXML private void onShowSale() throws IOException {
         // get a handle to the stage
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/showSalesGUI.fxml"));
-        Parent showSaleGUI = (Parent)fxmlLoader.load();
-        SaleViewControl controller = fxmlLoader.<SaleViewControl>getController();
-        controller.setSession(session);
-        Scene scene = menuBar.getScene();
-        TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
-        TableView tableView = (TableView) scene.lookup("saleDataTable");
-        Tab tab = new Tab();
-        tab.setText("Sales");
-        tab.setClosable(true);
-        tab.setContent(showSaleGUI);
-        tabPane.getTabs().add(tab);
-        tabPane.getSelectionModel().select(tab);
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/showSalesGUI.fxml"));
+                    Parent showSaleGUI = null;
+                    try {
+                        showSaleGUI = (Parent)fxmlLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    SaleViewControl controller = fxmlLoader.<SaleViewControl>getController();
+                    controller.setSession(session);
+                    Scene scene = menuBar.getScene();
+                    TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
+                    TableView tableView = (TableView) scene.lookup("saleDataTable");
+                    Tab tab = new Tab();
+                    tab.setText("Sales");
+                    tab.setClosable(true);
+                    tab.setContent(showSaleGUI);
+                    tabPane.getTabs().add(tab);
+                    tabPane.getSelectionModel().select(tab);
+                    alertL.dispose();
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
+
     }
 
     @FXML private void onAddUser() throws IOException {
         // get a handle to the stage
         //Locale locale = new Locale("sin");
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/AddUserGUI.fxml"));
-        Parent addUser = (Parent)fxmlLoader.load();
-        AddUserControl controller = fxmlLoader.<AddUserControl>getController();
-        controller.setSession(session);
-        Scene scene = menuBar.getScene();
-        TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
-        Tab tab = new Tab();
-        tab.setText("Add User");
-        tab.setClosable(true);
-        tab.setContent(addUser);
-        tabPane.getTabs().add(tab);
-        tabPane.getSelectionModel().select(tab);
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/AddUserGUI.fxml"));
+                    Parent addUser = null;
+                    try {
+                        addUser = (Parent)fxmlLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    AddUserControl controller = fxmlLoader.<AddUserControl>getController();
+                    controller.setSession(session);
+                    Scene scene = menuBar.getScene();
+                    TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
+                    Tab tab = new Tab();
+                    tab.setText("Add User");
+                    tab.setClosable(true);
+                    tab.setContent(addUser);
+                    tabPane.getTabs().add(tab);
+                    tabPane.getSelectionModel().select(tab);
+                    alertL.dispose();
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
+
     }
 
 
     @FXML private void onManageUsers() throws IOException {
         // get a handle to the stage
         //Locale locale = new Locale("sin");
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/ManageUserView.fxml"));
-        Parent manageUsers = (Parent)fxmlLoader.load();
-        ManageUserControl controller = fxmlLoader.<ManageUserControl>getController();
-        controller.setSession(session);
-        Scene scene = menuBar.getScene();
-        TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
-        Tab tab = new Tab();
-        tab.setText("Show Users");
-        tab.setClosable(true);
-        tab.setContent(manageUsers);
-        tabPane.getTabs().add(tab);
-        tabPane.getSelectionModel().select(tab);
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/ManageUserView.fxml"));
+                    Parent manageUsers = null;
+                    try {
+                        manageUsers = (Parent)fxmlLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    ManageUserControl controller = fxmlLoader.<ManageUserControl>getController();
+                    controller.setSession(session);
+                    Scene scene = menuBar.getScene();
+                    TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
+                    Tab tab = new Tab();
+                    tab.setText("Show Users");
+                    tab.setClosable(true);
+                    tab.setContent(manageUsers);
+                    tabPane.getTabs().add(tab);
+                    tabPane.getSelectionModel().select(tab);
+                    alertL.dispose();
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
+
     }
     private double xOffSet = 0;
     private double yOffSet = 0;

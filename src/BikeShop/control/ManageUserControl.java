@@ -7,10 +7,12 @@ package BikeShop.control;
  */
 
 import BikeShop.Entity.UsersEntity;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -22,6 +24,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.swing.*;
 import java.util.List;
 
 public class ManageUserControl {
@@ -90,7 +93,19 @@ public class ManageUserControl {
     }
 
     @FXML private void LoadItems(){
-        setTableData();
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                setTableData();
+                Platform.runLater(() -> {
+                    alertL.dispose();
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
+
     }
 
 

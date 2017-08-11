@@ -2,8 +2,10 @@ package BikeShop.control;
 
 
 import BikeShop.Entity.UsersEntity;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
@@ -14,6 +16,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -56,43 +59,67 @@ public class AddUserControl {
     }
 
     @FXML private void addUser() throws IOException {
-        String username = userNameIn.getText();
-        String password = passwordIn.getText();
-        String name = NameIn.getText();
-        String nic = NICIn.getText();
-        String userlevel = (String) userLevelChoice.getValue();
-        String hashedPass = "";
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    String username = userNameIn.getText();
+                    String password = passwordIn.getText();
+                    String name = NameIn.getText();
+                    String nic = NICIn.getText();
+                    String userlevel = (String) userLevelChoice.getValue();
+                    String hashedPass = "";
 
-        try {
-            hashedPass = PasswordStorage.createHash(password);
-        } catch (PasswordStorage.CannotPerformOperationException e) {
-            e.printStackTrace();
-        }
-        Transaction tx = null;
-        try{
-            tx = session.beginTransaction();
-            UsersEntity user = new UsersEntity();
-            user.setName(name);
-            user.setUsername(username);
-            user.setPassword(hashedPass);
-            user.setNic(nic);
-            user.setUserLevel(userlevel);
-            session.save(user);
-            tx.commit();
-        }catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
-            e.printStackTrace();
-        }finally {
-            session.clear();
-            Scene scene = userNameIn.getScene();
-            TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
-            tabPane.getTabs().remove( tabPane.getSelectionModel().getSelectedIndex() );
-        }
+                    try {
+                        hashedPass = PasswordStorage.createHash(password);
+                    } catch (PasswordStorage.CannotPerformOperationException e) {
+                        e.printStackTrace();
+                    }
+                    Transaction tx = null;
+                    try{
+                        tx = session.beginTransaction();
+                        UsersEntity user = new UsersEntity();
+                        user.setName(name);
+                        user.setUsername(username);
+                        user.setPassword(hashedPass);
+                        user.setNic(nic);
+                        user.setUserLevel(userlevel);
+                        session.save(user);
+                        tx.commit();
+                    }catch (HibernateException e) {
+                        if (tx!=null) tx.rollback();
+                        e.printStackTrace();
+                    }finally {
+                        session.clear();
+                        Scene scene = userNameIn.getScene();
+                        TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
+                        tabPane.getTabs().remove( tabPane.getSelectionModel().getSelectedIndex() );
+                    }
+                    alertL.dispose();
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
+
     }
     @FXML private void CancelTab(){
-        Scene scene = userNameIn.getScene();
-        TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
-        tabPane.getTabs().remove( tabPane.getSelectionModel().getSelectedIndex() );
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    Scene scene = userNameIn.getScene();
+                    TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
+                    tabPane.getTabs().remove( tabPane.getSelectionModel().getSelectedIndex() );
+                    alertL.dispose();
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
+
     }
 
 }

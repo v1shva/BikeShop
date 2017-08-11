@@ -7,10 +7,12 @@ package BikeShop.control;
  */
 
 import BikeShop.Entity.PurchasesEntity;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,6 +26,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.swing.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
@@ -44,6 +47,13 @@ public class PurchaseViewControl {
         session = current;
         setpurchaseDataTable();
     }
+
+    @FXML ScrollPane scrollPane;
+    @FXML
+    public void initialize() {
+        purchaseDataTable.prefHeightProperty().bind(scrollPane.heightProperty());
+    }
+
     private void setpurchaseDataTable(){
         purchaseDataTable.setItems(null);
         purchaseDataTable.setPlaceholder(new Label("Content is loading"));
@@ -113,48 +123,68 @@ public class PurchaseViewControl {
     }
 
     @FXML private void EditItems() throws IOException {
-        List<PurchasesEntity> purchase = purchaseDataTable.getItems();
-        int i = 0,checkedi =0,count=0;
-        for(PurchasesEntity sl:purchase){
-            if(sl.getChecked()!=null &&sl.getChecked()==true){
-                count++;checkedi = i;
-            }
-            i++;
-        }
-        if(count==1){
-            Locale locale = new Locale("sin");
-            ResourceBundle rb;
-            if(language.equals("sin")){
-                rb = ResourceBundle.getBundle("BikeShop/Localization/language", locale);
-            }
-            else{
-                rb = ResourceBundle.getBundle("BikeShop/Localization/language");
-            }
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    List<PurchasesEntity> purchase = purchaseDataTable.getItems();
+                    int i = 0,checkedi =0,count=0;
+                    for(PurchasesEntity sl:purchase){
+                        if(sl.getChecked()!=null &&sl.getChecked()==true){
+                            count++;checkedi = i;
+                        }
+                        i++;
+                    }
+                    if(count==1){
+                        Locale locale = new Locale("sin");
+                        ResourceBundle rb;
+                        if(language.equals("sin")){
+                            rb = ResourceBundle.getBundle("BikeShop/Localization/language", locale);
+                        }
+                        else{
+                            rb = ResourceBundle.getBundle("BikeShop/Localization/language");
+                        }
 
-            Scene scene = searchInput.getScene();
-            TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/PurchaseGUI.fxml"), rb);
-            Parent root = (Parent)fxmlLoader.load();
-            PurchaseControl controller = fxmlLoader.<PurchaseControl>getController();
-            PurchasesEntity current = purchase.get(checkedi);
-            //controller.attachCancelAction();
-            controller.setValues(current.getInvoiceNo(),current.getBikeNo(),current.getBikeModal(),current.getBikeColor(),current.getOwnerName(),current.getOwnerAddress(),
-                    current.getOwnerNic(),current.getOwnerTpNo(),current.getLeaseAmount(),current.getTotalValue(),current.getOtherExpenses(),current.getArrearsValue(),
-                    current.getLeaseDNo(),current.getLeasersName(),current.getOtherInfo(),current.getDocList(),current.getPurchaseDate(), true);
-            controller.setSession(session);
-            Tab tab = new Tab();
-            tab.setText("Purchase Bike");
-            tab.setClosable(true);
-            tab.setContent(root);
-            tabPane.getTabs().add(tab);
-            tabPane.getSelectionModel().select(tab);
-        }
-        else{
-            Alert alert = new Alert(Alert.AlertType.WARNING,"Select only single item to Edit");
-            alert.setTitle("More than one item selected");
-            alert.setHeaderText("More than one item selected");
-            alert.show();
-        }
+                        Scene scene = searchInput.getScene();
+                        TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/PurchaseGUI.fxml"), rb);
+                        Parent root = null;
+                        try {
+                            root = (Parent)fxmlLoader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        PurchaseControl controller = fxmlLoader.<PurchaseControl>getController();
+                        PurchasesEntity current = purchase.get(checkedi);
+                        //controller.attachCancelAction();
+                        controller.setValues(current.getInvoiceNo(),current.getBikeNo(),current.getBikeModal(),current.getBikeColor(),current.getOwnerName(),current.getOwnerAddress(),
+                                current.getOwnerNic(),current.getOwnerTpNo(),current.getLeaseAmount(),current.getTotalValue(),current.getOtherExpenses(),current.getArrearsValue(),
+                                current.getLeaseDNo(),current.getLeasersName(),current.getOtherInfo(),current.getDocList(),current.getPurchaseDate(), true);
+                        controller.setSession(session);
+                        Tab tab = new Tab();
+                        tab.setText("Purchase Bike");
+                        tab.setClosable(true);
+                        tab.setContent(root);
+                        tabPane.getTabs().add(tab);
+                        tabPane.getSelectionModel().select(tab);
+                        alertL.dispose();
+                    }
+                    else{
+                        alertL.dispose();
+                        Alert alert = new Alert(Alert.AlertType.WARNING,"Select only single item to Edit");
+                        alert.setTitle("More than one item selected");
+                        alert.setHeaderText("More than one item selected");
+                        alert.show();
+                    }
+
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
+
+
 
 
     }
@@ -167,31 +197,66 @@ public class PurchaseViewControl {
         alert.setTitle("Delete Selected Items");
         alert.setHeaderText("Deleting Items");
         Optional<ButtonType> result = alert.showAndWait();
-        if(result.get().getButtonData()== ButtonBar.ButtonData.OK_DONE){
-            List<PurchasesEntity> sales = purchaseDataTable.getItems();
-            Transaction tx = session.beginTransaction();
-            int i = 0;
-            for(PurchasesEntity sl:sales){
-                i++;
-                if(sl.getChecked()!=null &&sl.getChecked()==true){
-                    session.delete(sl);
-                }
-                if ( i % 20 == 0 ) { //20, same as the JDBC batch size
-                    //flush a batch of inserts and release memory:
-                    session.flush();
-                    session.clear();
-                }
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    if(result.get().getButtonData()== ButtonBar.ButtonData.OK_DONE){
+                        List<PurchasesEntity> sales = purchaseDataTable.getItems();
+                        Transaction tx = session.beginTransaction();
+                        int i = 0;
+                        for(PurchasesEntity sl:sales){
+                            i++;
+                            if(sl.getChecked()!=null &&sl.getChecked()==true){
+                                session.delete(sl);
+                            }
+                            if ( i % 20 == 0 ) { //20, same as the JDBC batch size
+                                //flush a batch of inserts and release memory:
+                                session.flush();
+                                session.clear();
+                            }
+                        }
+                        tx.commit();
+                        session.clear();
+                        setpurchaseDataTable();
+                        alertL.dispose();
+                    }
+                });
+                return null;
             }
-            tx.commit();
-            session.clear();
-            setpurchaseDataTable();
-        }
+        };
+        new Thread(task).start();
 
     }
 
     @FXML private void LoadItems(){
-        setpurchaseDataTable();
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                setpurchaseDataTable();
+                Platform.runLater(() -> {
+                    alertL.dispose();
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
+
     }
 
+
+    @FXML private void toggleTax(){
+
+    }
+
+    @FXML private void AddToTax() {
+
+    }
+
+    @FXML private void RemoveTax() {
+
+    }
 
 }
