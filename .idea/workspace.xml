@@ -10,11 +10,11 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/Entity/PurchasesEntity.java" afterPath="$PROJECT_DIR$/src/BikeShop/Entity/PurchasesEntity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/Entity/SalesEntity.java" afterPath="$PROJECT_DIR$/src/BikeShop/Entity/SalesEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/Entity/UsersEntity.java" afterPath="$PROJECT_DIR$/src/BikeShop/Entity/UsersEntity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/control/PurchaseViewControl.java" afterPath="$PROJECT_DIR$/src/BikeShop/control/PurchaseViewControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/control/SaleControl.java" afterPath="$PROJECT_DIR$/src/BikeShop/control/SaleControl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/control/SaleViewControl.java" afterPath="$PROJECT_DIR$/src/BikeShop/control/SaleViewControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/fxml/showSalesGUI.fxml" afterPath="$PROJECT_DIR$/src/BikeShop/fxml/showSalesGUI.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bikeDB.xml" afterPath="$PROJECT_DIR$/src/bikeDB.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/control/SplashControl.java" afterPath="$PROJECT_DIR$/src/BikeShop/control/SplashControl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/fxml/AddUserGUI.fxml" afterPath="$PROJECT_DIR$/src/BikeShop/fxml/AddUserGUI.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/src/target/" />
@@ -51,13 +51,7 @@
         <item name="" type="eadb38e5:DatabaseStructure$Root" />
         <item name="bikedb local network" type="e3449647:DbNodeDescriptor" />
         <item name="bikedb" type="e3449647:DbNodeDescriptor" />
-        <item name="purchases" type="e3449647:DbNodeDescriptor" />
-      </path>
-      <path>
-        <item name="" type="eadb38e5:DatabaseStructure$Root" />
-        <item name="bikedb local network" type="e3449647:DbNodeDescriptor" />
-        <item name="bikedb" type="e3449647:DbNodeDescriptor" />
-        <item name="sales" type="e3449647:DbNodeDescriptor" />
+        <item name="users" type="e3449647:DbNodeDescriptor" />
       </path>
     </expand>
     <select />
@@ -70,171 +64,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SaleControl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BikeShop/control/SaleControl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="313" column="0" lean-forward="false" selection-start-line="313" selection-start-column="0" selection-end-line="316" selection-end-column="52" />
-              <folding>
-                <element signature="e#8233#8804#0" expanded="false" />
-                <element signature="method#assignValues#0;class#SaleControl#0" expanded="false" />
-                <element signature="method#ToggleFinance#0;class#SaleControl#0" expanded="false" />
-                <element signature="method#CancelTab#0;class#SaleControl#0" expanded="false" />
-                <element signature="method#DeleteEntity#0;class#SaleControl#0" expanded="false" />
-                <element signature="method#InvoiceNo#0;class#SaleControl#0" expanded="false" />
-                <element signature="method#ValidateRequired#0;class#SaleControl#0" expanded="false" />
-                <element signature="method#ValidateBikeNo1#0;class#SaleControl#0" expanded="false" />
-                <element signature="method#ValidateBikeNo2#0;class#SaleControl#0" expanded="false" />
-                <element signature="method#ValidateForLetters#0;class#SaleControl#0" expanded="false" />
-                <element signature="method#ValidateForNumbers#0;class#SaleControl#0" expanded="false" />
-                <element signature="method#ValidField#0;class#SaleControl#0" expanded="false" />
-                <element signature="method#InvalidField#0;class#SaleControl#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CashChequeControl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BikeShop/control/CashChequeControl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="157" column="32" lean-forward="true" selection-start-line="157" selection-start-column="32" selection-end-line="157" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SaleViewControl.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/BikeShop/control/SaleViewControl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="336" column="5" lean-forward="true" selection-start-line="336" selection-start-column="5" selection-end-line="336" selection-end-column="5" />
-              <folding>
-                <element signature="method#setSession#0;class#SaleViewControl#0" expanded="false" />
-                <element signature="e#1723#1724#0" expanded="true" />
-                <element signature="e#1807#1808#0" expanded="true" />
-                <element signature="e#2845#2864#0" expanded="true" />
-                <element signature="e#5981#6461#0" expanded="true" />
-                <element signature="e#6460#6461#0" expanded="true" />
-                <element signature="method#LoadTableData#0;class#SaleViewControl#0" expanded="false" />
-                <element signature="method#toggleFinance#0;class#SaleViewControl#0" expanded="false" />
-                <element signature="e#8550#11144#0" expanded="true" />
-                <element signature="e#10093#10106#0" expanded="true" />
-                <element signature="e#11143#11144#0" expanded="true" />
-                <element signature="e#11286#13216#0" expanded="true" />
-                <element signature="e#13215#13216#0" expanded="true" />
-                <element signature="method#LoadItems#0;class#SaleViewControl#0" expanded="false" />
-                <element signature="e#13355#13775#0" expanded="true" />
-                <element signature="e#13774#13775#0" expanded="true" />
-                <element signature="method#toggleTax#0;class#SaleViewControl#0" expanded="false" />
-                <element signature="method#AddToTax#0;class#SaleViewControl#0" expanded="false" />
-                <element signature="e#15325#17354#0" expanded="true" />
-                <element signature="e#17353#17354#0" expanded="true" />
-                <element signature="method#RemoveTax#0;class#SaleViewControl#0" expanded="false" />
-                <element signature="e#17971#19407#0" expanded="true" />
-                <element signature="e#19406#19407#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="showSalesGUI.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BikeShop/fxml/showSalesGUI.fxml">
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="57" lean-forward="false" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
-              <folding>
-                <marker date="1503137101059" expanded="true" signature="2451:10228" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="2452:10207" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="2477:10181" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="2651:10155" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="2679:10124" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="2793:2984" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="2840:2948" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="3055:3265" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="3102:3226" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="3341:4059" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="3378:4020" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="3452:3677" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="3503:3634" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="3754:3982" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="3805:3939" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="4136:5492" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="4173:5453" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="4246:4480" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="4299:4435" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="4552:4785" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="4605:4740" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="4867:5099" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="4919:5054" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="5176:5415" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="5229:5370" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="5570:5784" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="5619:5743" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="5879:6088" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="5926:6049" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="6167:7228" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="6204:7189" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="6285:6521" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="6338:6476" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="6597:6832" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="6650:6787" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="6916:7151" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="6968:7106" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="7311:8698" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="7348:8659" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="7428:7661" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="7480:7616" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="7747:7982" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="7799:7937" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="8065:8302" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="8118:8257" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="8385:8621" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="8437:8576" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="8770:8974" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="8815:8937" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="9050:10095" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="9086:10058" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="9159:9396" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="9212:9351" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="9472:9711" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="9525:9666" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="9784:10021" ph="..." />
-                <marker date="1503137101059" expanded="true" signature="9837:9976" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="PurchaseViewControl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BikeShop/control/PurchaseViewControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="339" column="0" lean-forward="false" selection-start-line="339" selection-start-column="0" selection-end-line="339" selection-end-column="47" />
+            <state relative-caret-position="455">
+              <caret line="404" column="5" lean-forward="false" selection-start-line="404" selection-start-column="5" selection-end-line="404" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#setSession#0;class#PurchaseViewControl#0" expanded="false" />
                 <element signature="method#setpurchaseDataTable#0;class#PurchaseViewControl#0" expanded="false" />
-                <element signature="e#2051#3533#0" expanded="false" />
-                <element signature="method#LoadTable#0;class#PurchaseViewControl#0" expanded="false" />
+                <element signature="e#2091#3573#0" expanded="false" />
+                <element signature="method#LoadTableData#0;class#PurchaseViewControl#0" expanded="false" />
                 <element signature="method#EditItems#0;class#PurchaseViewControl#0" expanded="false" />
+                <element signature="e#5112#7794#0" expanded="true" />
+                <element signature="e#6681#6698#0" expanded="true" />
+                <element signature="e#7793#7794#0" expanded="true" />
                 <element signature="method#DeleteItems#0;class#PurchaseViewControl#0" expanded="false" />
+                <element signature="e#8412#9806#0" expanded="true" />
+                <element signature="e#9805#9806#0" expanded="true" />
+                <element signature="method#LoadItems#0;class#PurchaseViewControl#0" expanded="false" />
                 <element signature="method#toggleUnreg#0;class#PurchaseViewControl#0" expanded="false" />
                 <element signature="method#toggleTax#0;class#PurchaseViewControl#0" expanded="false" />
+                <element signature="method#AddToTax#0;class#PurchaseViewControl#0" expanded="false" />
                 <element signature="method#RemoveTax#0;class#PurchaseViewControl#0" expanded="false" />
+                <marker date="1503143056321" expanded="false" signature="9944:10017" ph="(Task) () → {" />
+                <marker date="1503143056321" expanded="false" signature="10357:10372" ph="}" />
+                <marker date="1503143056321" expanded="false" signature="13185:13258" ph="call() → {" />
+                <marker date="1503143056321" expanded="false" signature="14966:14981" ph="}" />
+                <marker date="1503143056321" expanded="false" signature="15598:15671" ph="call() → {" />
+                <marker date="1503143056321" expanded="false" signature="17447:17462" ph="}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bikeDB.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bikeDB.xml">
+      <file leaf-file-name="SplashControl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/BikeShop/control/SplashControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="25" column="26" lean-forward="false" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
-              <folding />
+            <state relative-caret-position="279">
+              <caret line="138" column="51" lean-forward="true" selection-start-line="138" selection-start-column="51" selection-end-line="138" selection-end-column="51" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#7153#7166#0" expanded="true" />
+                <element signature="e#8106#8498#0" expanded="false" />
+                <element signature="e#8906#9250#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -250,9 +124,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>prefWidth</find>
-      <find>1714</find>
-      <find>AddtoTax</find>
       <find>JDialog</find>
       <find>Add</find>
       <find>Alert</find>
@@ -280,9 +151,11 @@
       <find>Timestamp</find>
       <find>toggle</find>
       <find>finan</find>
+      <find>LoadTable</find>
+      <find>TimeStamp</find>
+      <find>Filter</find>
     </findStrings>
     <replaceStrings>
-      <replace>String</replace>
       <replace>Menu</replace>
       <replace>UsersEntity</replace>
       <replace>sold</replace>
@@ -310,8 +183,9 @@
       <replace>JFrame</replace>
       <replace>false</replace>
       <replace>currentSale</replace>
-      <replace>Date</replace>
       <replace>filteredData</replace>
+      <replace>Date</replace>
+      <replace>LoadTableData</replace>
     </replaceStrings>
     <dirStrings>
       <dir>C:\Users\Vishva\Documents\JaveEEProjects\bikeshop\src\BikeShop</dir>
@@ -339,7 +213,6 @@
         <option value="$PROJECT_DIR$/src/BikeShop/control/manageUserControl.java" />
         <option value="$PROJECT_DIR$/src/BikeShop/css/Loading.css" />
         <option value="$PROJECT_DIR$/src/BikeShop/fxml/ManageUserView.fxml" />
-        <option value="$PROJECT_DIR$/src/BikeShop/control/SplashControl.java" />
         <option value="$PROJECT_DIR$/src/BikeShop/Main.java" />
         <option value="$PROJECT_DIR$/src/BikeShop/control/Loader.java" />
         <option value="$PROJECT_DIR$/src/BikeShop/control/MainControl.java" />
@@ -352,13 +225,15 @@
         <option value="$PROJECT_DIR$/src/BikeShop/fxml/PurchaseGUI.fxml" />
         <option value="$PROJECT_DIR$/src/BikeShop/control/PurchaseControl.java" />
         <option value="$PROJECT_DIR$/src/BikeShop/fxml/showPurchasesG.fxml" />
-        <option value="$PROJECT_DIR$/src/bikeDB.xml" />
+        <option value="$PROJECT_DIR$/src/BikeShop/control/SaleControl.java" />
+        <option value="$PROJECT_DIR$/src/BikeShop/fxml/showSalesGUI.fxml" />
+        <option value="$PROJECT_DIR$/src/BikeShop/control/PurchaseViewControl.java" />
+        <option value="$PROJECT_DIR$/src/BikeShop/control/SaleViewControl.java" />
+        <option value="$PROJECT_DIR$/src/BikeShop/fxml/AddUserGUI.fxml" />
         <option value="$PROJECT_DIR$/src/BikeShop/Entity/PurchasesEntity.java" />
         <option value="$PROJECT_DIR$/src/BikeShop/Entity/SalesEntity.java" />
-        <option value="$PROJECT_DIR$/src/BikeShop/control/SaleControl.java" />
-        <option value="$PROJECT_DIR$/src/BikeShop/control/PurchaseViewControl.java" />
-        <option value="$PROJECT_DIR$/src/BikeShop/fxml/showSalesGUI.fxml" />
-        <option value="$PROJECT_DIR$/src/BikeShop/control/SaleViewControl.java" />
+        <option value="$PROJECT_DIR$/src/bikeDB.xml" />
+        <option value="$PROJECT_DIR$/src/BikeShop/control/SplashControl.java" />
       </list>
     </option>
   </component>
@@ -891,12 +766,12 @@
       <workItem from="1502117262838" duration="17849000" />
       <workItem from="1502471126409" duration="1706000" />
       <workItem from="1503076100115" duration="22906000" />
-      <workItem from="1503132074738" duration="7276000" />
+      <workItem from="1503132074738" duration="13307000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="220226000" />
+    <option name="totallyTimeSpent" value="226257000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -922,13 +797,13 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2510661" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32902735" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20723684" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2138158" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2530395" sideWeight="0.4294606" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2530395" sideWeight="0.43723848" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2530395" sideWeight="0.5705394" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27583587" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2530395" sideWeight="0.5627615" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25455928" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24946581" sideWeight="0.47020933" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24924012" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -959,23 +834,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/BikeShop/control/SplashControl.java</url>
-          <line>178</line>
-          <properties />
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/BikeShop/control/PurchaseViewControl.java</url>
-          <line>303</line>
-          <properties class="BikeShop.control.PurchaseViewControl" method="AddToTax">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="14" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -984,21 +843,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/BikeShop/language.properties" />
-    <entry file="file://$PROJECT_DIR$/src/BikeShop/Entity/UsersEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="57" column="62" lean-forward="false" selection-start-line="57" selection-start-column="62" selection-end-line="57" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c5a72c7a-fe2f-45a1-922c-2a109f9e41c3/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/d504ba7f/c5a72c7a-fe2f-45a1-922c-2a109f9e41c3/bikedb.users" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c3fcd538-9239-4953-a50a-f660fc394fdb/console.sql">
       <provider selected="true" editor-type-id="text-editor">
@@ -1140,22 +984,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BikeShop/control/SplashControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="122" column="37" lean-forward="true" selection-start-line="122" selection-start-column="37" selection-end-line="122" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4812#9489#0" expanded="true" />
-            <element signature="e#5723#7931#0" expanded="false" />
-            <element signature="e#7097#7110#0" expanded="true" />
-            <element signature="e#8050#8442#0" expanded="false" />
-            <element signature="e#8850#9194#0" expanded="false" />
-            <element signature="e#9488#9489#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/BikeShop/control/StockViewControl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="765">
@@ -1271,17 +1099,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BikeShop/fxml/PurchaseGUI.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="79" column="51" lean-forward="false" selection-start-line="79" selection-start-column="51" selection-end-line="79" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/BikeShop/control/PurchaseControl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="406">
@@ -1302,6 +1119,102 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BikeShop/control/SaleControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="313" column="0" lean-forward="false" selection-start-line="313" selection-start-column="0" selection-end-line="316" selection-end-column="52" />
+          <folding>
+            <element signature="e#8233#8804#0" expanded="false" />
+            <element signature="method#assignValues#0;class#SaleControl#0" expanded="false" />
+            <element signature="method#ToggleFinance#0;class#SaleControl#0" expanded="false" />
+            <element signature="method#CancelTab#0;class#SaleControl#0" expanded="false" />
+            <element signature="method#DeleteEntity#0;class#SaleControl#0" expanded="false" />
+            <element signature="method#InvoiceNo#0;class#SaleControl#0" expanded="false" />
+            <element signature="method#ValidateRequired#0;class#SaleControl#0" expanded="false" />
+            <element signature="method#ValidateBikeNo1#0;class#SaleControl#0" expanded="false" />
+            <element signature="method#ValidateBikeNo2#0;class#SaleControl#0" expanded="false" />
+            <element signature="method#ValidateForLetters#0;class#SaleControl#0" expanded="false" />
+            <element signature="method#ValidateForNumbers#0;class#SaleControl#0" expanded="false" />
+            <element signature="method#ValidField#0;class#SaleControl#0" expanded="false" />
+            <element signature="method#InvalidField#0;class#SaleControl#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BikeShop/control/CashChequeControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="157" column="32" lean-forward="false" selection-start-line="157" selection-start-column="32" selection-end-line="157" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/d504ba7f/3591306c-87fd-49d4-a42e-50bc8a66529c/bikedb.purchases">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BikeShop/control/SaleViewControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="341" column="34" lean-forward="false" selection-start-line="341" selection-start-column="34" selection-end-line="341" selection-end-column="34" />
+          <folding>
+            <element signature="method#setSession#0;class#SaleViewControl#0" expanded="false" />
+            <element signature="e#1723#1724#0" expanded="true" />
+            <element signature="e#1807#1808#0" expanded="true" />
+            <element signature="method#cashCheque#0;class#SaleViewControl#0" expanded="false" />
+            <element signature="e#2845#2864#0" expanded="true" />
+            <element signature="method#setSaleDataTable#0;class#SaleViewControl#0" expanded="false" />
+            <element signature="method#LoadTableData#0;class#SaleViewControl#0" expanded="false" />
+            <element signature="method#toggleFinance#0;class#SaleViewControl#0" expanded="false" />
+            <element signature="method#EditItems#0;class#SaleViewControl#0" expanded="false" />
+            <element signature="e#8710#11304#0" expanded="true" />
+            <element signature="e#10253#10266#0" expanded="true" />
+            <element signature="e#11303#11304#0" expanded="true" />
+            <element signature="method#DeleteItems#0;class#SaleViewControl#0" expanded="false" />
+            <element signature="e#11446#13376#0" expanded="true" />
+            <element signature="e#13375#13376#0" expanded="true" />
+            <element signature="method#LoadItems#0;class#SaleViewControl#0" expanded="false" />
+            <element signature="e#13515#13935#0" expanded="true" />
+            <element signature="e#13934#13935#0" expanded="true" />
+            <element signature="method#toggleTax#0;class#SaleViewControl#0" expanded="false" />
+            <element signature="method#AddToTax#0;class#SaleViewControl#0" expanded="false" />
+            <element signature="e#15645#17674#0" expanded="true" />
+            <element signature="e#17673#17674#0" expanded="true" />
+            <element signature="method#RemoveTax#0;class#SaleViewControl#0" expanded="false" />
+            <element signature="e#18291#19727#0" expanded="true" />
+            <element signature="e#19726#19727#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BikeShop/fxml/PurchaseGUI.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="79" column="51" lean-forward="false" selection-start-line="79" selection-start-column="51" selection-end-line="79" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BikeShop/fxml/showSalesGUI.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="57" lean-forward="false" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
+          <folding>
+            <marker date="1503137101059" expanded="true" signature="2451:10228" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1314,199 +1227,31 @@
           <caret line="20" column="1" lean-forward="false" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
           <folding>
             <marker date="1503126450220" expanded="true" signature="2393:2427" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="2539:9482" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="2564:9456" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="2748:9430" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="2786:9393" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="2879:3115" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="2934:3068" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="3196:3440" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="3251:3393" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="3524:4388" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="3570:4341" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="3656:3929" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="3719:3874" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="4018:4294" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="4081:4239" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="4473:6008" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="4519:5961" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="4602:4878" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="4665:4823" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="4960:5235" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="5023:5180" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="5326:5602" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="5389:5547" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="5679:5914" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="5731:5869" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="6093:6335" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="6148:6288" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="6442:6689" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="6497:6642" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="6776:7657" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="6822:7610" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="6913:7191" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="6976:7136" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="7285:7563" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="7348:7508" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="7748:9003" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="7794:8956" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="7886:8163" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="7949:8108" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="8256:8535" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="8319:8480" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="8629:8909" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="8692:8854" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="9085:9329" ph="..." />
-            <marker date="1503126450220" expanded="true" signature="9140:9282" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/d504ba7f/3591306c-87fd-49d4-a42e-50bc8a66529c/bikedb.purchases">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/src/BikeShop/fxml/AddUserGUI.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
-    </entry>
-    <entry file="das://table:/d504ba7f/3591306c-87fd-49d4-a42e-50bc8a66529c/bikedb.sales">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BikeShop/Entity/SalesEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1144#1145#0" expanded="true" />
-            <element signature="e#1176#1177#0" expanded="true" />
-            <element signature="e#1223#1224#0" expanded="true" />
-            <element signature="e#1265#1266#0" expanded="true" />
-            <element signature="e#1382#1383#0" expanded="true" />
-            <element signature="e#1417#1418#0" expanded="true" />
-            <element signature="e#1473#1474#0" expanded="true" />
-            <element signature="e#1521#1522#0" expanded="true" />
-            <element signature="e#1631#1632#0" expanded="true" />
-            <element signature="e#1663#1664#0" expanded="true" />
-            <element signature="e#1713#1714#0" expanded="true" />
-            <element signature="e#1755#1756#0" expanded="true" />
-            <element signature="e#1865#1866#0" expanded="true" />
-            <element signature="e#1897#1898#0" expanded="true" />
-            <element signature="e#1947#1948#0" expanded="true" />
-            <element signature="e#1989#1990#0" expanded="true" />
-            <element signature="e#2093#2094#0" expanded="true" />
-            <element signature="e#2122#2123#0" expanded="true" />
-            <element signature="e#2166#2167#0" expanded="true" />
-            <element signature="e#2202#2203#0" expanded="true" />
-            <element signature="e#2308#2309#0" expanded="true" />
-            <element signature="e#2338#2339#0" expanded="true" />
-            <element signature="e#2384#2385#0" expanded="true" />
-            <element signature="e#2422#2423#0" expanded="true" />
-            <element signature="e#2534#2535#0" expanded="true" />
-            <element signature="e#2567#2568#0" expanded="true" />
-            <element signature="e#2619#2620#0" expanded="true" />
-            <element signature="e#2663#2664#0" expanded="true" />
-            <element signature="e#2777#2778#0" expanded="true" />
-            <element signature="e#2811#2812#0" expanded="true" />
-            <element signature="e#2865#2866#0" expanded="true" />
-            <element signature="e#2911#2912#0" expanded="true" />
-            <element signature="e#3028#3029#0" expanded="true" />
-            <element signature="e#3063#3064#0" expanded="true" />
-            <element signature="e#3119#3120#0" expanded="true" />
-            <element signature="e#3167#3168#0" expanded="true" />
-            <element signature="e#3286#3287#0" expanded="true" />
-            <element signature="e#3322#3323#0" expanded="true" />
-            <element signature="e#3380#3381#0" expanded="true" />
-            <element signature="e#3430#3431#0" expanded="true" />
-            <element signature="e#3540#3541#0" expanded="true" />
-            <element signature="e#3572#3573#0" expanded="true" />
-            <element signature="e#3622#3623#0" expanded="true" />
-            <element signature="e#3664#3665#0" expanded="true" />
-            <element signature="e#3780#3781#0" expanded="true" />
-            <element signature="e#3815#3816#0" expanded="true" />
-            <element signature="e#3871#3872#0" expanded="true" />
-            <element signature="e#3919#3920#0" expanded="true" />
-            <element signature="e#4029#4030#0" expanded="true" />
-            <element signature="e#4061#4062#0" expanded="true" />
-            <element signature="e#4111#4112#0" expanded="true" />
-            <element signature="e#4153#4154#0" expanded="true" />
-            <element signature="e#4261#4262#0" expanded="true" />
-            <element signature="e#4292#4293#0" expanded="true" />
-            <element signature="e#4340#4341#0" expanded="true" />
-            <element signature="e#4380#4381#0" expanded="true" />
-            <element signature="e#4490#4491#0" expanded="true" />
-            <element signature="e#4522#4523#0" expanded="true" />
-            <element signature="e#4572#4573#0" expanded="true" />
-            <element signature="e#4614#4615#0" expanded="true" />
-            <element signature="e#4727#4728#0" expanded="true" />
-            <element signature="e#4760#4761#0" expanded="true" />
-            <element signature="e#4812#4813#0" expanded="true" />
-            <element signature="e#4856#4857#0" expanded="true" />
-            <element signature="e#4949#4950#0" expanded="true" />
-            <element signature="e#4979#4980#0" expanded="true" />
-            <element signature="e#5026#5027#0" expanded="true" />
-            <element signature="e#5064#5065#0" expanded="true" />
-            <element signature="e#5159#5160#0" expanded="true" />
-            <element signature="e#5190#5191#0" expanded="true" />
-            <element signature="e#5239#5240#0" expanded="true" />
-            <element signature="e#5279#5280#0" expanded="true" />
-            <element signature="e#5396#5397#0" expanded="true" />
-            <element signature="e#5431#5432#0" expanded="true" />
-            <element signature="e#5487#5488#0" expanded="true" />
-            <element signature="e#5535#5536#0" expanded="true" />
-            <element signature="e#5627#5628#0" expanded="true" />
-            <element signature="e#5658#5659#0" expanded="true" />
-            <element signature="e#5704#5705#0" expanded="true" />
-            <element signature="e#5744#5745#0" expanded="true" />
-            <marker date="1503133668769" expanded="false" signature="5847:5858" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="5880:5886" ph=" }" />
-            <marker date="1503133668769" expanded="false" signature="5942:5953" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="5990:5996" ph=" }" />
-            <marker date="1503133668769" expanded="false" signature="6105:6116" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="6134:6140" ph=" }" />
-            <marker date="1503133668769" expanded="false" signature="6190:6201" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="6230:6236" ph=" }" />
-            <marker date="1503133668769" expanded="false" signature="6349:6360" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="6380:6386" ph=" }" />
-            <marker date="1503133668769" expanded="false" signature="6440:6451" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="6484:6490" ph=" }" />
-            <marker date="1503133668769" expanded="false" signature="6584:6595" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="6613:6619" ph=" }" />
-            <marker date="1503133668769" expanded="false" signature="6667:6678" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="6707:6713" ph=" }" />
-            <marker date="1503133668769" expanded="false" signature="6828:6839" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="6859:6865" ph=" }" />
-            <marker date="1503133668769" expanded="false" signature="6919:6930" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="6963:6969" ph=" }" />
-            <marker date="1503133668769" expanded="false" signature="7065:7076" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="7095:7101" ph=" }" />
-            <marker date="1503133668769" expanded="false" signature="7151:7162" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="7193:7199" ph=" }" />
-            <marker date="1503133668769" expanded="false" signature="7279:7290" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="7301:7307" ph=" }" />
-            <marker date="1503133668769" expanded="false" signature="7341:7352" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="7367:7373" ph=" }" />
-            <marker date="1503133668769" expanded="false" signature="7473:7484" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="7505:7511" ph=" }" />
-            <marker date="1503133668769" expanded="false" signature="7565:7576" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="7611:7617" ph=" }" />
-            <marker date="1503133668769" expanded="false" signature="7724:7735" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="7758:7764" ph=" }" />
-            <marker date="1503133668769" expanded="false" signature="7825:7836" ph=" { " />
-            <marker date="1503133668769" expanded="false" signature="7875:7881" ph=" }" />
+            <marker date="1503144907378" expanded="true" signature="5133:5525" ph="..." />
+            <marker date="1503144907378" expanded="true" signature="5133:5537" ph="..." />
+            <marker date="1503144907378" expanded="true" signature="5183:5510" ph="..." />
+            <marker date="1503144907378" expanded="true" signature="5202:5491" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BikeShop/Entity/PurchasesEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3218">
-          <caret line="207" column="41" lean-forward="false" selection-start-line="207" selection-start-column="41" selection-end-line="207" selection-end-column="41" />
+        <state relative-caret-position="34">
+          <caret line="3" column="21" lean-forward="false" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#921#922#0" expanded="true" />
             <element signature="e#953#954#0" expanded="true" />
             <element signature="e#1000#1001#0" expanded="true" />
@@ -1579,179 +1324,219 @@
             <element signature="e#4955#4956#0" expanded="true" />
             <element signature="e#5009#5010#0" expanded="true" />
             <element signature="e#5057#5058#0" expanded="true" />
-            <marker date="1503133668843" expanded="false" signature="5156:5167" ph=" { " />
-            <marker date="1503133668843" expanded="false" signature="5179:5185" ph=" }" />
-            <marker date="1503133668843" expanded="false" signature="5223:5234" ph=" { " />
-            <marker date="1503133668843" expanded="false" signature="5251:5257" ph=" }" />
-            <marker date="1503133668843" expanded="false" signature="5337:5348" ph=" { " />
-            <marker date="1503133668843" expanded="false" signature="5359:5365" ph=" }" />
-            <marker date="1503133668843" expanded="false" signature="5399:5410" ph=" { " />
-            <marker date="1503133668843" expanded="false" signature="5425:5431" ph=" }" />
-            <marker date="1503133668843" expanded="false" signature="5529:5540" ph=" { " />
-            <marker date="1503133668843" expanded="false" signature="5560:5566" ph=" }" />
-            <marker date="1503133668843" expanded="false" signature="5618:5629" ph=" { " />
-            <marker date="1503133668843" expanded="false" signature="5662:5668" ph=" }" />
-            <marker date="1503133668843" expanded="false" signature="5767:5778" ph=" { " />
-            <marker date="1503133668843" expanded="false" signature="5797:5803" ph=" }" />
-            <marker date="1503133668843" expanded="false" signature="5856:5867" ph=" { " />
-            <marker date="1503133668843" expanded="false" signature="5898:5904" ph=" }" />
+            <marker date="1503145066541" expanded="false" signature="5156:5167" ph=" { " />
+            <marker date="1503145066541" expanded="false" signature="5179:5185" ph=" }" />
+            <marker date="1503145066541" expanded="false" signature="5223:5234" ph=" { " />
+            <marker date="1503145066541" expanded="false" signature="5251:5257" ph=" }" />
+            <marker date="1503145066541" expanded="false" signature="5337:5348" ph=" { " />
+            <marker date="1503145066541" expanded="false" signature="5359:5365" ph=" }" />
+            <marker date="1503145066541" expanded="false" signature="5399:5410" ph=" { " />
+            <marker date="1503145066541" expanded="false" signature="5425:5431" ph=" }" />
+            <marker date="1503145066541" expanded="false" signature="5529:5540" ph=" { " />
+            <marker date="1503145066541" expanded="false" signature="5560:5566" ph=" }" />
+            <marker date="1503145066541" expanded="false" signature="5618:5629" ph=" { " />
+            <marker date="1503145066541" expanded="false" signature="5662:5668" ph=" }" />
+            <marker date="1503145066541" expanded="false" signature="5767:5778" ph=" { " />
+            <marker date="1503145066541" expanded="false" signature="5797:5803" ph=" }" />
+            <marker date="1503145066541" expanded="false" signature="5856:5867" ph=" { " />
+            <marker date="1503145066541" expanded="false" signature="5898:5904" ph=" }" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BikeShop/Entity/SalesEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3626">
+          <caret line="234" column="37" lean-forward="false" selection-start-line="234" selection-start-column="37" selection-end-line="234" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1134#1135#0" expanded="true" />
+            <element signature="e#1166#1167#0" expanded="true" />
+            <element signature="e#1213#1214#0" expanded="true" />
+            <element signature="e#1255#1256#0" expanded="true" />
+            <element signature="e#1372#1373#0" expanded="true" />
+            <element signature="e#1407#1408#0" expanded="true" />
+            <element signature="e#1463#1464#0" expanded="true" />
+            <element signature="e#1511#1512#0" expanded="true" />
+            <element signature="e#1621#1622#0" expanded="true" />
+            <element signature="e#1653#1654#0" expanded="true" />
+            <element signature="e#1703#1704#0" expanded="true" />
+            <element signature="e#1745#1746#0" expanded="true" />
+            <element signature="e#1855#1856#0" expanded="true" />
+            <element signature="e#1887#1888#0" expanded="true" />
+            <element signature="e#1937#1938#0" expanded="true" />
+            <element signature="e#1979#1980#0" expanded="true" />
+            <element signature="e#2083#2084#0" expanded="true" />
+            <element signature="e#2112#2113#0" expanded="true" />
+            <element signature="e#2156#2157#0" expanded="true" />
+            <element signature="e#2192#2193#0" expanded="true" />
+            <element signature="e#2298#2299#0" expanded="true" />
+            <element signature="e#2328#2329#0" expanded="true" />
+            <element signature="e#2374#2375#0" expanded="true" />
+            <element signature="e#2412#2413#0" expanded="true" />
+            <element signature="e#2524#2525#0" expanded="true" />
+            <element signature="e#2557#2558#0" expanded="true" />
+            <element signature="e#2609#2610#0" expanded="true" />
+            <element signature="e#2653#2654#0" expanded="true" />
+            <element signature="e#2767#2768#0" expanded="true" />
+            <element signature="e#2801#2802#0" expanded="true" />
+            <element signature="e#2855#2856#0" expanded="true" />
+            <element signature="e#2901#2902#0" expanded="true" />
+            <element signature="e#3018#3019#0" expanded="true" />
+            <element signature="e#3053#3054#0" expanded="true" />
+            <element signature="e#3109#3110#0" expanded="true" />
+            <element signature="e#3157#3158#0" expanded="true" />
+            <element signature="e#3276#3277#0" expanded="true" />
+            <element signature="e#3312#3313#0" expanded="true" />
+            <element signature="e#3370#3371#0" expanded="true" />
+            <element signature="e#3420#3421#0" expanded="true" />
+            <element signature="e#3530#3531#0" expanded="true" />
+            <element signature="e#3562#3563#0" expanded="true" />
+            <element signature="e#3612#3613#0" expanded="true" />
+            <element signature="e#3654#3655#0" expanded="true" />
+            <element signature="e#3770#3771#0" expanded="true" />
+            <element signature="e#3805#3806#0" expanded="true" />
+            <element signature="e#3861#3862#0" expanded="true" />
+            <element signature="e#3909#3910#0" expanded="true" />
+            <element signature="e#4019#4020#0" expanded="true" />
+            <element signature="e#4051#4052#0" expanded="true" />
+            <element signature="e#4101#4102#0" expanded="true" />
+            <element signature="e#4143#4144#0" expanded="true" />
+            <element signature="e#4251#4252#0" expanded="true" />
+            <element signature="e#4282#4283#0" expanded="true" />
+            <element signature="e#4330#4331#0" expanded="true" />
+            <element signature="e#4370#4371#0" expanded="true" />
+            <element signature="e#4480#4481#0" expanded="true" />
+            <element signature="e#4512#4513#0" expanded="true" />
+            <element signature="e#4562#4563#0" expanded="true" />
+            <element signature="e#4604#4605#0" expanded="true" />
+            <element signature="e#4717#4718#0" expanded="true" />
+            <element signature="e#4750#4751#0" expanded="true" />
+            <element signature="e#4802#4803#0" expanded="true" />
+            <element signature="e#4846#4847#0" expanded="true" />
+            <element signature="e#4939#4940#0" expanded="true" />
+            <element signature="e#4969#4970#0" expanded="true" />
+            <element signature="e#5016#5017#0" expanded="true" />
+            <element signature="e#5054#5055#0" expanded="true" />
+            <element signature="e#5149#5150#0" expanded="true" />
+            <element signature="e#5180#5181#0" expanded="true" />
+            <element signature="e#5229#5230#0" expanded="true" />
+            <element signature="e#5269#5270#0" expanded="true" />
+            <element signature="e#5386#5387#0" expanded="true" />
+            <element signature="e#5421#5422#0" expanded="true" />
+            <element signature="e#5477#5478#0" expanded="true" />
+            <element signature="e#5525#5526#0" expanded="true" />
+            <element signature="e#5617#5618#0" expanded="true" />
+            <element signature="e#5648#5649#0" expanded="true" />
+            <element signature="e#5694#5695#0" expanded="true" />
+            <element signature="e#5734#5735#0" expanded="true" />
+            <marker date="1503145092912" expanded="false" signature="5837:5848" ph=" { " />
+            <marker date="1503145092912" expanded="false" signature="5870:5876" ph=" }" />
+            <marker date="1503145092912" expanded="false" signature="5932:5943" ph=" { " />
+            <marker date="1503145092912" expanded="false" signature="5980:5986" ph=" }" />
+            <marker date="1503145092912" expanded="false" signature="6095:6106" ph=" { " />
+            <marker date="1503145092912" expanded="false" signature="6124:6130" ph=" }" />
+            <marker date="1503145092912" expanded="false" signature="6180:6191" ph=" { " />
+            <marker date="1503145092912" expanded="false" signature="6220:6226" ph=" }" />
+            <marker date="1503145092912" expanded="false" signature="6339:6350" ph=" { " />
+            <marker date="1503145092912" expanded="false" signature="6370:6376" ph=" }" />
+            <marker date="1503145092912" expanded="false" signature="6430:6441" ph=" { " />
+            <marker date="1503145092912" expanded="false" signature="6474:6480" ph=" }" />
+            <marker date="1503145092912" expanded="false" signature="6574:6585" ph=" { " />
+            <marker date="1503145092912" expanded="false" signature="6603:6609" ph=" }" />
+            <marker date="1503145092912" expanded="false" signature="6657:6668" ph=" { " />
+            <marker date="1503145092912" expanded="false" signature="6697:6703" ph=" }" />
+            <marker date="1503145092912" expanded="false" signature="6818:6829" ph=" { " />
+            <marker date="1503145092912" expanded="false" signature="6849:6855" ph=" }" />
+            <marker date="1503145092912" expanded="false" signature="6909:6920" ph=" { " />
+            <marker date="1503145092912" expanded="false" signature="6953:6959" ph=" }" />
+            <marker date="1503145092912" expanded="false" signature="7055:7066" ph=" { " />
+            <marker date="1503145092912" expanded="false" signature="7085:7091" ph=" }" />
+            <marker date="1503145092912" expanded="false" signature="7141:7152" ph=" { " />
+            <marker date="1503145092912" expanded="false" signature="7183:7189" ph=" }" />
+            <marker date="1503145092912" expanded="false" signature="7269:7280" ph=" { " />
+            <marker date="1503145092912" expanded="false" signature="7291:7297" ph=" }" />
+            <marker date="1503145092912" expanded="false" signature="7331:7342" ph=" { " />
+            <marker date="1503145092912" expanded="false" signature="7357:7363" ph=" }" />
+            <marker date="1503145092912" expanded="false" signature="7470:7481" ph=" { " />
+            <marker date="1503145092912" expanded="false" signature="7504:7510" ph=" }" />
+            <marker date="1503145092912" expanded="false" signature="7571:7582" ph=" { " />
+            <marker date="1503145092912" expanded="false" signature="7621:7627" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BikeShop/Entity/UsersEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/d504ba7f/3591306c-87fd-49d4-a42e-50bc8a66529c/bikedb.users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bikeDB.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="25" column="26" lean-forward="false" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+        <state relative-caret-position="107">
+          <caret line="8" column="56" lean-forward="true" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BikeShop/control/CashChequeControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="157" column="32" lean-forward="true" selection-start-line="157" selection-start-column="32" selection-end-line="157" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BikeShop/fxml/showSalesGUI.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="57" lean-forward="false" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
-          <folding>
-            <marker date="1503137101059" expanded="true" signature="2451:10228" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="2452:10207" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="2477:10181" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="2651:10155" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="2679:10124" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="2793:2984" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="2840:2948" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="3055:3265" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="3102:3226" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="3341:4059" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="3378:4020" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="3452:3677" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="3503:3634" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="3754:3982" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="3805:3939" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="4136:5492" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="4173:5453" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="4246:4480" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="4299:4435" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="4552:4785" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="4605:4740" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="4867:5099" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="4919:5054" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="5176:5415" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="5229:5370" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="5570:5784" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="5619:5743" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="5879:6088" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="5926:6049" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="6167:7228" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="6204:7189" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="6285:6521" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="6338:6476" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="6597:6832" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="6650:6787" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="6916:7151" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="6968:7106" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="7311:8698" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="7348:8659" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="7428:7661" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="7480:7616" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="7747:7982" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="7799:7937" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="8065:8302" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="8118:8257" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="8385:8621" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="8437:8576" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="8770:8974" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="8815:8937" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="9050:10095" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="9086:10058" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="9159:9396" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="9212:9351" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="9472:9711" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="9525:9666" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="9784:10021" ph="..." />
-            <marker date="1503137101059" expanded="true" signature="9837:9976" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BikeShop/control/SaleControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="313" column="0" lean-forward="false" selection-start-line="313" selection-start-column="0" selection-end-line="316" selection-end-column="52" />
-          <folding>
-            <element signature="e#8233#8804#0" expanded="false" />
-            <element signature="method#assignValues#0;class#SaleControl#0" expanded="false" />
-            <element signature="method#ToggleFinance#0;class#SaleControl#0" expanded="false" />
-            <element signature="method#CancelTab#0;class#SaleControl#0" expanded="false" />
-            <element signature="method#DeleteEntity#0;class#SaleControl#0" expanded="false" />
-            <element signature="method#InvoiceNo#0;class#SaleControl#0" expanded="false" />
-            <element signature="method#ValidateRequired#0;class#SaleControl#0" expanded="false" />
-            <element signature="method#ValidateBikeNo1#0;class#SaleControl#0" expanded="false" />
-            <element signature="method#ValidateBikeNo2#0;class#SaleControl#0" expanded="false" />
-            <element signature="method#ValidateForLetters#0;class#SaleControl#0" expanded="false" />
-            <element signature="method#ValidateForNumbers#0;class#SaleControl#0" expanded="false" />
-            <element signature="method#ValidField#0;class#SaleControl#0" expanded="false" />
-            <element signature="method#InvalidField#0;class#SaleControl#0" expanded="false" />
-          </folding>
+    <entry file="das://table:/d504ba7f/3591306c-87fd-49d4-a42e-50bc8a66529c/bikedb.sales">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BikeShop/control/PurchaseViewControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="339" column="0" lean-forward="false" selection-start-line="339" selection-start-column="0" selection-end-line="339" selection-end-column="47" />
+        <state relative-caret-position="455">
+          <caret line="404" column="5" lean-forward="false" selection-start-line="404" selection-start-column="5" selection-end-line="404" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#setSession#0;class#PurchaseViewControl#0" expanded="false" />
             <element signature="method#setpurchaseDataTable#0;class#PurchaseViewControl#0" expanded="false" />
-            <element signature="e#2051#3533#0" expanded="false" />
-            <element signature="method#LoadTable#0;class#PurchaseViewControl#0" expanded="false" />
+            <element signature="e#2091#3573#0" expanded="false" />
+            <element signature="method#LoadTableData#0;class#PurchaseViewControl#0" expanded="false" />
             <element signature="method#EditItems#0;class#PurchaseViewControl#0" expanded="false" />
+            <element signature="e#5112#7794#0" expanded="true" />
+            <element signature="e#6681#6698#0" expanded="true" />
+            <element signature="e#7793#7794#0" expanded="true" />
             <element signature="method#DeleteItems#0;class#PurchaseViewControl#0" expanded="false" />
+            <element signature="e#8412#9806#0" expanded="true" />
+            <element signature="e#9805#9806#0" expanded="true" />
+            <element signature="method#LoadItems#0;class#PurchaseViewControl#0" expanded="false" />
             <element signature="method#toggleUnreg#0;class#PurchaseViewControl#0" expanded="false" />
             <element signature="method#toggleTax#0;class#PurchaseViewControl#0" expanded="false" />
+            <element signature="method#AddToTax#0;class#PurchaseViewControl#0" expanded="false" />
             <element signature="method#RemoveTax#0;class#PurchaseViewControl#0" expanded="false" />
+            <marker date="1503143056321" expanded="false" signature="9944:10017" ph="(Task) () → {" />
+            <marker date="1503143056321" expanded="false" signature="10357:10372" ph="}" />
+            <marker date="1503143056321" expanded="false" signature="13185:13258" ph="call() → {" />
+            <marker date="1503143056321" expanded="false" signature="14966:14981" ph="}" />
+            <marker date="1503143056321" expanded="false" signature="15598:15671" ph="call() → {" />
+            <marker date="1503143056321" expanded="false" signature="17447:17462" ph="}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BikeShop/control/SaleViewControl.java">
+    <entry file="file://$PROJECT_DIR$/src/BikeShop/control/SplashControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="336" column="5" lean-forward="true" selection-start-line="336" selection-start-column="5" selection-end-line="336" selection-end-column="5" />
+        <state relative-caret-position="279">
+          <caret line="138" column="51" lean-forward="true" selection-start-line="138" selection-start-column="51" selection-end-line="138" selection-end-column="51" />
           <folding>
-            <element signature="method#setSession#0;class#SaleViewControl#0" expanded="false" />
-            <element signature="e#1723#1724#0" expanded="true" />
-            <element signature="e#1807#1808#0" expanded="true" />
-            <element signature="e#2845#2864#0" expanded="true" />
-            <element signature="e#5981#6461#0" expanded="true" />
-            <element signature="e#6460#6461#0" expanded="true" />
-            <element signature="method#LoadTableData#0;class#SaleViewControl#0" expanded="false" />
-            <element signature="method#toggleFinance#0;class#SaleViewControl#0" expanded="false" />
-            <element signature="e#8550#11144#0" expanded="true" />
-            <element signature="e#10093#10106#0" expanded="true" />
-            <element signature="e#11143#11144#0" expanded="true" />
-            <element signature="e#11286#13216#0" expanded="true" />
-            <element signature="e#13215#13216#0" expanded="true" />
-            <element signature="method#LoadItems#0;class#SaleViewControl#0" expanded="false" />
-            <element signature="e#13355#13775#0" expanded="true" />
-            <element signature="e#13774#13775#0" expanded="true" />
-            <element signature="method#toggleTax#0;class#SaleViewControl#0" expanded="false" />
-            <element signature="method#AddToTax#0;class#SaleViewControl#0" expanded="false" />
-            <element signature="e#15325#17354#0" expanded="true" />
-            <element signature="e#17353#17354#0" expanded="true" />
-            <element signature="method#RemoveTax#0;class#SaleViewControl#0" expanded="false" />
-            <element signature="e#17971#19407#0" expanded="true" />
-            <element signature="e#19406#19407#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#7153#7166#0" expanded="true" />
+            <element signature="e#8106#8498#0" expanded="false" />
+            <element signature="e#8906#9250#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -194,6 +194,8 @@ public class SaleViewControl {
                 }
                 return false; // Does not match.
             });
+            SortedList<SalesEntity> sortedData = new SortedList<>(filteredData);
+            filteredData = new FilteredList<SalesEntity>(sortedData, p->true);
             setSaleDataTable(filteredData);
             financeToggle.setSelected(false);
             togglePendingFinace = false;
@@ -347,6 +349,8 @@ public class SaleViewControl {
                 }
                 return false; // Does not match.
             });
+            SortedList<SalesEntity> sortedData = new SortedList<>(filteredData);
+            filteredData = new FilteredList<SalesEntity>(sortedData, p->true);
             setSaleDataTable(filteredData);
             financeToggle.setSelected(false);
             togglePendingFinace = false;

@@ -38,7 +38,6 @@ public class PurchaseViewControl {
     private String language = "en";
     Session session;
     ObservableList<PurchasesEntity> masterData;
-    FilteredList<PurchasesEntity> filteredData;
     @FXML
     CheckBox taxToggle, unregToggle;
     @FXML
@@ -49,7 +48,9 @@ public class PurchaseViewControl {
     private TableColumn purchaseColumn;
     public void setSession(Session current){
         session = current;
-        setpurchaseDataTable();
+        masterData = LoadTableData();
+        FilteredList<PurchasesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+        setpurchaseDataTable(filteredData);
     }
 
     @FXML ScrollPane scrollPane;
@@ -58,11 +59,9 @@ public class PurchaseViewControl {
         purchaseDataTable.prefHeightProperty().bind(scrollPane.heightProperty());
     }
 
-    private void setpurchaseDataTable(){
+    private void setpurchaseDataTable(FilteredList<PurchasesEntity> filteredData){
         purchaseDataTable.setItems(null);
         purchaseDataTable.setPlaceholder(new Label("Content is loading"));
-        masterData = LoadTable();
-        filteredData = new FilteredList<>(masterData, p -> true);
         searchInput.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(salesItem -> {
                 // If filter text is empty, display all persons.
@@ -103,8 +102,7 @@ public class PurchaseViewControl {
         purchaseDataTable.getSortOrder().add(purchaseColumn);
     }
 
-    private ObservableList<PurchasesEntity> LoadTable() {
-
+    private ObservableList<PurchasesEntity> LoadTableData() {
         Transaction tx = null;
         ObservableList<PurchasesEntity> data = null;
         try {
@@ -221,7 +219,9 @@ public class PurchaseViewControl {
                         }
                         tx.commit();
                         session.clear();
-                        setpurchaseDataTable();
+                        masterData = LoadTableData();
+                        FilteredList<PurchasesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+                        setpurchaseDataTable(filteredData);
                         alertL.dispose();
                     }
                 });
@@ -237,7 +237,9 @@ public class PurchaseViewControl {
         Task task = new Task<Void>() {
             @Override
             public Void call() {
-                setpurchaseDataTable();
+                masterData = LoadTableData();
+                FilteredList<PurchasesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+                setpurchaseDataTable(filteredData);
                 Platform.runLater(() -> {
                     alertL.dispose();
                 });
@@ -251,6 +253,8 @@ public class PurchaseViewControl {
     private boolean unreg = false;
     @FXML private void toggleUnreg(){
         if(!unreg){
+            masterData = LoadTableData();
+            FilteredList<PurchasesEntity> filteredData = new FilteredList<>(masterData, p -> true);
             filteredData.setPredicate(salesItem -> {
                 if (salesItem.getUnregistered() == Byte.valueOf("1")) {
                     return true;
@@ -258,16 +262,16 @@ public class PurchaseViewControl {
                 return false; // Does not match.
             });
             SortedList<PurchasesEntity> sortedData = new SortedList<>(filteredData);
-            sortedData.comparatorProperty().bind(purchaseDataTable.comparatorProperty());
-            purchaseDataTable.setItems(sortedData);
-            purchaseColumn.setComparator(purchaseColumn.getComparator().reversed());
-            purchaseDataTable.getSortOrder().add(purchaseColumn);
+            filteredData = new FilteredList<PurchasesEntity>(sortedData, p->true);
+            setpurchaseDataTable(filteredData);
             taxToggle.setSelected(false);
             tax = false;
             unreg = true;
         }
         else{
-            setpurchaseDataTable();
+            masterData = LoadTableData();
+            FilteredList<PurchasesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+            setpurchaseDataTable(filteredData);
             taxToggle.setSelected(false);
             tax = false;
             unreg = false;
@@ -277,6 +281,8 @@ public class PurchaseViewControl {
     private boolean tax = false;
     @FXML private void toggleTax(){
         if(!tax){
+            masterData = LoadTableData();
+            FilteredList<PurchasesEntity> filteredData = new FilteredList<>(masterData, p -> true);
             filteredData.setPredicate(salesItem -> {
                 if (salesItem.getTax() == Byte.valueOf("1")) {
                     return true;
@@ -284,17 +290,17 @@ public class PurchaseViewControl {
                 return false; // Does not match.
             });
             SortedList<PurchasesEntity> sortedData = new SortedList<>(filteredData);
-            sortedData.comparatorProperty().bind(purchaseDataTable.comparatorProperty());
-            purchaseDataTable.setItems(sortedData);
-            purchaseColumn.setComparator(purchaseColumn.getComparator().reversed());
-            purchaseDataTable.getSortOrder().add(purchaseColumn);
+            filteredData = new FilteredList<PurchasesEntity>(sortedData, p->true);
+            setpurchaseDataTable(filteredData);
             unregToggle.setSelected(false);
             unreg = false;
             tax = true;
 
         }
         else{
-            setpurchaseDataTable();
+            masterData = LoadTableData();
+            FilteredList<PurchasesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+            setpurchaseDataTable(filteredData);
             unregToggle.setSelected(false);
             unreg = false;
             tax = false;
@@ -337,7 +343,9 @@ public class PurchaseViewControl {
                         }
                         tx.commit();
                         session.clear();
-                        setpurchaseDataTable();
+                        masterData = LoadTableData();
+                        FilteredList<PurchasesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+                        setpurchaseDataTable(filteredData);
                         alertL.dispose();
                     }
                 });
@@ -384,7 +392,9 @@ public class PurchaseViewControl {
                         }
                         tx.commit();
                         session.clear();
-                        setpurchaseDataTable();
+                        masterData = LoadTableData();
+                        FilteredList<PurchasesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+                        setpurchaseDataTable(filteredData);
                         alertL.dispose();
                     }
                 });

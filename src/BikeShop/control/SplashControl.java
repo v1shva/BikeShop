@@ -130,12 +130,13 @@ public class SplashControl  implements Initializable {
                 Transaction tx = null;
                 try{
                     tx = session.beginTransaction();
-                    Query query = session.createQuery("select password,name,userLevel from UsersEntity where username='"+userName+"'");
+                    Query query = session.createQuery("select password,name,userLevel,tax from UsersEntity where username='"+userName+"'");
                     if(query.list().size()==1){
                         Object[] tuple = (Object[]) query.list().get(0);
                         dbPass = (String) tuple[0];
                         String name = "Name: " + tuple[1];
                         String userLevel = (String) tuple[2];
+                        Byte tax = (Byte) tuple[3];
                         try {
                             if (PasswordStorage.verifyPassword(pass,dbPass)){
 

@@ -2,6 +2,7 @@ package BikeShop.Entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "sales", schema = "bikedb", catalog = "")
@@ -33,7 +34,6 @@ public class SalesEntity {
     private Double chequeAmount;
     private Byte purchaseTax;
     private Byte tax;
-    private Byte checkResolved;
     private Integer purchaseInvoice;
 
     @Id
@@ -307,16 +307,6 @@ public class SalesEntity {
     }
 
     @Basic
-    @Column(name = "checkResolved", nullable = true)
-    public Byte getCheckResolved() {
-        return checkResolved;
-    }
-
-    public void setCheckResolved(Byte checkResolved) {
-        this.checkResolved = checkResolved;
-    }
-
-    @Basic
     @Column(name = "purchaseInvoice", nullable = true)
     public Integer getPurchaseInvoice() {
         return purchaseInvoice;
@@ -362,8 +352,6 @@ public class SalesEntity {
         if (chequeAmount != null ? !chequeAmount.equals(that.chequeAmount) : that.chequeAmount != null) return false;
         if (purchaseTax != null ? !purchaseTax.equals(that.purchaseTax) : that.purchaseTax != null) return false;
         if (tax != null ? !tax.equals(that.tax) : that.tax != null) return false;
-        if (checkResolved != null ? !checkResolved.equals(that.checkResolved) : that.checkResolved != null)
-            return false;
         if (purchaseInvoice != null ? !purchaseInvoice.equals(that.purchaseInvoice) : that.purchaseInvoice != null)
             return false;
 
@@ -399,7 +387,6 @@ public class SalesEntity {
         result = 31 * result + (chequeAmount != null ? chequeAmount.hashCode() : 0);
         result = 31 * result + (purchaseTax != null ? purchaseTax.hashCode() : 0);
         result = 31 * result + (tax != null ? tax.hashCode() : 0);
-        result = 31 * result + (checkResolved != null ? checkResolved.hashCode() : 0);
         result = 31 * result + (purchaseInvoice != null ? purchaseInvoice.hashCode() : 0);
         return result;
     }

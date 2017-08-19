@@ -2,17 +2,26 @@ package BikeShop.Entity;
 
 import javax.persistence.*;
 
-/**
- * Created by Vishva on 7/29/2017.
- */
 @Entity
 @Table(name = "users", schema = "bikedb", catalog = "")
 public class UsersEntity {
+    private int id;
     private String username;
     private String password;
     private String name;
     private String nic;
     private String userLevel;
+    private Byte tax;
+
+    @Id
+    @Column(name = "id", nullable = false)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Basic
     @Column(name = "username", nullable = false, length = 30)
@@ -44,7 +53,7 @@ public class UsersEntity {
         this.name = name;
     }
 
-    @Id
+    @Basic
     @Column(name = "nic", nullable = false, length = 15)
     public String getNic() {
         return nic;
@@ -64,6 +73,16 @@ public class UsersEntity {
         this.userLevel = userLevel;
     }
 
+    @Basic
+    @Column(name = "tax", nullable = true)
+    public Byte getTax() {
+        return tax;
+    }
+
+    public void setTax(Byte tax) {
+        this.tax = tax;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,22 +90,26 @@ public class UsersEntity {
 
         UsersEntity that = (UsersEntity) o;
 
+        if (id != that.id) return false;
         if (username != null ? !username.equals(that.username) : that.username != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (nic != null ? !nic.equals(that.nic) : that.nic != null) return false;
         if (userLevel != null ? !userLevel.equals(that.userLevel) : that.userLevel != null) return false;
+        if (tax != null ? !tax.equals(that.tax) : that.tax != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = username != null ? username.hashCode() : 0;
+        int result = id;
+        result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (nic != null ? nic.hashCode() : 0);
         result = 31 * result + (userLevel != null ? userLevel.hashCode() : 0);
+        result = 31 * result + (tax != null ? tax.hashCode() : 0);
         return result;
     }
 }
