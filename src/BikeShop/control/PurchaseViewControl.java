@@ -271,7 +271,7 @@ public class PurchaseViewControl {
         }
 
     }
-    
+
     @FXML private void toggleTax(){
 
     }

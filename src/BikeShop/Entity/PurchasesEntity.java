@@ -3,10 +3,6 @@ package BikeShop.Entity;
 import javax.persistence.*;
 import java.sql.Date;
 
-
-/**
- * Created by Vishva on 3/29/2017.
- */
 @Entity
 @Table(name = "purchases", schema = "bikedb", catalog = "")
 public class PurchasesEntity {
@@ -15,7 +11,11 @@ public class PurchasesEntity {
     private String bikeColor;
     private String bikeModal;
     private String bikeNo;
+    private Boolean checked;
     private String docList;
+    private String leaseDNo;
+    private Double leaseAmount;
+    private String leasersName;
     private Double otherExpenses;
     private String otherInfo;
     private String ownerAddress;
@@ -23,16 +23,10 @@ public class PurchasesEntity {
     private String ownerNic;
     private String ownerTpNo;
     private Double totalValue;
-    private Boolean checked;
-    private String LeaseDNo;
-    private String leasersName;
-    private Double leaseAmount;
     private Date purchaseDate;
     private String sold;
-    private String leaseDNo;
-    private String tax;
+    private Byte tax;
     private Byte unregistered;
-
 
     @Id
     @Column(name = "invoiceNo", nullable = false)
@@ -85,6 +79,16 @@ public class PurchasesEntity {
     }
 
     @Basic
+    @Column(name = "checked", nullable = true)
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
+    }
+
+    @Basic
     @Column(name = "docList", nullable = true, length = 255)
     public String getDocList() {
         return docList;
@@ -92,6 +96,36 @@ public class PurchasesEntity {
 
     public void setDocList(String docList) {
         this.docList = docList;
+    }
+
+    @Basic
+    @Column(name = "LeaseDNo", nullable = true, length = 255)
+    public String getLeaseDNo() {
+        return leaseDNo;
+    }
+
+    public void setLeaseDNo(String leaseDNo) {
+        this.leaseDNo = leaseDNo;
+    }
+
+    @Basic
+    @Column(name = "LeaseAmount", nullable = true, precision = 0)
+    public Double getLeaseAmount() {
+        return leaseAmount;
+    }
+
+    public void setLeaseAmount(Double leaseAmount) {
+        this.leaseAmount = leaseAmount;
+    }
+
+    @Basic
+    @Column(name = "LeasersName", nullable = true, length = 255)
+    public String getLeasersName() {
+        return leasersName;
+    }
+
+    public void setLeasersName(String leasersName) {
+        this.leasersName = leasersName;
     }
 
     @Basic
@@ -165,47 +199,7 @@ public class PurchasesEntity {
     }
 
     @Basic
-    @Column(name = "checked", nullable = true)
-    public Boolean getChecked() {
-        return checked;
-    }
-
-    public void setChecked(Boolean checked) {
-        this.checked = checked;
-    }
-
-    @Basic
-    @Column(name = "LeaseDNo", nullable = true, length = 255)
-    public String getLeaseDNo() {
-        return LeaseDNo;
-    }
-
-    public void setLeaseDNo(String financeFNo) {
-        this.LeaseDNo = financeFNo;
-    }
-
-    @Basic
-    @Column(name = "LeasersName", nullable = true, length = 255)
-    public String getLeasersName() {
-        return leasersName;
-    }
-
-    public void setLeasersName(String leasersName) {
-        this.leasersName = leasersName;
-    }
-
-    @Basic
-    @Column(name = "LeaseAmount", nullable = true, precision = 0)
-    public Double getLeaseAmount() {
-        return leaseAmount;
-    }
-
-    public void setLeaseAmount(Double leaseAmount) {
-        this.leaseAmount = leaseAmount;
-    }
-
-    @Basic
-    @Column(name = "purchaseDate", columnDefinition="DATETIME", nullable = true)
+    @Column(name = "purchaseDate", nullable = true)
     public Date getPurchaseDate() {
         return purchaseDate;
     }
@@ -220,8 +214,28 @@ public class PurchasesEntity {
         return sold;
     }
 
-    public void setSold(String soldOrNot) {
-        this.sold = soldOrNot;
+    public void setSold(String sold) {
+        this.sold = sold;
+    }
+
+    @Basic
+    @Column(name = "tax", nullable = true)
+    public Byte getTax() {
+        return tax;
+    }
+
+    public void setTax(Byte tax) {
+        this.tax = tax;
+    }
+
+    @Basic
+    @Column(name = "unregistered", nullable = true)
+    public Byte getUnregistered() {
+        return unregistered;
+    }
+
+    public void setUnregistered(Byte unregistered) {
+        this.unregistered = unregistered;
     }
 
     @Override
@@ -236,7 +250,11 @@ public class PurchasesEntity {
         if (bikeColor != null ? !bikeColor.equals(that.bikeColor) : that.bikeColor != null) return false;
         if (bikeModal != null ? !bikeModal.equals(that.bikeModal) : that.bikeModal != null) return false;
         if (bikeNo != null ? !bikeNo.equals(that.bikeNo) : that.bikeNo != null) return false;
+        if (checked != null ? !checked.equals(that.checked) : that.checked != null) return false;
         if (docList != null ? !docList.equals(that.docList) : that.docList != null) return false;
+        if (leaseDNo != null ? !leaseDNo.equals(that.leaseDNo) : that.leaseDNo != null) return false;
+        if (leaseAmount != null ? !leaseAmount.equals(that.leaseAmount) : that.leaseAmount != null) return false;
+        if (leasersName != null ? !leasersName.equals(that.leasersName) : that.leasersName != null) return false;
         if (otherExpenses != null ? !otherExpenses.equals(that.otherExpenses) : that.otherExpenses != null)
             return false;
         if (otherInfo != null ? !otherInfo.equals(that.otherInfo) : that.otherInfo != null) return false;
@@ -245,10 +263,11 @@ public class PurchasesEntity {
         if (ownerNic != null ? !ownerNic.equals(that.ownerNic) : that.ownerNic != null) return false;
         if (ownerTpNo != null ? !ownerTpNo.equals(that.ownerTpNo) : that.ownerTpNo != null) return false;
         if (totalValue != null ? !totalValue.equals(that.totalValue) : that.totalValue != null) return false;
-        if (checked != null ? !checked.equals(that.checked) : that.checked != null) return false;
-        if (leasersName != null ? !leasersName.equals(that.leasersName) : that.leasersName != null) return false;
-        if (leaseAmount != null ? !leaseAmount.equals(that.leaseAmount) : that.leaseAmount != null) return false;
+        if (purchaseDate != null ? !purchaseDate.equals(that.purchaseDate) : that.purchaseDate != null) return false;
         if (sold != null ? !sold.equals(that.sold) : that.sold != null) return false;
+        if (tax != null ? !tax.equals(that.tax) : that.tax != null) return false;
+        if (unregistered != null ? !unregistered.equals(that.unregistered) : that.unregistered != null) return false;
+
         return true;
     }
 
@@ -259,7 +278,11 @@ public class PurchasesEntity {
         result = 31 * result + (bikeColor != null ? bikeColor.hashCode() : 0);
         result = 31 * result + (bikeModal != null ? bikeModal.hashCode() : 0);
         result = 31 * result + (bikeNo != null ? bikeNo.hashCode() : 0);
+        result = 31 * result + (checked != null ? checked.hashCode() : 0);
         result = 31 * result + (docList != null ? docList.hashCode() : 0);
+        result = 31 * result + (leaseDNo != null ? leaseDNo.hashCode() : 0);
+        result = 31 * result + (leaseAmount != null ? leaseAmount.hashCode() : 0);
+        result = 31 * result + (leasersName != null ? leasersName.hashCode() : 0);
         result = 31 * result + (otherExpenses != null ? otherExpenses.hashCode() : 0);
         result = 31 * result + (otherInfo != null ? otherInfo.hashCode() : 0);
         result = 31 * result + (ownerAddress != null ? ownerAddress.hashCode() : 0);
@@ -267,30 +290,10 @@ public class PurchasesEntity {
         result = 31 * result + (ownerNic != null ? ownerNic.hashCode() : 0);
         result = 31 * result + (ownerTpNo != null ? ownerTpNo.hashCode() : 0);
         result = 31 * result + (totalValue != null ? totalValue.hashCode() : 0);
-        result = 31 * result + (checked != null ? checked.hashCode() : 0);
-        result = 31 * result + (leasersName != null ? leasersName.hashCode() : 0);
-        result = 31 * result + (leaseAmount != null ? leaseAmount.hashCode() : 0);
+        result = 31 * result + (purchaseDate != null ? purchaseDate.hashCode() : 0);
         result = 31 * result + (sold != null ? sold.hashCode() : 0);
+        result = 31 * result + (tax != null ? tax.hashCode() : 0);
+        result = 31 * result + (unregistered != null ? unregistered.hashCode() : 0);
         return result;
-    }
-
-    @Basic
-    @Column(name = "tax", nullable = true, length = 10)
-    public String getTax() {
-        return tax;
-    }
-
-    public void setTax(String tax) {
-        this.tax = tax;
-    }
-
-    @Basic
-    @Column(name = "unregistered", nullable = true)
-    public Byte getUnregistered() {
-        return unregistered;
-    }
-
-    public void setUnregistered(Byte unregistered) {
-        this.unregistered = unregistered;
     }
 }

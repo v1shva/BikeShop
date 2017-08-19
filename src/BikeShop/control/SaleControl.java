@@ -55,35 +55,29 @@ public class SaleControl {
            saleEdit = currentSale;
            invoice = currentSale.getInvoiceNo();
            InvoiceNoLbl.setText("Invoice No. "+invoice);
-           if(currentSale.getUnregistered() == Byte.valueOf("1")){
-               regStatus.getSelectionModel().selectLast();
-               engineChIn.setText(currentSale.getBikeNo());
-           }
-           else{
-               String bikeNos[] = currentSale.getBikeNo().split("\\s+");
+           String bikeNos[] = currentSale.getBikeNo().split("\\s+");
 
-               if(bikeNos.length==2){
-                   BikeNoProvince.setValue(bikeNos[0]);
-                   String noRest[] = bikeNos[1].split("-");
-                   BikeNoDash.setValue("-");
-                   BikeNoIn1.setText(noRest[0]);
-                   BikeNoIn2.setText(noRest[1]);
+           if(bikeNos.length==2){
+               BikeNoProvince.setValue(bikeNos[0]);
+               String noRest[] = bikeNos[1].split("-");
+               BikeNoDash.setValue("-");
+               BikeNoIn1.setText(noRest[0]);
+               BikeNoIn2.setText(noRest[1]);
+           }
+           else if (bikeNos.length == 1){
+               String SRINos[] = bikeNos[0].split("SRI");
+               if(SRINos.length==1){
+                   String DashNos[] = bikeNos[0].split("-");
+                   if(DashNos.length==2){
+                       BikeNoDash.setValue("-");
+                       BikeNoIn1.setText(DashNos[0]);
+                       BikeNoIn2.setText(DashNos[1]);
+                   }
                }
-               else if (bikeNos.length == 1){
-                   String SRINos[] = bikeNos[0].split("SRI");
-                   if(SRINos.length==1){
-                       String DashNos[] = bikeNos[0].split("-");
-                       if(DashNos.length==2){
-                           BikeNoDash.setValue("-");
-                           BikeNoIn1.setText(DashNos[0]);
-                           BikeNoIn2.setText(DashNos[1]);
-                       }
-                   }
-                   else if(SRINos.length==2){
-                       BikeNoDash.setValue("SRI");
-                       BikeNoIn1.setText(SRINos[0]);
-                       BikeNoIn2.setText(SRINos[1]);
-                   }
+               else if(SRINos.length==2){
+                   BikeNoDash.setValue("SRI");
+                   BikeNoIn1.setText(SRINos[0]);
+                   BikeNoIn2.setText(SRINos[1]);
                }
            }
            BikeModalIn.setText(currentSale.getBikeModal());

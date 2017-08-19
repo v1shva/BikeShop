@@ -2,7 +2,6 @@ package BikeShop.Entity;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.sql.Date;
 
 
 @Entity
@@ -33,10 +32,8 @@ public class SalesEntity {
     private String chequeNumber;
     private Date chequeDate;
     private Double chequeAmount;
-    private String tax;
+    private Byte tax;
     private Byte checkResolved;
-    private Byte unregistered;
-
 
     @Id
     @Column(name = "invoiceNo", nullable = false)
@@ -278,6 +275,36 @@ public class SalesEntity {
         this.chequeDate = chequeDate;
     }
 
+    @Basic
+    @Column(name = "chequeAmount", nullable = true, precision = 0)
+    public Double getChequeAmount() {
+        return chequeAmount;
+    }
+
+    public void setChequeAmount(Double chequeAmount) {
+        this.chequeAmount = chequeAmount;
+    }
+
+    @Basic
+    @Column(name = "tax", nullable = true)
+    public Byte getTax() {
+        return tax;
+    }
+
+    public void setTax(Byte tax) {
+        this.tax = tax;
+    }
+
+    @Basic
+    @Column(name = "checkResolved", nullable = true)
+    public Byte getCheckResolved() {
+        return checkResolved;
+    }
+
+    public void setCheckResolved(Byte checkResolved) {
+        this.checkResolved = checkResolved;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -311,6 +338,10 @@ public class SalesEntity {
         if (chequeBank != null ? !chequeBank.equals(that.chequeBank) : that.chequeBank != null) return false;
         if (chequeNumber != null ? !chequeNumber.equals(that.chequeNumber) : that.chequeNumber != null) return false;
         if (chequeDate != null ? !chequeDate.equals(that.chequeDate) : that.chequeDate != null) return false;
+        if (chequeAmount != null ? !chequeAmount.equals(that.chequeAmount) : that.chequeAmount != null) return false;
+        if (tax != null ? !tax.equals(that.tax) : that.tax != null) return false;
+        if (checkResolved != null ? !checkResolved.equals(that.checkResolved) : that.checkResolved != null)
+            return false;
 
         return true;
     }
@@ -341,46 +372,9 @@ public class SalesEntity {
         result = 31 * result + (chequeBank != null ? chequeBank.hashCode() : 0);
         result = 31 * result + (chequeNumber != null ? chequeNumber.hashCode() : 0);
         result = 31 * result + (chequeDate != null ? chequeDate.hashCode() : 0);
+        result = 31 * result + (chequeAmount != null ? chequeAmount.hashCode() : 0);
+        result = 31 * result + (tax != null ? tax.hashCode() : 0);
+        result = 31 * result + (checkResolved != null ? checkResolved.hashCode() : 0);
         return result;
-    }
-
-    @Basic
-    @Column(name = "chequeAmount", nullable = true, precision = 0)
-    public Double getChequeAmount() {
-        return chequeAmount;
-    }
-
-    public void setChequeAmount(Double chequeAmount) {
-        this.chequeAmount = chequeAmount;
-    }
-
-    @Basic
-    @Column(name = "tax", nullable = true, length = 10)
-    public String getTax() {
-        return tax;
-    }
-
-    public void setTax(String tax) {
-        this.tax = tax;
-    }
-
-    @Basic
-    @Column(name = "checkResolved", nullable = true)
-    public Byte getCheckResolved() {
-        return checkResolved;
-    }
-
-    public void setCheckResolved(Byte checkResolved) {
-        this.checkResolved = checkResolved;
-    }
-
-    @Basic
-    @Column(name = "unregistered", nullable = true)
-    public Byte getUnregistered() {
-        return unregistered;
-    }
-
-    public void setUnregistered(Byte unregistered) {
-        this.unregistered = unregistered;
     }
 }
