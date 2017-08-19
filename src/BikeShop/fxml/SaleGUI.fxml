@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="1031.0" prefWidth="1040.0" stylesheets="@../css/Sale.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BikeShop.control.SaleControl">
+<GridPane prefHeight="1072.0" prefWidth="1040.0" stylesheets="@../css/Sale.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BikeShop.control.SaleControl">
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -31,20 +31,20 @@
    <children>
       <ScrollPane fitToWidth="true" prefHeight="940.0" prefWidth="821.0" styleClass="form" GridPane.columnIndex="1">
          <content>
-            <GridPane alignment="CENTER" prefHeight="1026.0" prefWidth="819.0">
+            <GridPane alignment="CENTER" prefHeight="1070.0" prefWidth="1038.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="569.0" minWidth="0.0" prefWidth="132.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="906.0" minWidth="10.0" prefWidth="906.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints maxHeight="232.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="262.0" minHeight="10.0" prefHeight="137.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="468.0" minHeight="10.0" prefHeight="175.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="417.0" minHeight="0.0" prefHeight="147.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="417.0" minHeight="10.0" prefHeight="146.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="417.0" minHeight="10.0" prefHeight="118.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="417.0" minHeight="0.0" prefHeight="158.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="417.0" minHeight="10.0" prefHeight="84.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="262.0" minHeight="10.0" prefHeight="184.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="468.0" minHeight="10.0" prefHeight="193.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="417.0" minHeight="0.0" prefHeight="143.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="417.0" minHeight="10.0" prefHeight="164.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="417.0" minHeight="10.0" prefHeight="106.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="417.0" minHeight="0.0" prefHeight="172.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="417.0" minHeight="10.0" prefHeight="63.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <Pane prefHeight="144.0" prefWidth="600.0" styleClass="bikeDetails" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -54,18 +54,18 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="15.0" layoutY="37.0" prefHeight="17.0" prefWidth="121.0" text="%bikeNo" textAlignment="CENTER" />
-                        <Label layoutX="15.0" layoutY="72.0" prefHeight="17.0" prefWidth="107.0" text="%bikeModal" />
-                        <Label layoutX="15.0" layoutY="107.0" prefHeight="17.0" prefWidth="64.0" text="%bikeColor" />
-                        <TextField fx:id="BikeNoIn2" layoutX="352.0" layoutY="34.0" onKeyReleased="#ValidateBikeNo2" prefHeight="25.0" prefWidth="204.0" />
-                        <TextField fx:id="BikeModalIn" layoutX="171.0" layoutY="68.0" prefHeight="25.0" prefWidth="385.0" />
-                        <TextField fx:id="BikeColorIn" layoutX="171.0" layoutY="103.0" onKeyReleased="#ValidateForLetters" prefHeight="25.0" prefWidth="385.0" />
+                        <Label layoutX="15.0" layoutY="73.0" prefHeight="17.0" prefWidth="121.0" text="%bikeNo" textAlignment="CENTER" />
+                        <Label layoutX="15.0" layoutY="108.0" prefHeight="17.0" prefWidth="107.0" text="%bikeModal" />
+                        <Label layoutX="15.0" layoutY="143.0" prefHeight="17.0" prefWidth="64.0" text="%bikeColor" />
+                        <TextField fx:id="BikeNoIn2" layoutX="352.0" layoutY="70.0" onKeyReleased="#ValidateBikeNo2" prefHeight="25.0" prefWidth="204.0" />
+                        <TextField fx:id="BikeModalIn" layoutX="171.0" layoutY="104.0" prefHeight="25.0" prefWidth="385.0" />
+                        <TextField fx:id="BikeColorIn" layoutX="171.0" layoutY="139.0" onKeyReleased="#ValidateForLetters" prefHeight="25.0" prefWidth="385.0" />
                         <Accordion layoutX="-71.0" layoutY="93.0" />
                         <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="569.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="569.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="569.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true" />
-                        <TextField fx:id="BikeNoIn1" layoutX="216.0" layoutY="34.0" onKeyReleased="#ValidateBikeNo1" prefHeight="25.0" prefWidth="102.0" />
-                        <ChoiceBox fx:id="BikeNoProvince" layoutX="171.0" layoutY="34.0" prefHeight="25.0" prefWidth="47.0" value="WP">
+                        <TextField fx:id="BikeNoIn1" layoutX="216.0" layoutY="70.0" onKeyReleased="#ValidateBikeNo1" prefHeight="25.0" prefWidth="102.0" />
+                        <ChoiceBox fx:id="BikeNoProvince" layoutX="171.0" layoutY="70.0" prefHeight="25.0" prefWidth="47.0" value="WP">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="WP" />
@@ -81,7 +81,7 @@
                               </FXCollections>
                            </items>
                         </ChoiceBox>
-                        <ChoiceBox fx:id="BikeNoDash" layoutX="315.0" layoutY="34.0" prefHeight="25.0" prefWidth="38.0" value="-">
+                        <ChoiceBox fx:id="BikeNoDash" layoutX="315.0" layoutY="70.0" prefHeight="25.0" prefWidth="38.0" value="-">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="-" />
@@ -89,6 +89,17 @@
                               </FXCollections>
                            </items>
                         </ChoiceBox>
+                        <ChoiceBox fx:id="regStatus" layoutX="171.0" layoutY="34.0" prefHeight="25.0" prefWidth="386.0" value="-">
+                           <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="Registered" />
+                                 <String fx:value="Unregistered" />
+                              </FXCollections>
+                           </items>
+                        </ChoiceBox>
+                        <Label fx:id="unregLabel" layoutX="14.0" layoutY="38.0" prefHeight="17.0" prefWidth="121.0" text="Registration Status" textAlignment="CENTER" />
+                        <Label fx:id="engineChLabel" layoutX="15.0" layoutY="38.0" prefHeight="17.0" prefWidth="128.0" text="Engine No / Chassis No" textAlignment="CENTER" />
+                        <TextField fx:id="engineChIn" layoutX="171.0" layoutY="34.0" prefHeight="25.0" prefWidth="385.0" />
                      </children>
                   </Pane>
                   <Pane prefHeight="211.0" prefWidth="698.0" styleClass="bikeDetails" GridPane.columnIndex="1" GridPane.rowIndex="2">

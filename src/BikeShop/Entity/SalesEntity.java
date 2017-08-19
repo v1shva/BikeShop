@@ -2,6 +2,7 @@ package BikeShop.Entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Date;
 
 
 @Entity
@@ -33,7 +34,8 @@ public class SalesEntity {
     private Date chequeDate;
     private Double chequeAmount;
     private String tax;
-
+    private Byte checkResolved;
+    private Byte unregistered;
 
 
     @Id
@@ -342,7 +344,6 @@ public class SalesEntity {
         return result;
     }
 
-
     @Basic
     @Column(name = "chequeAmount", nullable = true, precision = 0)
     public Double getChequeAmount() {
@@ -361,5 +362,25 @@ public class SalesEntity {
 
     public void setTax(String tax) {
         this.tax = tax;
+    }
+
+    @Basic
+    @Column(name = "checkResolved", nullable = true)
+    public Byte getCheckResolved() {
+        return checkResolved;
+    }
+
+    public void setCheckResolved(Byte checkResolved) {
+        this.checkResolved = checkResolved;
+    }
+
+    @Basic
+    @Column(name = "unregistered", nullable = true)
+    public Byte getUnregistered() {
+        return unregistered;
+    }
+
+    public void setUnregistered(Byte unregistered) {
+        this.unregistered = unregistered;
     }
 }

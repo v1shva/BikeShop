@@ -225,9 +225,7 @@ public class SaleViewControl {
                         SaleControl controller = fxmlLoader.<SaleControl>getController();
                         SalesEntity current = sales.get(checkedi);
                         //controller.attachCancelAction();
-                        controller.setValues(current.getInvoiceNo(),current.getBikeNo(),current.getBikeModal(),current.getBikeColor(),current.getOwnerName(),current.getOwnerAddress(),
-                                current.getOwnerNic(),current.getOwnerTpNo(),current.getLeasingValue(),current.getTotalValue(),current.getOtherExpenses(),current.getArrearsValue(),
-                                current.getFinanceFNo(),current.getFinanceValue(),current.getFinanceType(),current.getOtherInfo(),current.getDocList(),current.getSaleDate(), true, current);
+                        controller.setValues(true, current);
                         controller.setSession(session);
                         Tab tab = new Tab();
                         tab.setText("Sell Bike");

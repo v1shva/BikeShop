@@ -31,6 +31,7 @@ public class PurchasesEntity {
     private String sold;
     private String leaseDNo;
     private String tax;
+    private Byte unregistered;
 
 
     @Id
@@ -281,5 +282,15 @@ public class PurchasesEntity {
 
     public void setTax(String tax) {
         this.tax = tax;
+    }
+
+    @Basic
+    @Column(name = "unregistered", nullable = true)
+    public Byte getUnregistered() {
+        return unregistered;
+    }
+
+    public void setUnregistered(Byte unregistered) {
+        this.unregistered = unregistered;
     }
 }

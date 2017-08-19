@@ -3,7 +3,6 @@ package BikeShop.control;
 import BikeShop.Entity.PurchasesEntity;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -24,7 +23,6 @@ import java.util.*;
 public class PurchaseControl {
     private int invoice;
     private boolean editable = false;
-    private ChangeListener listener;
     private Session session;
     Locale locale ;
     ResourceBundle rb ;
@@ -35,13 +33,13 @@ public class PurchaseControl {
 
 
     @FXML
-    Label InvoiceNoLb2;
+    Label InvoiceNoLb2, engineChLabel, bikeNoLabel;
     @FXML
-    TextField BikeNoIn1,BikeNoIn2,BikeModalIn,BikeColorIn,OwnerNameIn, OwnerAdrIn,OwnerIDIn,OwnerTPIn1,OwnerTPIn2;
+    TextField BikeNoIn1,BikeNoIn2,BikeModalIn,BikeColorIn,OwnerNameIn, OwnerAdrIn,OwnerIDIn,OwnerTPIn1,OwnerTPIn2, engineChIn;
     @FXML
     TextField  TotalAmntIn,OtherExpIn, ArrearsIn, FinFNo,FinFNo1, FinValueIn;//FinFNo==dno,FinFNo1=name
     @FXML
-    ChoiceBox  BikeNoDash, BikeNoProvince;
+    ChoiceBox  BikeNoDash, BikeNoProvince, regStatus;
     @FXML
     TextArea OtherInfoIn;
     @FXML
@@ -50,59 +48,67 @@ public class PurchaseControl {
     DatePicker purchaseDateIn;
 
 
-    public void setValues(int invoiceNo, String bikeNo, String bikeMoadal, String bikeColor, String ownerName, String ownerAdr, String ownerID, String ownerTP,
-                          Double leasedAmnt, Double TotalAmnt, Double otherExp, Double arrears, String FinFNoVal, String FinType,
-                          String otherInfo, String docList, Date saleDate, boolean edit){
+    public void setValues(boolean edit, PurchasesEntity currentPurchase){
         try{
-            invoice = invoiceNo;
+            invoice = currentPurchase.getInvoiceNo();
             InvoiceNoLb2.setText("Invoice No. "+invoice);
-            String bikeNos[] = bikeNo.split("\\s+");
-            if(bikeNos.length==2){
-                BikeNoProvince.setValue(bikeNos[0]);
-                String noRest[] = bikeNos[1].split("-");
-                BikeNoDash.setValue("-");
-                BikeNoIn1.setText(noRest[0]);
-                BikeNoIn2.setText(noRest[1]);
+            if(currentPurchase.getUnregistered() == Byte.valueOf("1")){
+                regStatus.getSelectionModel().selectLast();
             }
-            else if (bikeNos.length == 1){
-                String SRINos[] = bikeNos[0].split("SRI");
-                if(SRINos.length==1){
-                    String DashNos[] = bikeNos[0].split("-");
-                    if(DashNos.length==2){
-                        BikeNoDash.setValue("-");
-                        BikeNoIn1.setText(DashNos[1]);
-                        BikeNoIn2.setText(DashNos[2]);
+            if(currentPurchase.getUnregistered() == Byte.valueOf("1")){
+                regStatus.getSelectionModel().selectLast();
+                engineChIn.setText(currentPurchase.getBikeNo());
+            }
+            else{
+                String bikeNos[] = currentPurchase.getBikeNo().split("\\s+");
+                if(bikeNos.length==2){
+                    BikeNoProvince.setValue(bikeNos[0]);
+                    String noRest[] = bikeNos[1].split("-");
+                    BikeNoDash.setValue("-");
+                    BikeNoIn1.setText(noRest[0]);
+                    BikeNoIn2.setText(noRest[1]);
+                }
+                else if (bikeNos.length == 1){
+                    String SRINos[] = bikeNos[0].split("SRI");
+                    if(SRINos.length==1){
+                        String DashNos[] = bikeNos[0].split("-");
+                        if(DashNos.length==2){
+                            BikeNoDash.setValue("-");
+                            BikeNoIn1.setText(DashNos[0]);
+                            BikeNoIn2.setText(DashNos[1]);
+                        }
+                    }
+                    else if(SRINos.length==2){
+                        BikeNoDash.setValue("SRI");
+                        BikeNoIn1.setText(SRINos[0]);
+                        BikeNoIn2.setText(SRINos[1]);
                     }
                 }
-                else if(SRINos.length==2){
-                    BikeNoDash.setValue("SRI");
-                    BikeNoIn1.setText(SRINos[1]);
-                    BikeNoIn2.setText(SRINos[2]);
-                }
             }
-            BikeModalIn.setText(bikeMoadal);
-            BikeColorIn.setText(bikeColor);
-            OwnerNameIn.setText(ownerName);
-            OwnerAdrIn.setText(ownerAdr);
-            OwnerIDIn.setText(ownerID);
-            String ownerTPNos [] = ownerTP.split(",");
+
+            BikeModalIn.setText(currentPurchase.getBikeModal());
+            BikeColorIn.setText(currentPurchase.getBikeColor());
+            OwnerNameIn.setText(currentPurchase.getOwnerName());
+            OwnerAdrIn.setText(currentPurchase.getOwnerName());
+            OwnerIDIn.setText(currentPurchase.getOwnerNic());
+            String ownerTPNos [] = currentPurchase.getOwnerTpNo().split(",");
             if(ownerTPNos.length==2){
                 OwnerTPIn1.setText(ownerTPNos[0]);
                 OwnerTPIn2.setText(ownerTPNos[1]);
             }
             else {
-                OwnerTPIn1.setText(ownerTP);
+                OwnerTPIn1.setText(currentPurchase.getOwnerTpNo());
             }
-            TotalAmntIn.setText(TotalAmnt+"");
-            OtherExpIn.setText(otherExp+"");
-            ArrearsIn.setText(arrears+"");
-            FinFNo.setText(FinFNoVal);
-            FinValueIn.setText(leasedAmnt+"");
-            FinFNo1.setText(FinType);
-            OtherInfoIn.setText(otherInfo);
-            purchaseDateIn.setValue(saleDate.toLocalDate());
+            TotalAmntIn.setText(currentPurchase.getTotalValue()+"");
+            OtherExpIn.setText(currentPurchase.getOtherExpenses()+"");
+            ArrearsIn.setText(currentPurchase.getArrearsValue()+"");
+            FinFNo.setText(currentPurchase.getLeaseDNo());
+            FinValueIn.setText(currentPurchase.getLeaseAmount()+"");
+            FinFNo1.setText(currentPurchase.getLeasersName());
+            OtherInfoIn.setText(currentPurchase.getOtherInfo());
+            purchaseDateIn.setValue(currentPurchase.getPurchaseDate().toLocalDate());
             editable = edit;
-            List<String> docListItems  = Arrays.asList(docList.split(","));
+            List<String> docListItems  = Arrays.asList(currentPurchase.getDocList().split(","));
             if(docListItems.contains("Deletion Letter")) DelLetterIn.setSelected(true);
             if(docListItems.contains("VIC")) VICIn.setSelected(true);
             if(docListItems.contains("CR")) CRIn.setSelected(true);
@@ -127,9 +133,31 @@ public class PurchaseControl {
         purchaseDateIn.setValue(LocalDate.now());
         InvoiceNoLb2.setText("Invoice No. "+ InvoiceNo());
     }
+
+    private void toggleRegStatus(){
+        if (regStatus.getValue().toString().equals("Registered")){
+            engineChLabel.setVisible(false);
+            engineChIn.setVisible(false);
+            bikeNoLabel.setVisible(true);
+            BikeNoIn1.setVisible(true);
+            BikeNoIn2.setVisible(true);
+            BikeNoDash.setVisible(true);
+            BikeNoProvince.setVisible(true);
+        }
+        else {
+            engineChLabel.setVisible(true);
+            engineChIn.setVisible(true);
+            bikeNoLabel.setVisible(false);
+            BikeNoIn1.setVisible(false);
+            BikeNoIn2.setVisible(false);
+            BikeNoDash.setVisible(false);
+            BikeNoProvince.setVisible(false);
+        }
+    }
     @FXML
     public void initialize() {
         //date initialize
+        ChangeListener listener, regStatusListener;
         locale = new Locale("sin");
         rb = ResourceBundle.getBundle("BikeShop/Localization/language", locale);
         ArrayList<TextField> txArray = new ArrayList<TextField>();
@@ -145,25 +173,27 @@ public class PurchaseControl {
             });
         }
 
-        listener = new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                if (BikeNoProvince.getValue().equals("")) {
-                    BikeNoDash.setItems(FXCollections.observableArrayList(
-                            "SRI", "-" )
-                    );
-                    BikeNoDash.getSelectionModel().selectFirst();
-                } else  {
-                    BikeNoDash.setItems(FXCollections.observableArrayList(
-                            "-" )
-                    );
-                    BikeNoDash.getSelectionModel().selectFirst();
-                }
-
-                System.out.println(BikeNoProvince.getValue());
+        listener = (observable, oldValue, newValue) -> {
+            if (BikeNoProvince.getValue().equals("")) {
+                BikeNoDash.setItems(FXCollections.observableArrayList(
+                        "SRI", "-" )
+                );
+                BikeNoDash.getSelectionModel().selectFirst();
+            } else  {
+                BikeNoDash.setItems(FXCollections.observableArrayList(
+                        "-" )
+                );
+                BikeNoDash.getSelectionModel().selectFirst();
             }
+
+            System.out.println(BikeNoProvince.getValue());
         };
         BikeNoProvince.getSelectionModel().selectedItemProperty().addListener(listener);
+        regStatusListener = (observable, oldValue, newValue) -> {
+           toggleRegStatus();
+        };
+        regStatus.getSelectionModel().selectedItemProperty().addListener(regStatusListener);
+        regStatus.getSelectionModel().selectFirst();
 
     }
 
@@ -184,6 +214,10 @@ public class PurchaseControl {
                         }
                         else{
                             bikeNo = BikeNoProvince.getValue().toString().toUpperCase()+" " + BikeNoIn1.getText()+BikeNoDash.getValue().toString()+BikeNoIn2.getText();
+                        }
+                        if (!regStatus.getValue().toString().equals("Registered")){
+                            bikeNo = engineChIn.getText();
+                            purchases.setUnregistered(Byte.valueOf("1"));
                         }
                         if(!editable){
                             Query query = session.createQuery("from PurchasesEntity where bikeNo='"+bikeNo+"'" + "AND sold='false'");
@@ -237,7 +271,12 @@ public class PurchaseControl {
         purchase.setOwnerName(OwnerNameIn.getText());
         purchase.setOwnerAddress(OwnerAdrIn.getText());
         purchase.setOwnerNic(OwnerIDIn.getText());
-        purchase.setOwnerTpNo(OwnerTPIn1.getText()+","+OwnerTPIn2.getText());
+        if(OwnerTPIn2.getText().equals("")){
+            purchase.setOwnerTpNo(OwnerTPIn1.getText());
+        }
+        else{
+            purchase.setOwnerTpNo(OwnerTPIn1.getText()+","+OwnerTPIn2.getText());
+        }
         purchase.setLeaseDNo(FinFNo.getText());
         purchase.setLeasersName(FinFNo1.getText());
         Double amountDbl = FinValueIn.getText().length()>0 ? Double.parseDouble(FinValueIn.getText()) : 0;
@@ -305,7 +344,6 @@ public class PurchaseControl {
             @Override
             public Void call() {
                 Platform.runLater(() -> {
-
                     ButtonType okay = new ButtonType("Okay",  ButtonBar.ButtonData.OK_DONE);
                     ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
                     // get a handle to the stage

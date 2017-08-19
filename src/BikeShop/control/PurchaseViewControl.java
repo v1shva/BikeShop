@@ -158,9 +158,7 @@ public class PurchaseViewControl {
                         PurchaseControl controller = fxmlLoader.<PurchaseControl>getController();
                         PurchasesEntity current = purchase.get(checkedi);
                         //controller.attachCancelAction();
-                        controller.setValues(current.getInvoiceNo(),current.getBikeNo(),current.getBikeModal(),current.getBikeColor(),current.getOwnerName(),current.getOwnerAddress(),
-                                current.getOwnerNic(),current.getOwnerTpNo(),current.getLeaseAmount(),current.getTotalValue(),current.getOtherExpenses(),current.getArrearsValue(),
-                                current.getLeaseDNo(),current.getLeasersName(),current.getOtherInfo(),current.getDocList(),current.getPurchaseDate(), true);
+                        controller.setValues(true, current);
                         controller.setSession(session);
                         Tab tab = new Tab();
                         tab.setText("Purchase Bike");
