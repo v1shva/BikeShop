@@ -32,12 +32,15 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SaleViewControl {
+
     String language = "";
     boolean togglePendingFinace = false;
     public void setValus(String lan){
         language = lan;
     }
     public Session session;
+    @FXML
+    CheckBox taxToggle, financeToggle;
     @FXML
     TextField searchInput;
     @FXML
@@ -49,7 +52,9 @@ public class SaleViewControl {
     ObservableList<SalesEntity> masterData;
     public void setSession(Session current){
         session = current;
-        setSaleDataTable();
+        masterData = LoadTableData();
+        FilteredList<SalesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+        setSaleDataTable(filteredData);
     }
 
     @FXML ScrollPane scrollPane;
@@ -99,11 +104,11 @@ public class SaleViewControl {
             alert.show();
         }
     }
-    private void setSaleDataTable(){
+    private void setSaleDataTable(FilteredList<SalesEntity> filteredData){
         saleDataTable.setItems(null);
         saleDataTable.setPlaceholder(new Label("Content is loading"));
-        masterData = LoadTable();
-        FilteredList<SalesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+/*        masterData = LoadTableData();
+        filteredData = new FilteredList<>(masterData, p -> true);*/
         searchInput.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(salesItem -> {
                 // If filter text is empty, display all persons.
@@ -140,10 +145,23 @@ public class SaleViewControl {
 
         // 5. Add sorted (and filtered) data to the table.
         saleDataTable.setItems(sortedData);
+        saleDataTable.setRowFactory(tv -> new TableRow<SalesEntity>() {
+            @Override
+            public void updateItem(SalesEntity item, boolean empty) {
+                super.updateItem(item, empty) ;
+                if (item == null) {
+                    setStyle("");
+                } else if (item.getChequeResolved() == Byte.valueOf("0")) {
+                    setStyle("-fx-background-color: #ffa900;");
+                } else {
+                    setStyle("");
+                }
+            }
+        });
         saleDateColumn.setComparator(saleDateColumn.getComparator().reversed());
         saleDataTable.getSortOrder().add(saleDateColumn);
     }
-    private ObservableList<SalesEntity> LoadTable() {
+    private ObservableList<SalesEntity> LoadTableData() {
         Transaction tx = null;
         ObservableList<SalesEntity> data = null;
         try {
@@ -155,20 +173,6 @@ public class SaleViewControl {
             TypedQuery<SalesEntity> query = session.createQuery(cq);
             List<SalesEntity> list = query.getResultList();
             data = FXCollections.observableList(list);
-            saleDataTable.setItems(data);
-            saleDataTable.setRowFactory(tv -> new TableRow<SalesEntity>() {
-                @Override
-                public void updateItem(SalesEntity item, boolean empty) {
-                    super.updateItem(item, empty) ;
-                    if (item == null) {
-                        setStyle("");
-                    } else if (item.getChequeResolved() == Byte.valueOf("0")) {
-                        setStyle("-fx-background-color: #ffa900;");
-                    } else {
-                        setStyle("");
-                    }
-                }
-            });
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -180,10 +184,29 @@ public class SaleViewControl {
     }
 
 
-    @FXML private void togglePending(){
+    @FXML private void toggleFinance(){
         if(!togglePendingFinace){
-            togglePendingFinace = true;
+            masterData = LoadTableData();
+            FilteredList<SalesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+            filteredData.setPredicate(salesItem -> {
+                if (salesItem.getChequeResolved() == Byte.valueOf("1")) {
+                    return true;
+                }
+                return false; // Does not match.
+            });
+            setSaleDataTable(filteredData);
+            financeToggle.setSelected(false);
+            togglePendingFinace = false;
+            tax = true;
 
+        }
+        else{
+            masterData = LoadTableData();
+            FilteredList<SalesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+            setSaleDataTable(filteredData);
+            financeToggle.setSelected(false);
+            togglePendingFinace = false;
+            tax = false;
         }
     }
 
@@ -281,7 +304,9 @@ public class SaleViewControl {
                         }
                         tx.commit();
                         session.clear();
-                        setSaleDataTable();
+                        masterData = LoadTableData();
+                        FilteredList<SalesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+                        setSaleDataTable(filteredData);
                     }
 
                     alertL.dispose();
@@ -299,7 +324,9 @@ public class SaleViewControl {
         Task task = new Task<Void>() {
             @Override
             public Void call() {
-                setSaleDataTable();
+                masterData = LoadTableData();
+                FilteredList<SalesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+                setSaleDataTable(filteredData);
                 Platform.runLater(() -> {
                     alertL.dispose();
                 });
@@ -309,17 +336,125 @@ public class SaleViewControl {
         new Thread(task).start();
     }
 
+    private boolean tax = false;
     @FXML private void toggleTax(){
+        if(!tax){
+            masterData = LoadTableData();
+            FilteredList<SalesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+            filteredData.setPredicate(salesItem -> {
+                if (salesItem.getTax() == Byte.valueOf("1")) {
+                    return true;
+                }
+                return false; // Does not match.
+            });
+            setSaleDataTable(filteredData);
+            financeToggle.setSelected(false);
+            togglePendingFinace = false;
+            tax = true;
 
+        }
+        else{
+            masterData = LoadTableData();
+            FilteredList<SalesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+            setSaleDataTable(filteredData);
+            financeToggle.setSelected(false);
+            togglePendingFinace = false;
+            tax = false;
+        }
     }
 
     @FXML private void AddToTax() {
-
+        ButtonType okay = new ButtonType("Okay",  ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        // get a handle to the stage
+        Alert alert = new Alert(Alert.AlertType.WARNING,"Selected items will be added to Tax. Proceed?",okay,cancel);
+        alert.setTitle("Add to Tax");
+        alert.setHeaderText("Add to Tax");
+        Optional<ButtonType> result = alert.showAndWait();
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    if(result.get().getButtonData()== ButtonBar.ButtonData.OK_DONE){
+                        List<SalesEntity> sales = saleDataTable.getItems();
+                        Transaction tx = session.beginTransaction();
+                        int i = 0;
+                        for(SalesEntity sl:sales){
+                            i++;
+                            if(sl.getChecked()!=null &&sl.getChecked()==true){
+                                if(sl.getPurchaseTax() == Byte.valueOf("1")){
+                                    sl.setTax(Byte.valueOf("1"));
+                                }
+                                else{
+                                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                                    alert.setTitle("Bike "+ sl.getBikeNo() +" is not added to Tax in Purchase");
+                                    alert.setHeaderText(sl.getBikeNo() + " Bike is not added to Tax in Purchase, therefore can't be added in sales.");
+                                    alert.showAndWait();
+                                }
+                                session.update(sl);
+                            }
+                            if ( i % 20 == 0 ) { //20, same as the JDBC batch size
+                                //flush a batch of inserts and release memory:
+                                session.flush();
+                                session.clear();
+                            }
+                        }
+                        tx.commit();
+                        session.clear();
+                        masterData = LoadTableData();
+                        FilteredList<SalesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+                        setSaleDataTable(filteredData);
+                        alertL.dispose();
+                    }
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
     }
 
     @FXML private void RemoveTax() {
-
+        ButtonType okay = new ButtonType("Okay",  ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        // get a handle to the stage
+        Alert alert = new Alert(Alert.AlertType.WARNING,"Selected items will be removed from Tax. Proceed?",okay,cancel);
+        alert.setTitle("Remove from Tax");
+        alert.setHeaderText("Remove from Tax");
+        Optional<ButtonType> result = alert.showAndWait();
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    if(result.get().getButtonData()== ButtonBar.ButtonData.OK_DONE){
+                        List<SalesEntity> sales = saleDataTable.getItems();
+                        Transaction tx = session.beginTransaction();
+                        int i = 0;
+                        for(SalesEntity sl:sales){
+                            i++;
+                            if(sl.getChecked()!=null &&sl.getChecked()==true){
+                                sl.setTax(Byte.valueOf("0"));
+                                session.update(sl);
+                            }
+                            if ( i % 20 == 0 ) { //20, same as the JDBC batch size
+                                //flush a batch of inserts and release memory:
+                                session.flush();
+                                session.clear();
+                            }
+                        }
+                        tx.commit();
+                        session.clear();
+                        masterData = LoadTableData();
+                        FilteredList<SalesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+                        setSaleDataTable(filteredData);
+                        alertL.dispose();
+                    }
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
     }
-
 
 }

@@ -27,6 +27,7 @@ public class PurchasesEntity {
     private String sold;
     private Byte tax;
     private Byte unregistered;
+    private Integer saleInvoice;
 
     @Id
     @Column(name = "invoiceNo", nullable = false)
@@ -238,6 +239,16 @@ public class PurchasesEntity {
         this.unregistered = unregistered;
     }
 
+    @Basic
+    @Column(name = "saleInvoice", nullable = true)
+    public Integer getSaleInvoice() {
+        return saleInvoice;
+    }
+
+    public void setSaleInvoice(Integer saleInvoice) {
+        this.saleInvoice = saleInvoice;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -267,6 +278,7 @@ public class PurchasesEntity {
         if (sold != null ? !sold.equals(that.sold) : that.sold != null) return false;
         if (tax != null ? !tax.equals(that.tax) : that.tax != null) return false;
         if (unregistered != null ? !unregistered.equals(that.unregistered) : that.unregistered != null) return false;
+        if (saleInvoice != null ? !saleInvoice.equals(that.saleInvoice) : that.saleInvoice != null) return false;
 
         return true;
     }
@@ -294,6 +306,7 @@ public class PurchasesEntity {
         result = 31 * result + (sold != null ? sold.hashCode() : 0);
         result = 31 * result + (tax != null ? tax.hashCode() : 0);
         result = 31 * result + (unregistered != null ? unregistered.hashCode() : 0);
+        result = 31 * result + (saleInvoice != null ? saleInvoice.hashCode() : 0);
         return result;
     }
 }

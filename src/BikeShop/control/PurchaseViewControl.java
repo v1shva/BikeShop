@@ -7,6 +7,7 @@ package BikeShop.control;
  */
 
 import BikeShop.Entity.PurchasesEntity;
+import BikeShop.Entity.SalesEntity;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -262,26 +263,135 @@ public class PurchaseViewControl {
             purchaseColumn.setComparator(purchaseColumn.getComparator().reversed());
             purchaseDataTable.getSortOrder().add(purchaseColumn);
             taxToggle.setSelected(false);
+            tax = false;
             unreg = true;
         }
         else{
             setpurchaseDataTable();
             taxToggle.setSelected(false);
+            tax = false;
             unreg = false;
         }
 
     }
-
+    private boolean tax = false;
     @FXML private void toggleTax(){
+        if(!tax){
+            filteredData.setPredicate(salesItem -> {
+                if (salesItem.getTax() == Byte.valueOf("1")) {
+                    return true;
+                }
+                return false; // Does not match.
+            });
+            SortedList<PurchasesEntity> sortedData = new SortedList<>(filteredData);
+            sortedData.comparatorProperty().bind(purchaseDataTable.comparatorProperty());
+            purchaseDataTable.setItems(sortedData);
+            purchaseColumn.setComparator(purchaseColumn.getComparator().reversed());
+            purchaseDataTable.getSortOrder().add(purchaseColumn);
+            unregToggle.setSelected(false);
+            unreg = false;
+            tax = true;
 
+        }
+        else{
+            setpurchaseDataTable();
+            unregToggle.setSelected(false);
+            unreg = false;
+            tax = false;
+        }
     }
 
     @FXML private void AddToTax() {
-
+        ButtonType okay = new ButtonType("Okay",  ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        // get a handle to the stage
+        Alert alert = new Alert(Alert.AlertType.WARNING,"Selected items will be added to Tax. Proceed?",okay,cancel);
+        alert.setTitle("Add to Tax");
+        alert.setHeaderText("Add to Tax");
+        Optional<ButtonType> result = alert.showAndWait();
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    if(result.get().getButtonData()== ButtonBar.ButtonData.OK_DONE){
+                        List<PurchasesEntity> sales = purchaseDataTable.getItems();
+                        Transaction tx = session.beginTransaction();
+                        int i = 0;
+                        for(PurchasesEntity sl:sales){
+                            i++;
+                            if(sl.getChecked()!=null &&sl.getChecked()==true){
+                                sl.setTax(Byte.valueOf("1"));
+                                if(sl.getSaleInvoice() != null){
+                                    SalesEntity sale = session.get(SalesEntity.class,sl.getSaleInvoice());
+                                    sale.setPurchaseTax(Byte.valueOf("1"));
+                                    session.update(sale);
+                                }
+                                session.update(sl);
+                            }
+                            if ( i % 20 == 0 ) { //20, same as the JDBC batch size
+                                //flush a batch of inserts and release memory:
+                                session.flush();
+                                session.clear();
+                            }
+                        }
+                        tx.commit();
+                        session.clear();
+                        setpurchaseDataTable();
+                        alertL.dispose();
+                    }
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
     }
 
     @FXML private void RemoveTax() {
-
+        ButtonType okay = new ButtonType("Okay",  ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        // get a handle to the stage
+        Alert alert = new Alert(Alert.AlertType.WARNING,"Selected items will be removed from Tax. Proceed?",okay,cancel);
+        alert.setTitle("Remove from Tax");
+        alert.setHeaderText("Remove from Tax");
+        Optional<ButtonType> result = alert.showAndWait();
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    if(result.get().getButtonData()== ButtonBar.ButtonData.OK_DONE){
+                        List<PurchasesEntity> sales = purchaseDataTable.getItems();
+                        Transaction tx = session.beginTransaction();
+                        int i = 0;
+                        for(PurchasesEntity sl:sales){
+                            i++;
+                            if(sl.getChecked()!=null &&sl.getChecked()==true){
+                                sl.setTax(Byte.valueOf("0"));
+                                if(sl.getSaleInvoice() != null){
+                                    SalesEntity sale = session.get(SalesEntity.class,sl.getSaleInvoice());
+                                    sale.setPurchaseTax(Byte.valueOf("0"));
+                                    sale.setTax(Byte.valueOf("0"));
+                                    session.update(sale);
+                                }
+                                session.update(sl);
+                            }
+                            if ( i % 20 == 0 ) { //20, same as the JDBC batch size
+                                //flush a batch of inserts and release memory:
+                                session.flush();
+                                session.clear();
+                            }
+                        }
+                        tx.commit();
+                        session.clear();
+                        setpurchaseDataTable();
+                        alertL.dispose();
+                    }
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
     }
 
 }

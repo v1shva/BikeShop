@@ -28,11 +28,11 @@
                         <TextField fx:id="searchInput" prefHeight="25.0" prefWidth="264.0" promptText="Search " />
                      </children>
                   </HBox>
-                  <CheckBox mnemonicParsing="false" onAction="#togglePending" text="Pending Finances" />
+                  <CheckBox fx:id="financeToggle" mnemonicParsing="false" onAction="#toggleFinance" text="Pending Finances" />
                   <Separator layoutX="196.0" layoutY="10.0" orientation="VERTICAL" prefHeight="0.0" prefWidth="13.0" />
                   <Button layoutX="106.0" layoutY="10.0" mnemonicParsing="false" onAction="#AddToTax" text="Add to Tax" />
                   <Button layoutX="552.0" layoutY="10.0" mnemonicParsing="false" onAction="#RemoveTax" text="Remove Tax" />
-                  <CheckBox layoutX="495.0" layoutY="14.0" mnemonicParsing="false" onAction="#toggleTax" text="Show Tax Added" />
+                  <CheckBox fx:id="taxToggle" layoutX="495.0" layoutY="14.0" mnemonicParsing="false" onAction="#toggleTax" text="Show Tax Added" />
                   <Separator layoutX="613.0" layoutY="10.0" orientation="VERTICAL" prefHeight="0.0" prefWidth="13.0" />
                   <Button mnemonicParsing="false" onAction="#LoadItems" text="Refresh" />
               </items>

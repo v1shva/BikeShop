@@ -298,7 +298,12 @@ public class SaleControl {
                                 PurchasesEntity purchase = purchaseL.get(0);
                                 Date currentDate = Date.valueOf(saleDateIn.getValue());
                                 purchase.setSold(currentDate.toString());
+                                purchase.setSaleInvoice(invoice);
+                                sales.setPurchaseInvoice(purchase.getInvoiceNo());
                                 session.update(purchase);
+                                if(purchase.getTax() == Byte.valueOf("1")){
+                                    sales.setPurchaseTax(Byte.valueOf("1"));
+                                }
                                 assignValues(sales,bikeNo);
                                 session.update(sales);
                                 Scene scene = InvoiceNoLbl.getScene();
