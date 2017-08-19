@@ -30,11 +30,11 @@
                           <Separator layoutX="196.0" layoutY="10.0" orientation="VERTICAL" prefHeight="0.0" prefWidth="13.0" />
                   <Button layoutX="51.0" layoutY="10.0" mnemonicParsing="false" onAction="#AddToTax" text="Add to Tax" />
                   <Button layoutX="344.0" layoutY="10.0" mnemonicParsing="false" onAction="#RemoveTax" text="Remove Tax" />
-                  <CheckBox mnemonicParsing="false" onAction="#toggleTax" text="Show Tax Added" />
+                  <CheckBox fx:id="taxToggle" mnemonicParsing="false" onAction="#toggleTax" text="Show Tax Added" />
                   <Separator layoutX="405.0" layoutY="10.0" orientation="VERTICAL" prefHeight="0.0" prefWidth="13.0" />
                           <Button mnemonicParsing="false" onAction="#LoadItems" text="Refresh" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="13.0" />
-                  <CheckBox layoutX="507.0" layoutY="14.0" mnemonicParsing="false" onAction="#toggleTax" text="Show Unregistered" />
+                  <CheckBox fx:id="unregToggle" layoutX="507.0" layoutY="14.0" mnemonicParsing="false" onAction="#toggleUnreg" text="Show Unregistered" />
                       </items>
                   </ToolBar>
             <ScrollPane fx:id="scrollPane" fitToHeight="true" VBox.vgrow="ALWAYS">

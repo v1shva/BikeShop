@@ -8,16 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b51982a9-9475-4543-a903-759e8d0eeb58" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/Entity/PurchasesEntity.java" afterPath="$PROJECT_DIR$/src/BikeShop/Entity/PurchasesEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/Entity/SalesEntity.java" afterPath="$PROJECT_DIR$/src/BikeShop/Entity/SalesEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/control/PurchaseControl.java" afterPath="$PROJECT_DIR$/src/BikeShop/control/PurchaseControl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/control/PurchaseViewControl.java" afterPath="$PROJECT_DIR$/src/BikeShop/control/PurchaseViewControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/control/SaleControl.java" afterPath="$PROJECT_DIR$/src/BikeShop/control/SaleControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/control/SaleViewControl.java" afterPath="$PROJECT_DIR$/src/BikeShop/control/SaleViewControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/fxml/PurchaseGUI.fxml" afterPath="$PROJECT_DIR$/src/BikeShop/fxml/PurchaseGUI.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/fxml/SaleGUI.fxml" afterPath="$PROJECT_DIR$/src/BikeShop/fxml/SaleGUI.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BikeShop/fxml/showPurchasesG.fxml" afterPath="$PROJECT_DIR$/src/BikeShop/fxml/showPurchasesG.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bikeDB.xml" afterPath="$PROJECT_DIR$/src/bikeDB.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/src/target/" />
@@ -61,61 +53,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Loader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BikeShop/control/Loader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SaleControl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SaleControl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BikeShop/control/SaleControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="84" column="52" lean-forward="true" selection-start-line="84" selection-start-column="52" selection-end-line="84" selection-end-column="52" />
+            <state relative-caret-position="156">
+              <caret line="422" column="24" lean-forward="false" selection-start-line="422" selection-start-column="17" selection-end-line="422" selection-end-column="24" />
               <folding>
+                <element signature="e#8558#9129#0" expanded="false" />
                 <element signature="e#10986#14805#0" expanded="false" />
-                <marker date="1503125837957" expanded="false" signature="6111:6121" ph=" { " />
-                <marker date="1503125837957" expanded="false" signature="6139:6145" ph=" }" />
-                <marker date="1503125837957" expanded="false" signature="8117:8128" ph="&lt;~&gt;" />
-                <marker date="1503125837957" expanded="false" signature="8594:9129" ph="{...}" />
-                <marker date="1503125837957" expanded="false" signature="9271:9687" ph="{...}" />
-                <marker date="1503125837957" expanded="false" signature="9872:10429" ph="{...}" />
-                <marker date="1503125837957" expanded="false" signature="10878:10951" ph="(Task) () → {" />
-                <marker date="1503125837957" expanded="false" signature="14845:14860" ph="}" />
-                <marker date="1503125837957" expanded="false" signature="18063:18136" ph="(Task) () → {" />
-                <marker date="1503125837957" expanded="false" signature="19270:19285" ph="}" />
-                <marker date="1503125837957" expanded="false" signature="23876:23886" ph=" { " />
-                <marker date="1503125837957" expanded="false" signature="23903:23909" ph=" }" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SaleViewControl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BikeShop/control/SaleViewControl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="228" column="55" lean-forward="true" selection-start-line="228" selection-start-column="55" selection-end-line="228" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PurchaseViewControl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BikeShop/control/PurchaseViewControl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
-              <folding>
-                <element signature="method#LoadTable#0;class#PurchaseViewControl#0" expanded="false" />
-                <element signature="method#EditItems#0;class#PurchaseViewControl#0" expanded="false" />
-                <element signature="method#DeleteItems#0;class#PurchaseViewControl#0" expanded="false" />
-                <element signature="e#9622#9888#0" expanded="true" />
-                <element signature="e#9887#9888#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -124,54 +69,54 @@
       <file leaf-file-name="showPurchasesG.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BikeShop/fxml/showPurchasesG.fxml">
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="19" column="63" lean-forward="true" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
+            <state relative-caret-position="289">
+              <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
               <folding>
-                <marker date="1503124179538" expanded="true" signature="2131:2387" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="2499:9442" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="2524:9416" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="2708:9390" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="2746:9353" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="2839:3075" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="2894:3028" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="3156:3400" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="3211:3353" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="3484:4348" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="3530:4301" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="3616:3889" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="3679:3834" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="3978:4254" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="4041:4199" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="4433:5968" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="4479:5921" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="4562:4838" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="4625:4783" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="4920:5195" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="4983:5140" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="5286:5562" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="5349:5507" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="5639:5874" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="5691:5829" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="6053:6295" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="6108:6248" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="6402:6649" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="6457:6602" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="6736:7617" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="6782:7570" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="6873:7151" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="6936:7096" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="7245:7523" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="7308:7468" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="7708:8963" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="7754:8916" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="7846:8123" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="7909:8068" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="8216:8495" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="8279:8440" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="8589:8869" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="8652:8814" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="9045:9289" ph="..." />
-                <marker date="1503124179538" expanded="true" signature="9100:9242" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="2393:2427" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="2539:9482" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="2564:9456" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="2748:9430" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="2786:9393" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="2879:3115" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="2934:3068" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="3196:3440" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="3251:3393" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="3524:4388" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="3570:4341" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="3656:3929" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="3719:3874" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="4018:4294" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="4081:4239" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="4473:6008" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="4519:5961" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="4602:4878" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="4665:4823" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="4960:5235" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="5023:5180" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="5326:5602" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="5389:5547" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="5679:5914" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="5731:5869" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="6093:6335" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="6148:6288" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="6442:6689" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="6497:6642" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="6776:7657" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="6822:7610" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="6913:7191" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="6976:7136" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="7285:7563" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="7348:7508" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="7748:9003" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="7794:8956" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="7886:8163" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="7949:8108" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="8256:8535" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="8319:8480" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="8629:8909" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="8692:8854" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="9085:9329" ph="..." />
+                <marker date="1503126450220" expanded="true" signature="9140:9282" ph="..." />
               </folding>
             </state>
           </provider>
@@ -180,26 +125,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bikeDB.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bikeDB.xml">
+      <file leaf-file-name="PurchaseViewControl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/BikeShop/control/PurchaseViewControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="56" lean-forward="true" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="56" />
-              <folding />
+            <state relative-caret-position="137">
+              <caret line="273" column="4" lean-forward="false" selection-start-line="273" selection-start-column="4" selection-end-line="273" selection-end-column="4" />
+              <folding>
+                <element signature="e#1543#1544#0" expanded="true" />
+                <element signature="e#1631#1632#0" expanded="true" />
+                <element signature="e#2015#3497#0" expanded="false" />
+                <element signature="method#LoadTable#0;class#PurchaseViewControl#0" expanded="false" />
+                <element signature="method#EditItems#0;class#PurchaseViewControl#0" expanded="false" />
+                <element signature="method#DeleteItems#0;class#PurchaseViewControl#0" expanded="false" />
+                <element signature="method#toggleUnreg#0;class#PurchaseViewControl#0" expanded="false" />
+              </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PurchaseGUI.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BikeShop/fxml/PurchaseGUI.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="79" column="51" lean-forward="false" selection-start-line="79" selection-start-column="51" selection-end-line="79" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
           </provider>
         </entry>
       </file>
@@ -214,8 +154,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Resolved</find>
-      <find>alertL.dispatchEvent(new WindowEvent(alertL, WindowEvent.WINDOW_CLOSING));</find>
       <find>null</find>
       <find>log</find>
       <find>Width</find>
@@ -244,6 +182,8 @@
       <find>saleEditCurrent</find>
       <find>regs</find>
       <find>saleDate</find>
+      <find>toggleF</find>
+      <find>taxtoggle</find>
     </findStrings>
     <replaceStrings>
       <replace>BikeShop/Localization/language</replace>
@@ -317,12 +257,12 @@
         <option value="$PROJECT_DIR$/src/BikeShop/Entity/PurchasesEntity.java" />
         <option value="$PROJECT_DIR$/src/BikeShop/Entity/SalesEntity.java" />
         <option value="$PROJECT_DIR$/src/BikeShop/control/SaleViewControl.java" />
-        <option value="$PROJECT_DIR$/src/BikeShop/control/PurchaseViewControl.java" />
         <option value="$PROJECT_DIR$/src/bikeDB.xml" />
-        <option value="$PROJECT_DIR$/src/BikeShop/fxml/showPurchasesG.fxml" />
         <option value="$PROJECT_DIR$/src/BikeShop/fxml/PurchaseGUI.fxml" />
         <option value="$PROJECT_DIR$/src/BikeShop/control/PurchaseControl.java" />
         <option value="$PROJECT_DIR$/src/BikeShop/control/SaleControl.java" />
+        <option value="$PROJECT_DIR$/src/BikeShop/fxml/showPurchasesG.fxml" />
+        <option value="$PROJECT_DIR$/src/BikeShop/control/PurchaseViewControl.java" />
       </list>
     </option>
   </component>
@@ -338,7 +278,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="447" />
     <option name="y" value="146" />
     <option name="width" value="1360" />
@@ -386,7 +326,7 @@
               <item name="bikeshop" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="BikeShop" type="462c0819:PsiDirectoryNode" />
-              <item name="fxml" type="462c0819:PsiDirectoryNode" />
+              <item name="control" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -848,12 +788,12 @@
       <workItem from="1501862314093" duration="60196000" />
       <workItem from="1502117262838" duration="17849000" />
       <workItem from="1502471126409" duration="1706000" />
-      <workItem from="1503076100115" duration="18386000" />
+      <workItem from="1503076100115" duration="19900000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="208430000" />
+    <option name="totallyTimeSpent" value="209944000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -865,7 +805,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1376" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -886,10 +826,10 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10361842" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20888157" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24924012" sideWeight="0.41651377" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24924012" sideWeight="0.58348626" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24924012" sideWeight="0.41787943" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24924012" sideWeight="0.5821206" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17927632" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.4347826" order="7" side_tool="false" content_ui="tabs" />
@@ -923,14 +863,8 @@
           <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/BikeShop/control/PurchaseViewControl.java</url>
-          <line>57</line>
-          <properties />
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="11" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1565,90 +1499,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BikeShop/control/Loader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/BikeShop/control/CashChequeControl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-501">
           <caret line="113" column="56" lean-forward="false" selection-start-line="113" selection-start-column="56" selection-end-line="113" selection-end-column="56" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BikeShop/fxml/showPurchasesG.fxml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="19" column="63" lean-forward="true" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
-          <folding>
-            <marker date="1503124179538" expanded="true" signature="2131:2387" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="2499:9442" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="2524:9416" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="2708:9390" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="2746:9353" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="2839:3075" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="2894:3028" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="3156:3400" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="3211:3353" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="3484:4348" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="3530:4301" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="3616:3889" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="3679:3834" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="3978:4254" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="4041:4199" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="4433:5968" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="4479:5921" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="4562:4838" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="4625:4783" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="4920:5195" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="4983:5140" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="5286:5562" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="5349:5507" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="5639:5874" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="5691:5829" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="6053:6295" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="6108:6248" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="6402:6649" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="6457:6602" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="6736:7617" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="6782:7570" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="6873:7151" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="6936:7096" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="7245:7523" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="7308:7468" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="7708:8963" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="7754:8916" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="7846:8123" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="7909:8068" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="8216:8495" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="8279:8440" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="8589:8869" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="8652:8814" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="9045:9289" ph="..." />
-            <marker date="1503124179538" expanded="true" signature="9100:9242" ph="..." />
-          </folding>
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BikeShop/control/PurchaseViewControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
-          <folding>
-            <element signature="method#LoadTable#0;class#PurchaseViewControl#0" expanded="false" />
-            <element signature="method#EditItems#0;class#PurchaseViewControl#0" expanded="false" />
-            <element signature="method#DeleteItems#0;class#PurchaseViewControl#0" expanded="false" />
-            <element signature="e#9622#9888#0" expanded="true" />
-            <element signature="e#9887#9888#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1661,14 +1516,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BikeShop/control/SaleViewControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="228" column="55" lean-forward="true" selection-start-line="228" selection-start-column="55" selection-end-line="228" selection-end-column="55" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BikeShop/control/PurchaseControl.java">
@@ -1695,24 +1542,102 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/BikeShop/control/SaleViewControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="228" column="55" lean-forward="true" selection-start-line="228" selection-start-column="55" selection-end-line="228" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BikeShop/control/Loader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/BikeShop/control/SaleControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="84" column="52" lean-forward="true" selection-start-line="84" selection-start-column="52" selection-end-line="84" selection-end-column="52" />
+        <state relative-caret-position="156">
+          <caret line="422" column="24" lean-forward="false" selection-start-line="422" selection-start-column="17" selection-end-line="422" selection-end-column="24" />
           <folding>
+            <element signature="e#8558#9129#0" expanded="false" />
             <element signature="e#10986#14805#0" expanded="false" />
-            <marker date="1503125837957" expanded="false" signature="6111:6121" ph=" { " />
-            <marker date="1503125837957" expanded="false" signature="6139:6145" ph=" }" />
-            <marker date="1503125837957" expanded="false" signature="8117:8128" ph="&lt;~&gt;" />
-            <marker date="1503125837957" expanded="false" signature="8594:9129" ph="{...}" />
-            <marker date="1503125837957" expanded="false" signature="9271:9687" ph="{...}" />
-            <marker date="1503125837957" expanded="false" signature="9872:10429" ph="{...}" />
-            <marker date="1503125837957" expanded="false" signature="10878:10951" ph="(Task) () → {" />
-            <marker date="1503125837957" expanded="false" signature="14845:14860" ph="}" />
-            <marker date="1503125837957" expanded="false" signature="18063:18136" ph="(Task) () → {" />
-            <marker date="1503125837957" expanded="false" signature="19270:19285" ph="}" />
-            <marker date="1503125837957" expanded="false" signature="23876:23886" ph=" { " />
-            <marker date="1503125837957" expanded="false" signature="23903:23909" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BikeShop/fxml/showPurchasesG.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+          <folding>
+            <marker date="1503126450220" expanded="true" signature="2393:2427" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="2539:9482" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="2564:9456" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="2748:9430" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="2786:9393" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="2879:3115" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="2934:3068" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="3196:3440" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="3251:3393" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="3524:4388" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="3570:4341" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="3656:3929" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="3719:3874" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="4018:4294" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="4081:4239" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="4473:6008" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="4519:5961" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="4602:4878" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="4665:4823" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="4960:5235" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="5023:5180" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="5326:5602" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="5389:5547" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="5679:5914" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="5731:5869" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="6093:6335" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="6148:6288" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="6442:6689" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="6497:6642" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="6776:7657" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="6822:7610" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="6913:7191" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="6976:7136" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="7285:7563" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="7348:7508" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="7748:9003" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="7794:8956" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="7886:8163" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="7949:8108" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="8256:8535" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="8319:8480" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="8629:8909" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="8692:8854" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="9085:9329" ph="..." />
+            <marker date="1503126450220" expanded="true" signature="9140:9282" ph="..." />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BikeShop/control/PurchaseViewControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="273" column="4" lean-forward="false" selection-start-line="273" selection-start-column="4" selection-end-line="273" selection-end-column="4" />
+          <folding>
+            <element signature="e#1543#1544#0" expanded="true" />
+            <element signature="e#1631#1632#0" expanded="true" />
+            <element signature="e#2015#3497#0" expanded="false" />
+            <element signature="method#LoadTable#0;class#PurchaseViewControl#0" expanded="false" />
+            <element signature="method#EditItems#0;class#PurchaseViewControl#0" expanded="false" />
+            <element signature="method#DeleteItems#0;class#PurchaseViewControl#0" expanded="false" />
+            <element signature="method#toggleUnreg#0;class#PurchaseViewControl#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -37,6 +37,9 @@ public class PurchaseViewControl {
     private String language = "en";
     Session session;
     ObservableList<PurchasesEntity> masterData;
+    FilteredList<PurchasesEntity> filteredData;
+    @FXML
+    CheckBox taxToggle, unregToggle;
     @FXML
     TextField searchInput;
     @FXML
@@ -58,7 +61,7 @@ public class PurchaseViewControl {
         purchaseDataTable.setItems(null);
         purchaseDataTable.setPlaceholder(new Label("Content is loading"));
         masterData = LoadTable();
-        FilteredList<PurchasesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+        filteredData = new FilteredList<>(masterData, p -> true);
         searchInput.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(salesItem -> {
                 // If filter text is empty, display all persons.
@@ -244,7 +247,31 @@ public class PurchaseViewControl {
 
     }
 
+    private boolean unreg = false;
+    @FXML private void toggleUnreg(){
+        if(!unreg){
+            filteredData.setPredicate(salesItem -> {
+                if (salesItem.getUnregistered() == Byte.valueOf("1")) {
+                    return true;
+                }
+                return false; // Does not match.
+            });
+            SortedList<PurchasesEntity> sortedData = new SortedList<>(filteredData);
+            sortedData.comparatorProperty().bind(purchaseDataTable.comparatorProperty());
+            purchaseDataTable.setItems(sortedData);
+            purchaseColumn.setComparator(purchaseColumn.getComparator().reversed());
+            purchaseDataTable.getSortOrder().add(purchaseColumn);
+            taxToggle.setSelected(false);
+            unreg = true;
+        }
+        else{
+            setpurchaseDataTable();
+            taxToggle.setSelected(false);
+            unreg = false;
+        }
 
+    }
+    
     @FXML private void toggleTax(){
 
     }
