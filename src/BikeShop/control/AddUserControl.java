@@ -8,10 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -45,7 +42,8 @@ public class AddUserControl {
     private TextField confirmPasswordIn;
     @FXML
     private ChoiceBox userLevelChoice;
-
+    @FXML
+    private CheckBox taxUser;
     public  void initialize () {
         userLevelChoice.setItems(FXCollections.observableArrayList(
                 "Administrator",
@@ -68,6 +66,7 @@ public class AddUserControl {
                     String password = passwordIn.getText();
                     String name = NameIn.getText();
                     String nic = NICIn.getText();
+                    Byte tax = (byte)(taxUser.isSelected()? 1: 0);
                     String userlevel = (String) userLevelChoice.getValue();
                     String hashedPass = "";
 
@@ -85,6 +84,7 @@ public class AddUserControl {
                         user.setPassword(hashedPass);
                         user.setNic(nic);
                         user.setUserLevel(userlevel);
+                        user.setTax(tax);
                         session.save(user);
                         tx.commit();
                     }catch (HibernateException e) {

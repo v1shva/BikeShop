@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToolBar;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -26,20 +27,36 @@ import java.util.List;
 
 public class StockViewControl {
     Session session;
-    public void setSession(Session current){
+    public void setSession(Session current, Byte taxValue){
         session = current;
-       setTableData();
+        taxUser = taxValue;
+        ObservableList<PurchasesEntity> masterData = LoadTableData();
+        FilteredList<PurchasesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+        if(taxUser == Byte.valueOf("1")){
+            toolBar.setVisible(false);
+            invoiceNoColumnn.setVisible(false);
+            filteredData.setPredicate(salesItem -> {
+                if (salesItem.getTax() == Byte.valueOf("1")) {
+                    return true;
+                }
+                return false; // Does not match.
+            });
+            SortedList<PurchasesEntity> sortedData = new SortedList<>(filteredData);
+            filteredData = new FilteredList<>(sortedData, p->true);
+        }
+        setTableData(filteredData);
     }
+    private Byte taxUser;
+    @FXML
+    ToolBar toolBar;
     @FXML
     TextField searchInput;
     @FXML
     private TableView<PurchasesEntity> saleDataTable;
     @FXML
-    private TableColumn purchaseColumn;
+    private TableColumn purchaseColumn, invoiceNoColumnn;
 
-    private void setTableData(){
-        ObservableList<PurchasesEntity> masterData = LoadTable();
-        FilteredList<PurchasesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+    private void setTableData(FilteredList<PurchasesEntity> filteredData){
         searchInput.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(salesItem -> {
                 // If filter text is empty, display all persons.
@@ -80,14 +97,13 @@ public class StockViewControl {
         saleDataTable.getSortOrder().add(purchaseColumn);
     }
 
-    private ObservableList<PurchasesEntity> LoadTable() {
+    private ObservableList<PurchasesEntity> LoadTableData() {
         Transaction tx = null;
         ObservableList<PurchasesEntity> data = null;
         try {
             tx = session.beginTransaction();
             List<PurchasesEntity> list  = (List<PurchasesEntity>) session.createQuery("from PurchasesEntity  where sold='false'").list();
             data = FXCollections.observableList(list);
-            saleDataTable.setItems(data);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -106,7 +122,9 @@ public class StockViewControl {
         Task task = new Task<Void>() {
             @Override
             public Void call() {
-                setTableData();
+                ObservableList<PurchasesEntity> masterData = LoadTableData();
+                FilteredList<PurchasesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+                setTableData(filteredData);
                 Platform.runLater(() -> {
                     alertL.dispose();
                 });

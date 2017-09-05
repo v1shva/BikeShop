@@ -162,7 +162,7 @@ public class SplashControl  implements Initializable {
                                         e.printStackTrace();
                                     }
                                     MainControl controller = fxmlLoader.<MainControl>getController();
-                                    controller.SetValues(name,lan,userLevel, session);
+                                    controller.SetValues(name,lan,userLevel, session, tax);
                                     primaryStage.setTitle("BikeShop");
                                     Scene scene = new Scene(root);
                                     BorderPane borderPane = (BorderPane) scene.lookup("#mainBorderPane");

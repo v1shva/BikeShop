@@ -1,6 +1,7 @@
 package BikeShop.control;
 
 import BikeShop.Entity.PurchasesEntity;
+import BikeShop.Entity.SalesEntity;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -27,8 +28,7 @@ public class PurchaseControl {
     Locale locale ;
     ResourceBundle rb ;
     PurchasesEntity pe;
-    Tab currentTab;
-
+    Byte taxUser;
     //Cheque Details
 
 
@@ -89,7 +89,7 @@ public class PurchaseControl {
             BikeModalIn.setText(currentPurchase.getBikeModal());
             BikeColorIn.setText(currentPurchase.getBikeColor());
             OwnerNameIn.setText(currentPurchase.getOwnerName());
-            OwnerAdrIn.setText(currentPurchase.getOwnerName());
+            OwnerAdrIn.setText(currentPurchase.getOwnerAddress());
             OwnerIDIn.setText(currentPurchase.getOwnerNic());
             String ownerTPNos [] = currentPurchase.getOwnerTpNo().split(",");
             if(ownerTPNos.length==2){
@@ -125,13 +125,20 @@ public class PurchaseControl {
 
     }
 
-    public void setSession(Session current){
+    public void setSession(Session current, Tab currentTab){
         session = current;
+        currentTab.setOnCloseRequest(e -> {
+            e.consume();
+            CancelTab();
+        });
     }
 
-    public void postInitialize(){
+    public void postInitialize(Byte taxValue){
         purchaseDateIn.setValue(LocalDate.now());
         InvoiceNoLb2.setText("Invoice No. "+ InvoiceNo());
+        taxUser= taxValue;
+        Scene scene = InvoiceNoLb2.getScene();
+
     }
 
     private void toggleRegStatus(){
@@ -263,6 +270,16 @@ public class PurchaseControl {
 
     private void assignValues(PurchasesEntity purchase,String bikeNo ){
         Date currentDate = Date.valueOf(purchaseDateIn.getValue());
+        if(taxUser == Byte.valueOf("1")){
+            purchase.setTax(Byte.valueOf("1"));
+            if(purchase.getSaleInvoice() != null){
+                SalesEntity sale = session.get(SalesEntity.class,purchase.getSaleInvoice());
+                if(sale != null){
+                    sale.setPurchaseTax(Byte.valueOf("1"));
+                    session.update(sale);
+                }
+            }
+        }
         purchase.setSold("false");
         purchase.setInvoiceNo(invoice);
         purchase.setBikeNo(bikeNo);

@@ -38,6 +38,8 @@ public class PurchaseViewControl {
     private String language = "en";
     Session session;
     ObservableList<PurchasesEntity> masterData;
+    private Byte taxUser;
+    @FXML ToolBar toolBar;
     @FXML
     CheckBox taxToggle, unregToggle;
     @FXML
@@ -45,12 +47,26 @@ public class PurchaseViewControl {
     @FXML
     private TableView<BikeShop.Entity.PurchasesEntity> purchaseDataTable;
     @FXML
-    private TableColumn purchaseColumn;
-    public void setSession(Session current){
+    private TableColumn purchaseColumn, invoiceNoColumnn;
+    public void setSession(Session current, Byte taxValue){
         session = current;
+        taxUser  = taxValue;
         masterData = LoadTableData();
         FilteredList<PurchasesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+        if(taxUser == Byte.valueOf("1")){
+            toolBar.setVisible(false);
+            invoiceNoColumnn.setVisible(false);
+            filteredData.setPredicate(salesItem -> {
+                if (salesItem.getTax() == Byte.valueOf("1")) {
+                    return true;
+                }
+                return false; // Does not match.
+            });
+            SortedList<PurchasesEntity> sortedData = new SortedList<>(filteredData);
+            filteredData = new FilteredList<>(sortedData, p->true);
+        }
         setpurchaseDataTable(filteredData);
+
     }
 
     @FXML ScrollPane scrollPane;
@@ -101,7 +117,6 @@ public class PurchaseViewControl {
         purchaseColumn.setComparator(purchaseColumn.getComparator().reversed());
         purchaseDataTable.getSortOrder().add(purchaseColumn);
     }
-
     private ObservableList<PurchasesEntity> LoadTableData() {
         Transaction tx = null;
         ObservableList<PurchasesEntity> data = null;
@@ -161,12 +176,13 @@ public class PurchaseViewControl {
                         PurchasesEntity current = purchase.get(checkedi);
                         //controller.attachCancelAction();
                         controller.setValues(true, current);
-                        controller.setSession(session);
+
                         Tab tab = new Tab();
                         tab.setText("Purchase Bike");
                         tab.setClosable(true);
                         tab.setContent(root);
                         tabPane.getTabs().add(tab);
+                        controller.setSession(session, tab);
                         tabPane.getSelectionModel().select(tab);
                         alertL.dispose();
                     }
@@ -262,7 +278,7 @@ public class PurchaseViewControl {
                 return false; // Does not match.
             });
             SortedList<PurchasesEntity> sortedData = new SortedList<>(filteredData);
-            filteredData = new FilteredList<PurchasesEntity>(sortedData, p->true);
+            filteredData = new FilteredList<>(sortedData, p->true);
             setpurchaseDataTable(filteredData);
             taxToggle.setSelected(false);
             tax = false;
@@ -331,8 +347,10 @@ public class PurchaseViewControl {
                                 if(sl.getSaleInvoice() != null){
                                     SalesEntity sale = session.get(SalesEntity.class,sl.getSaleInvoice());
                                     sale.setPurchaseTax(Byte.valueOf("1"));
+
                                     session.update(sale);
                                 }
+                                sl.setChecked(false);
                                 session.update(sl);
                             }
                             if ( i % 20 == 0 ) { //20, same as the JDBC batch size
@@ -341,6 +359,8 @@ public class PurchaseViewControl {
                                 session.clear();
                             }
                         }
+                        session.flush();
+                        session.clear();
                         tx.commit();
                         session.clear();
                         masterData = LoadTableData();
@@ -382,6 +402,7 @@ public class PurchaseViewControl {
                                     sale.setTax(Byte.valueOf("0"));
                                     session.update(sale);
                                 }
+                                sl.setChecked(false);
                                 session.update(sl);
                             }
                             if ( i % 20 == 0 ) { //20, same as the JDBC batch size
@@ -390,6 +411,8 @@ public class PurchaseViewControl {
                                 session.clear();
                             }
                         }
+                        session.flush();
+                        session.clear();
                         tx.commit();
                         session.clear();
                         masterData = LoadTableData();

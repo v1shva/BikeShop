@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.hibernate.Session;
@@ -24,13 +25,20 @@ import java.util.ResourceBundle;
 public class MainControl {
     private String language = "en";
     private String userLevel = "";
+    private Byte tax = 0;
     Session session;
-    @FXML Menu adminMenu;
     @FXML
-    private Button purchaseButton;
+    AnchorPane mainPane;
+    @FXML Menu adminMenu;
+    @FXML MenuItem showReportMenu;
+    @FXML
+    private Button purchaseButton, leaseButton, reportBtn;
     @FXML
     private Label userLabel;
-    public void SetValues(String userName, String lan, String userAcess, Session current) {
+
+
+
+    public void SetValues(String userName, String lan, String userAcess, Session current, Byte userTax) {
         userLabel.setText(userName);
         language = lan;
         userLevel = userAcess;
@@ -38,6 +46,13 @@ public class MainControl {
             disableMenu();
         }
         session = current;
+        tax = userTax;
+        if(tax == Byte.valueOf("1")){
+            adminMenu.setVisible(false);
+            showReportMenu.setVisible(false);
+            leaseButton.setVisible(false);
+            reportBtn.setVisible(false);
+        }
     }
     public void disableMenu(){
         adminMenu.setDisable(true);
@@ -85,15 +100,16 @@ public class MainControl {
                         e.printStackTrace();
                     }
                     PurchaseControl controller = fxmlLoader.<PurchaseControl>getController();
-                    controller.setSession(session);
+
                     Scene scene = purchaseButton.getScene();
                     TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
-                    controller.postInitialize();
                     Tab tab = new Tab();
                     tab.setText("Purchase new Bike");
                     tab.setClosable(true);
                     tab.setContent(purchaseGUI);
                     tabPane.getTabs().add(tab);
+                    controller.setSession(session, tab);
+                    controller.postInitialize(tax);
                     tabPane.getSelectionModel().select(tab);
                     alertL.dispose();
                 });
@@ -135,14 +151,16 @@ public class MainControl {
                         e.printStackTrace();
                     }
                     SaleControl controller = fxmlLoader.<SaleControl>getController();
-                    controller.setSession(session);
-                    controller.postInitialize();
+
+
                     //controller.attachCancelAction();
                     Tab tab = new Tab();
                     tab.setText("Sell Bike");
                     tab.setClosable(true);
                     tab.setContent(SaleGUI);
                     tabPane.getTabs().add(tab);
+                    controller.setSession(session, tab);
+                    controller.postInitialize(tax);
                     tabPane.getSelectionModel().select(tab);
                     alertL.dispose();
                 });
@@ -171,7 +189,7 @@ public class MainControl {
                         e.printStackTrace();
                     }
                     PurchaseViewControl controller = fxmlLoader.<PurchaseViewControl>getController();
-                    controller.setSession(session);
+                    controller.setSession(session, tax);
                     Scene scene = menuBar.getScene();
                     TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
                     Tab tab = new Tab();
@@ -204,7 +222,7 @@ public class MainControl {
                         e.printStackTrace();
                     }
                     StockViewControl controller = fxmlLoader.<StockViewControl>getController();
-                    controller.setSession(session);
+                    controller.setSession(session, tax);
                     Scene scene = menuBar.getScene();
                     TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
                     Tab tab = new Tab();
@@ -224,6 +242,39 @@ public class MainControl {
 
     }
 
+    @FXML private void onShowReport() throws IOException {
+        JFrame alertL = new Loader();
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() {
+                Platform.runLater(() -> {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/BikeShop/fxml/ReportView.fxml"));
+                    Parent showReportGUI = null;
+                    try {
+                        showReportGUI = (Parent)fxmlLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    ReportControl controller = fxmlLoader.<ReportControl>getController();
+                    controller.setSession(session);
+                    Scene scene = menuBar.getScene();
+                    TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
+                    Tab tab = new Tab();
+                    tab.setText("Show Report");
+                    tab.setId("reportTab");
+                    tab.setClosable(true);
+                    tab.setContent(showReportGUI);
+                    tabPane.getTabs().add(tab);
+                    tabPane.getSelectionModel().select(tab);
+                    alertL.dispose();
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
+
+
+    }
     @FXML private void onShowSale() throws IOException {
         // get a handle to the stage
         JFrame alertL = new Loader();
@@ -239,7 +290,7 @@ public class MainControl {
                         e.printStackTrace();
                     }
                     SaleViewControl controller = fxmlLoader.<SaleViewControl>getController();
-                    controller.setSession(session);
+                    controller.setSession(session, tax);
                     Scene scene = menuBar.getScene();
                     TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
                     TableView tableView = (TableView) scene.lookup("saleDataTable");

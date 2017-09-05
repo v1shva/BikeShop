@@ -34,7 +34,7 @@ public class SaleControl {
     Locale locale ;
     ResourceBundle rb ;
     SalesEntity sl;
-    Tab currentTab;
+    private Byte taxUser;
     @FXML
     Label InvoiceNoLbl, engineChLabel, unregLabel;
     @FXML
@@ -139,29 +139,21 @@ public class SaleControl {
 
     }
 
-    public void setSession(Session current){
+    public void setSession(Session current, Tab currentTab){
         session = current;
+        currentTab.setOnCloseRequest(e -> {
+            e.consume();
+            CancelTab();
+        });
     }
 
-    public void postInitialize(){
+    public void postInitialize(Byte taxValue){
         saleDateIn.setValue(LocalDate.now());
         InvoiceNoLbl.setText("Invoice No. "+ InvoiceNo());
+        taxUser= taxValue;
     }
 
-    /*public void attachCancelAction(){
-        Scene scene = InvoiceNoLbl.getScene();
-        TabPane tabPane = (TabPane) scene.lookup("#MainTabWindow");
-        Tab currentTab = tabPane.getSelectionModel().getSelectedItem();
-        currentTab.setOnCloseRequest(new EventHandler<Event>()
-        {
-            @Override
-            public void handle(Event arg0)
-            {
-                CancelTab();
-            }
-        });
-    }*/
-    private void toggleRegStatus(String value){
+       private void toggleRegStatus(String value){
         System.out.println(value);
         if (value.equals("Registered")){
             engineChLabel.setVisible(false);
@@ -186,10 +178,7 @@ public class SaleControl {
     }
     @FXML
     public void initialize() {
-        // delete entity on tab close
-        /*currentTab.setOnCloseRequest(e -> {
-            DeleteEntity();
-        });*/
+
         engineChIn.setText("EngineNo/ChassisNo");
         ChangeListener listener, listenerFinanceType, regStatusListener;
         locale = new Locale("sin");
@@ -350,6 +339,15 @@ public class SaleControl {
     private void assignValues(SalesEntity sales,String bikeNo ){
         Date currentDate = Date.valueOf(saleDateIn.getValue());
         sales.setInvoiceNo(invoice);
+        if(taxUser == Byte.valueOf("1")){
+            PurchasesEntity purchase = session.get(PurchasesEntity.class,sales.getPurchaseInvoice());
+            if(purchase != null && purchase.getTax() == Byte.valueOf("1")){
+                sales.setPurchaseTax(Byte.valueOf("1"));
+                sales.setTax(Byte.valueOf("1"));
+                session.update(sales);
+            }
+
+        }
         sales.setBikeNo(bikeNo);
         sales.setBikeModal(BikeModalIn.getText());
         sales.setBikeColor(BikeColorIn.getText());
@@ -583,9 +581,6 @@ public class SaleControl {
         }
     }
 
-    public void setCurrentTab(Tab tab){
-        currentTab = tab;
-    }
 
     @FXML
     private void ValidateForNumbers(javafx.scene.input.KeyEvent event){

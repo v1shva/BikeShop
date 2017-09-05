@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<HBox prefHeight="658.0" prefWidth="1630.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BikeShop.control.StockViewControl">
+<HBox prefHeight="658.0" prefWidth="1630.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BikeShop.control.StockViewControl">
     <children>
         <ScrollPane vbarPolicy="NEVER">
             <content>
@@ -35,7 +35,7 @@
                                         <PropertyValueFactory property="property" />     </cellValueFactory>
                                     <!-- <cellFactory><TableCheckBoxValueFactory /></cellFactory>-->
                                 </TableColumn>
-                                <TableColumn prefWidth="66.0" text="Invoice No">
+                                <TableColumn prefWidth="66.0" text="Invoice No" fx:id="invoiceNoColumnn">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="invoiceNo" />
                                     </cellValueFactory>
@@ -97,7 +97,7 @@
                                         <PropertyValueFactory property="docList" />
                                     </cellValueFactory>
                                 </TableColumn>
-                                <TableColumn prefWidth="92.0" text="Purchase Date" fx:id="purchaseColumn">
+                                <TableColumn fx:id="purchaseColumn" prefWidth="92.0" text="Purchase Date">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="purchaseDate" />
                                     </cellValueFactory>
@@ -129,7 +129,7 @@
             
                             </columns>
                         </TableView>
-                        <ToolBar prefHeight="30.0" prefWidth="1700.0">
+                        <ToolBar fx:id="toolBar" prefHeight="30.0" prefWidth="1700.0">
                             <items>
                                 <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="13.0" />
                                 <HBox prefHeight="0.0" prefWidth="200.0">

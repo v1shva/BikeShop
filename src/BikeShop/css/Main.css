@@ -77,3 +77,32 @@
     -fx-background-image: url("../images/windowControl/restore-hover.png");
 
 }
+
+.tile-button {
+    -fx-effect: dropshadow(three-pass-box, black, 5, 0.35, 0, 0);
+    -fx-background-color: gray;
+    -fx-padding: 8 15 15 15;
+    -fx-font-size: 1.1em;
+}
+.tile-button:hover {
+    -fx-effect: dropshadow(three-pass-box, black, 0, 0, 0, 0);
+}
+.tile-button:pressed {
+    -fx-padding: 10 15 13 15;
+}
+.tile-button Text {
+    -fx-effect: dropshadow( gaussian , #aeddf0, 0,0,0,2 );
+}
+
+#welcome-label{
+
+}
+
+#welcome-label:hover {
+    -fx-background-color: #aeddf0;
+}
+
+.header-label{
+    -fx-background-color: #bababa;
+    -fx-text-fill: white;
+}

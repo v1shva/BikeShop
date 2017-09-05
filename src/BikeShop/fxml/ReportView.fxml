@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="506.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BikeShop.control.ReportControl">
+   <children>
+      <GridPane alignment="CENTER" prefHeight="421.0" prefWidth="1038.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="569.0" minWidth="0.0" prefWidth="82.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="793.0" minWidth="10.0" prefWidth="739.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="314.0" minHeight="0.0" prefHeight="103.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="625.0" minHeight="10.0" prefHeight="156.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="625.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="580.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Pane prefHeight="191.0" prefWidth="739.0" styleClass="bikeDetails" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Label layoutX="30.0" layoutY="1.0" prefHeight="27.0" prefWidth="224.0" text="Total Expenses and Income" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="15.0" layoutY="37.0" prefHeight="17.0" prefWidth="67.0" text="Expenses" textAlignment="CENTER" />
+                  <Label layoutX="15.0" layoutY="72.0" prefHeight="17.0" prefWidth="101.0" text="Income" />
+                  <Label layoutX="15.0" layoutY="107.0" prefHeight="17.0" prefWidth="101.0" text="Pending Finances" />
+                  <Accordion layoutX="-71.0" layoutY="93.0" />
+                  <Label layoutX="15.0" layoutY="140.0" prefHeight="17.0" prefWidth="81.0" text="Profit" />
+                  <Label fx:id="totalExp" alignment="CENTER_RIGHT" layoutX="193.0" layoutY="37.0" prefHeight="17.0" prefWidth="200.0" />
+                  <Label fx:id="totalIncome" alignment="CENTER_RIGHT" layoutX="193.0" layoutY="72.0" prefHeight="17.0" prefWidth="200.0" />
+                  <Label fx:id="totalFinances" alignment="CENTER_RIGHT" layoutX="193.0" layoutY="107.0" prefHeight="17.0" prefWidth="200.0" />
+                  <Label fx:id="totalProfit" alignment="CENTER_RIGHT" layoutX="193.0" layoutY="140.0" prefHeight="17.0" prefWidth="200.0" />
+                  <Label layoutX="15.0" layoutY="173.0" prefHeight="17.0" prefWidth="81.0" text="Arrears" />
+                  <Label fx:id="totalArr" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="193.0" layoutY="173.0" prefHeight="17.0" prefWidth="200.0" />
+               </children>
+            </Pane>
+            <HBox alignment="CENTER_RIGHT" prefHeight="94.0" prefWidth="623.0" spacing="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#CancelTab" prefHeight="25.0" prefWidth="142.0" text="Cancel" textAlignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#okReport" prefHeight="25.0" prefWidth="142.0" text="OK" textAlignment="CENTER" />
+                  <HBox prefHeight="94.0" prefWidth="67.0" />
+               </children>
+            </HBox>
+            <HBox GridPane.columnIndex="1">
+               <children>
+                  <VBox prefHeight="83.0" prefWidth="737.0">
+                     <children>
+                        <Label prefHeight="42.0" prefWidth="442.0" text="Report">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <Label prefHeight="42.0" prefWidth="143.0" text="Report Period :">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="periodSelect" prefWidth="150.0">
+                                  <items>
+                                      <FXCollections fx:factory="observableArrayList">
+                                          <String fx:value="Today" />
+                                          <String fx:value="This Month" />
+                                          <String fx:value="Select a Month" />
+                                          <String fx:value="Select a Year" />
+                                          <String fx:value="Custom Period" />
+                                      </FXCollections>
+                                  </items>
+                              </ChoiceBox>
+                              <Label fx:id="fromLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="56.0" text="From :" />
+                              <DatePicker fx:id="fromDate" onAction="#fromDateAction" />
+                              <Label fx:id="toLabel" alignment="CENTER" prefHeight="43.0" prefWidth="38.0" text="To :" />
+                              <DatePicker fx:id="toDate" layoutX="303.0" layoutY="10.0" onAction="#customPeriod" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Pane prefHeight="161.0" prefWidth="734.0" styleClass="bikeDetails" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label layoutX="28.0" layoutY="1.0" prefHeight="27.0" prefWidth="364.0" text="Total Bike Details" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="15.0" layoutY="37.0" prefHeight="17.0" prefWidth="121.0" text="No. of Bikes Sold" textAlignment="CENTER" />
+                  <Label layoutX="15.0" layoutY="72.0" prefHeight="17.0" prefWidth="138.0" text="No. of bikes Purchased" />
+                  <Label layoutX="15.0" layoutY="107.0" prefHeight="17.0" prefWidth="101.0" text="Bikes in Stock" />
+                  <Accordion layoutX="-71.0" layoutY="93.0" />
+                  <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="569.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="569.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="569.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="bikesSold" alignment="CENTER_RIGHT" layoutX="196.0" layoutY="37.0" prefHeight="17.0" prefWidth="200.0" />
+                  <Label fx:id="bikesPurchased" alignment="CENTER_RIGHT" layoutX="196.0" layoutY="72.0" prefHeight="17.0" prefWidth="200.0" />
+                  <Label fx:id="bikesStock" alignment="CENTER_RIGHT" layoutX="196.0" layoutY="108.0" prefHeight="17.0" prefWidth="200.0" />
+               </children>
+            </Pane>
+         </children>
+      </GridPane>
+   </children>
+</HBox>

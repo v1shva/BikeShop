@@ -17,7 +17,7 @@
    <children>
       <VBox>
          <children>
-            <ToolBar prefHeight="30.0" prefWidth="1700.0">
+            <ToolBar fx:id="toolBar" prefHeight="30.0" prefWidth="1700.0">
               <items>
                 <Button mnemonicParsing="false" onAction="#EditItems" text="Edit" />
                   <Button mnemonicParsing="false" onAction="#DeleteItems" text="Delete" />
@@ -46,7 +46,7 @@
                               <TableCheckBoxValueFactory />
                             </cellValueFactory>
                      </TableColumn>
-                      <TableColumn prefWidth="66.0" text="Invoice No">
+                      <TableColumn prefWidth="66.0" text="Invoice No" fx:id="invoiceNoColumnn">
                             <cellValueFactory>
                               <PropertyValueFactory property="invoiceNo" />
                             </cellValueFactory>

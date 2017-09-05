@@ -39,6 +39,8 @@ public class SaleViewControl {
         language = lan;
     }
     public Session session;
+    private Byte taxUser;
+    @FXML ToolBar toolBar;
     @FXML
     CheckBox taxToggle, financeToggle;
     @FXML
@@ -46,14 +48,27 @@ public class SaleViewControl {
     @FXML
     private TableView<BikeShop.Entity.SalesEntity> saleDataTable;
     @FXML
-    private TableColumn saleDateColumn;
+    private TableColumn saleDateColumn, invoiceNoColumnn;
 
 
     ObservableList<SalesEntity> masterData;
-    public void setSession(Session current){
+    public void setSession(Session current, Byte taxValue){
         session = current;
+        taxUser  = taxValue;
         masterData = LoadTableData();
         FilteredList<SalesEntity> filteredData = new FilteredList<>(masterData, p -> true);
+        if(taxUser == Byte.valueOf("1")){
+            toolBar.setVisible(false);
+            invoiceNoColumnn.setVisible(false);
+            filteredData.setPredicate(salesItem -> {
+                if (salesItem.getTax() == Byte.valueOf("1")) {
+                    return true;
+                }
+                return false; // Does not match.
+            });
+            SortedList<SalesEntity> sortedData = new SortedList<>(filteredData);
+            filteredData = new FilteredList<>(sortedData, p->true);
+        }
         setSaleDataTable(filteredData);
     }
 
@@ -251,12 +266,13 @@ public class SaleViewControl {
                         SalesEntity current = sales.get(checkedi);
                         //controller.attachCancelAction();
                         controller.setValues(true, current);
-                        controller.setSession(session);
+
                         Tab tab = new Tab();
                         tab.setText("Sell Bike");
                         tab.setClosable(true);
                         tab.setContent(root);
                         tabPane.getTabs().add(tab);
+                        controller.setSession(session, tab);
                         tabPane.getSelectionModel().select(tab);
                     }
                     else{
@@ -304,6 +320,8 @@ public class SaleViewControl {
                                 session.clear();
                             }
                         }
+                        session.flush();
+                        session.clear();
                         tx.commit();
                         session.clear();
                         masterData = LoadTableData();
@@ -396,6 +414,7 @@ public class SaleViewControl {
                                     alert.setHeaderText(sl.getBikeNo() + " Bike is not added to Tax in Purchase, therefore can't be added in sales.");
                                     alert.showAndWait();
                                 }
+                                sl.setChecked(false);
                                 session.update(sl);
                             }
                             if ( i % 20 == 0 ) { //20, same as the JDBC batch size
@@ -404,11 +423,14 @@ public class SaleViewControl {
                                 session.clear();
                             }
                         }
-                        tx.commit();
+                        session.flush();
                         session.clear();
+                        tx.commit();
                         masterData = LoadTableData();
                         FilteredList<SalesEntity> filteredData = new FilteredList<>(masterData, p -> true);
                         setSaleDataTable(filteredData);
+                        alertL.dispose();
+                    }else{
                         alertL.dispose();
                     }
                 });
@@ -439,6 +461,7 @@ public class SaleViewControl {
                             i++;
                             if(sl.getChecked()!=null &&sl.getChecked()==true){
                                 sl.setTax(Byte.valueOf("0"));
+                                sl.setChecked(false);
                                 session.update(sl);
                             }
                             if ( i % 20 == 0 ) { //20, same as the JDBC batch size
@@ -447,6 +470,8 @@ public class SaleViewControl {
                                 session.clear();
                             }
                         }
+                        session.flush();
+                        session.clear();
                         tx.commit();
                         session.clear();
                         masterData = LoadTableData();
